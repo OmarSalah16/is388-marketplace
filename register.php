@@ -24,7 +24,7 @@
     margin:0;
     padding:0;
     font-family: Century Gothic;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(register.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(pics/register.jpg);
     background-size: cover;
     background-position:center;
     background-repeat: no-repeat;

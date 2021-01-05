@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Contact Us</title>
+    <?php include "customerMenu.php"; ?>
   </head>
   <body>
     <div class="contact">
@@ -29,7 +30,7 @@
   body{
     margin:0;
     padding:0;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(interview.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(pics/interview.jpg);
     background-size: cover;
     background-position:center;
     background-repeat: no-repeat;

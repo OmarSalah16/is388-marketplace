@@ -3,23 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Home Page</title>
+    <?php include "customerMenu.php"; ?>
   </head>
   <body>
     <header>
-      <div class="main">
-        <div class="logo">
-          <img src="" alt="">
-        </div>
-
-        <ul>
-          <li class = "active"><a href = "#">Home</a></li>
-          <li><a href = "#">Profile</a></li>
-          <li><a href = "customerContact.php">Contact</a></li>
-          <li> <a href="#">SEARCH</a> </li>
-          <li> <input type="text" name="search" placeholder="Enter product name.."> </li>
-        </ul>
-      </div>
-
       <div class="subtitle">
         <h2>BEST.NEWS.EVER.</h2>
       </div>
@@ -52,56 +39,13 @@
   }
 
   header{
-    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(background2.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(pics/background2.jpg);
     height:100vh;
     background-size: cover;
     background-position:center;
+    background-repeat: no-repeat;
   }
 
-  ul{
-    float: right;
-    list-style-type: none;
-    margin-top: 25px;
-    margin-right: 50px;
-  }
-
-  ul li{
-    display: inline-block;
-  }
-
-  ul li a{
-    border-radius: 8px;
-    text-decoration: none;
-    color:#fff;
-    padding: 5px 20px;
-    border: 1px solid #fff transparent;
-    transition: 0.6s ease;
-  }
-
-  ul li a:hover{
-    background-color: #fff;
-    color: #000;
-  }
-
-  ul li.active a{
-    background-color: #fff;
-    color: #000;
-  }
-
-  ul li input{
-    text-decoration: none;
-    color:teal;
-    padding: 5px 20px;
-  }
-
-
-  .logo img{
-    margin-top: 10px;
-    margin-left: 20px;
-    float:left;
-    width: 100px;
-    height: auto;
-  }
 
   .title{
     position: absolute;
@@ -172,21 +116,21 @@
 .slideshow{
   width: 40%;
   height: 350px;
-  position: relative;
+  position: absolute;
   left: 22%;
   top:20%;
   transform:translate(-50%, 50%);
-  background-image: url('img1.jpg');
+  background-image: url('pics/img1.jpg');
   background-size: 100% 100%;
   box-shadow: 1px 2px 10px 10px white;
   animation: slider 9s infinite linear;
 }
 
 @keyframes slider {
-  0%{background-image: url('img1.jpg');}
-  20%{background-image: url('img2.jpg');}
-  40%{background-image: url('img6.jpg');}
-  60%{background-image: url('img4.jpg');}
-  80%{background-image: url('img5.jpg');}
+  0%{background-image: url('pics/img1.jpg');}
+  20%{background-image: url('pics/img2.jpg');}
+  40%{background-image: url('pics/img6.jpg');}
+  60%{background-image: url('pics/img4.jpg');}
+  80%{background-image: url('pics/img5.jpg');}
 }
 </style>
