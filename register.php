@@ -1,3 +1,6 @@
+
+<?php include('signup.php')?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -5,16 +8,40 @@
     <title>Registration Page</title>
   </head>
   <body>
-    <form class="box" action="login.php" method="post">
+
+    <form class="box" action="register.php" method="post">
+      <?php include('errors.php'); ?>
       <h1>Sign Up Now</h1>
-      <input type="text" name="" placeholder="Name">
-      <input type="text" name="" placeholder="Email">
-      <input type="text" name="" placeholder="Mobile Number">
-      <input type="text" name="" placeholder="Address">
-      <input type="password" name="" placeholder="Password">
-      <input type="password" name="" placeholder="Confirm Password">
-      <input type="submit" name="" value="Register">
+      <input type="text" name="username" id="username" placeholder=" Username" onkeyup='validate()'>
+      <input type="text" name="email" id="email" placeholder="Email" onkeyup='validate()'>
+      <input type="text" name="mobile" id="mobile" placeholder="Mobile Number" onkeyup='validate()'>
+      <input type="text" name="addr" id="addr" placeholder="Address" onkeyup='validate()'>
+      <input type="password" name="pass1" id="pass1" placeholder="Password" onkeyup='validate()'>
+      <input type="password" name="pass2" id="pass2" placeholder="Confirm Password" onkeyup='validate()'>
+      <input type="submit" name="reg" value="Register">
+       <div id ='msg'></div>
+        <p>
+      Already a member? <a href="login.php">Sign in</a>
+    </p>
+
     </form>
+     <script>
+    var validate = function()
+    {
+      jQuery.ajax(
+        {
+            url: 'signup.php',
+            data:'username='+$("#username").val(),
+            data:'email='+$("#email").val(),
+            data:'mobile='+$("#mobile").val(),
+            data:'addr='+$("#addr").val(),
+            data:'pass1='+$("#pass1").val(),
+            data:'pass2'+$("#username").val(),
+            type: "POST",
+            success:function(data){$("#msg").html(data);}
+        });
+      }
+    </script>
   </body>
 </html>
 
@@ -24,7 +51,7 @@
     margin:0;
     padding:0;
     font-family: Century Gothic;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(pics/register.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url("pics/register.jpg");
     background-size: cover;
     background-position:center;
     background-repeat: no-repeat;
@@ -87,6 +114,11 @@
   .box input[type="submit"]:hover{
     background: #2ecc71;
   }
-
+#valid{
+  color:green;
+}
+#invalid{
+  color:red;
+}
 
 </style>

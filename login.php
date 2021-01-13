@@ -7,9 +7,9 @@
   <body>
     <form class="box" action="customerHome.php"method="post">
       <h1>Login</h1>
-      <input type="text" name="" placeholder="Email">
-      <input type="password" name="" placeholder="Password">
-      <input type="submit" name="" value="Login" >
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <input type="submit" value="Login" >
       <a href="register.php">Sign Up</a>
     </form>
   </body>

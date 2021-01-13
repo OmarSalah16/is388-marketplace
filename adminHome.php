@@ -6,8 +6,8 @@
   </head>
   <body>
     <div class="box" >
-      <a class="x1" href="#">Product Database</a><br>
-      <a class="x2" href="#">Client Database</a><br>
+      <a class="x1" href="viewProducts.php">Product Database</a><br>
+      <a class="x2" href="viewClients.php">Client Database</a><br>
       <a class="x3" href="#">Admin Database</a><br>
       <a class="x4" href="#">View Messages</a>
     </div>
