@@ -1,19 +1,45 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>View Records</title>
+    <title>View Products</title>
+    <script>
+    function showProducts() {
+      var select = document.getElementById("searchBy").value;
+      var bar = document.getElementById("searchBar").value;
+      var xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+          document.getElementById("rTable").innerHTML=this.responseText;
+        }
+      }
+      xmlhttp.open("GET","php/products.php?select="+select+"&bar="+bar,true);
+      xmlhttp.send();
+    }
+    function deleteProduct(id){
+      var xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function() {
+        if (this.readyState==4 && this.status==200) {
+          document.getElementById("rTable").innerHTML=this.responseText;
+          showProducts();
+        }
+      }
+      xmlhttp.open("GET","php/deleteProduct.php?ID="+id,true);
+      xmlhttp.send();
+    }
+    </script>
   </head>
-<body>
+<body onload="showProducts()">
   <div class="form">
-    <h2>View Records</h2>
-    <label for=""></label> <input type="text" name="searchBar">
-    <select name="searchBy" id="searchBy">
+    <h2>View Products</h2>
+    <a href="addProduct.php">Add Product</a> <br>
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showProducts()">
+    <select name="searchBy" id="searchBy" onchange="showProducts()">
       <option value="ID">ID</option>
+      <option value="name">name</option>
       <option value="price">price</option>
       <option value="stock">stock</option>
       <option value="rating">rating</option>
     </select>
-    <button type="button" name="searchBtn" onclick="search()">Search</button>
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>
@@ -24,34 +50,7 @@
           <th><strong>rating</strong></th>
         </tr>
       </thead>
-      <tbody>
-        <?php
-          function search(){
-
-          }
-          $con=mysqli_connect("localhost","root","","marketplace");
-          // Check connection
-          if (mysqli_connect_errno())
-          {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-          }
-          $sel_query="SELECT * FROM products";
-          $result = mysqli_query($con,$sel_query);
-          while($row = mysqli_fetch_array($result)) { ?>
-            <tr>
-            <td align="center"><?php echo $row["ID"]; ?></td>
-            <td align="center"><?php echo $row["name"]; ?></td>
-            <td align="center"><?php echo $row["price"]; ?></td>
-            <td align="center"><?php echo $row["stock"]; ?></td>
-            <td align="center"><?php echo $row["rating"]; ?></td>
-            <td align="center">
-            <a href="edit.php?ID=<?php echo $row["ID"]; ?>">Edit</a>
-            </td>
-            <td align="center">
-            <a href="delete.php?ID=<?php echo $row["ID"]; ?>">Delete</a>
-            </td>
-            </tr>
-        <?php } ?>
+      <tbody id="rTable">
       </tbody>
     </table>
   </div>

@@ -30,7 +30,7 @@
     {
       jQuery.ajax(
         {
-            url: 'signup.php',
+            url: 'errors.php',
             data:'username='+$("#username").val(),
             data:'email='+$("#email").val(),
             data:'mobile='+$("#mobile").val(),

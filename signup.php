@@ -9,14 +9,14 @@ if (isset($_POST['reg']))
 
  $username = mysqli_real_escape_string($db, $_POST['username']);
  echo $username;
-  $email = mysqli_real_escape_string($db, $_POST['email']);
-  $password1 = mysqli_real_escape_string($db, $_POST['pass1']);
-  $password2 = mysqli_real_escape_string($db, $_POST['pass2']);
+ $email = mysqli_real_escape_string($db, $_POST['email']);
+ $password1 = mysqli_real_escape_string($db, $_POST['pass1']);
+ $password2 = mysqli_real_escape_string($db, $_POST['pass2']);
  $mobile = mysqli_real_escape_string($db, $_POST['mobile']);
  $address = mysqli_real_escape_string($db, $_POST['addr']);
-if (empty($username)) { array_push($errors, "Username is required"); }
-if (!filter_var($email,FILTER_VALIDATE_EMAIL)) { array_push($errors, "Please Enter a valid email address"); }
- if (strlen($password1)<8) { array_push($errors, "Password must be at least 8 characters long"); }
+if (empty($username)) { array_push($errors, "Username is required"); } // username
+if (!filter_var($email,FILTER_VALIDATE_EMAIL)) { array_push($errors, "Please Enter a valid email address"); } // email
+if (strlen($password1)<8) { array_push($errors, "Password must be at least 8 characters long"); } // password
 for($i=0;$i<strlen($password1);$i++)
   {
   	if(ctype_upper($password1{$i})){ array_push($errors, "Password must contain at least one Upper letter"); }
