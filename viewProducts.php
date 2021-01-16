@@ -1,37 +1,24 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>View Products</title>
-    <script>
-    function showProducts() {
-      var select = document.getElementById("searchBy").value;
-      var bar = document.getElementById("searchBar").value;
-      var xmlhttp=new XMLHttpRequest();
-      xmlhttp.onreadystatechange=function() {
-        if (this.readyState==4 && this.status==200) {
-          document.getElementById("rTable").innerHTML=this.responseText;
-        }
-      }
-      xmlhttp.open("GET","php/products.php?select="+select+"&bar="+bar,true);
-      xmlhttp.send();
-    }
-    function deleteProduct(id){
-      var xmlhttp=new XMLHttpRequest();
-      xmlhttp.onreadystatechange=function() {
-        if (this.readyState==4 && this.status==200) {
-          document.getElementById("rTable").innerHTML=this.responseText;
-          showProducts();
-        }
-      }
-      xmlhttp.open("GET","php/deleteProduct.php?ID="+id,true);
-      xmlhttp.send();
-    }
-    </script>
+    <title>Products</title>
+    <script src="js/products.js"></script>
   </head>
 <body onload="showProducts()">
-  <div class="form">
-    <h2>View Products</h2>
-    <a href="addProduct.php">Add Product</a> <br>
+    <h2>Products</h2>
+
+    <button type="button" id="addBtn" onclick="view_add()">Add Product</button>
+    <div id="addProduct" style="display: none">
+      <form class="addP" action="" method="post">
+        <label for="name">Name</label> <input type="text" name="name" id="name" value="" required> <br>
+        <label for="price">Price</label> <input type="number" name="price" id="price" value="1" step = "0.01" min = "1" reviewquired> <br>
+        <label for="stock">Stock</label> <input type="number" name="stock" id="stock" value="1" min = "1" required> <br>
+        <button type="button" name="submitABtn" id="submitABtn" onclick="addProduct()">Submit</button>
+        <button type="button" name="submitEBtn" id="submitEBtn" style="display: none;" onclick="submitEdit()">Submit</button>
+      </form>
+    </div>
+
+<div id="viewProduct">
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showProducts()">
     <select name="searchBy" id="searchBy" onchange="showProducts()">
       <option value="ID">ID</option>
@@ -40,6 +27,7 @@
       <option value="stock">stock</option>
       <option value="rating">rating</option>
     </select>
+
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>
@@ -53,6 +41,6 @@
       <tbody id="rTable">
       </tbody>
     </table>
-  </div>
+</div>
   </body>
 </html>
