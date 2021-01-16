@@ -1,8 +1,4 @@
 <?php
-$con = mysqli_connect('localhost','root','','marketplace');
-if (!$con) {
-  die('Could not connect: ' . mysqli_error($con));
-}
 function viewP($con){
   $select = $_GET['select'];
   if(is_numeric($select))
@@ -47,7 +43,11 @@ function deleteP($con){
 function editP($con){
   $sql ="UPDATE products SET name='$_GET[name]',price='$_GET[price]',stock='$_GET[stock]' WHERE ID= '$_GET[id]'";
   $result = mysqli_query($con,$sql);
-  echo $sql;
+  //echo $sql;
+}
+$con = mysqli_connect('localhost','root','','marketplace');
+if (!$con) {
+  die('Could not connect: ' . mysqli_error($con));
 }
 switch ($_GET['q']) {
   case 'add':

@@ -15,7 +15,6 @@ function deleteProduct(id){
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
-      document.getElementById("rTable").innerHTML=this.responseText;
       showProducts();
     }
   }
@@ -37,6 +36,7 @@ function addProduct(){
   xmlhttp.open("GET","php/products.php?name="+name+"&price="+price+"&stock="+stock+"&q=add",true);
   xmlhttp.send();
 }
+
 var globalID;
 function editProduct(id,name,price,stock) {
   document.getElementById("name").value = name;
