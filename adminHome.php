@@ -6,10 +6,11 @@
   </head>
   <body>
     <div class="box" >
-      <a class="x1" href="viewProducts.php">Product Database</a><br>
-      <a class="x2" href="viewClients.php">Client Database</a><br>
-      <a class="x3" href="#">Admin Database</a><br>
-      <a class="x4" href="#">View Messages</a>
+      <a class="x1" href="viewProducts.html">Product Database</a><br>
+      <a class="x2" href="viewClients.html">Client Database</a><br>
+      <a class="x3" href="viewAdmins.php">Admin Database</a><br>
+      <a class="x4" href="viewOrders.html">Order Database</a><br>
+      <a class="x5" href="#">View Messages</a>
     </div>
   </body>
 </html>
@@ -82,5 +83,11 @@
     background: orange;
   }
 
+  .box a.x5{
+    border: 2px solid grey;
+  }
+  .box a.x5:hover{
+    background: grey;
+  }
 
 </style>

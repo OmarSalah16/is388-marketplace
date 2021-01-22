@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>View Clients</title>
+    <script src="js/clients.js"></script>
+  </head>
+<body onload=showClients()>
+  <div class="form">
+    <h2>View Clients</h2>
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showClients()">
+    <select name="searchBy" id="searchBy" onchange="showClients()">
+      <option value="ID">ID</option>
+      <option value="username">Username</option>
+      <option value="name">name</option>
+      <option value="email">E-mail</option>
+      <option value="mobile">Mobile Number</option>
+    </select>
+    <table width="100%" border="1" style="border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th><strong>ID</strong></th>
+          <th><strong>Username</strong></th>
+          <th><strong>Name</strong></th>
+          <th><strong>E-mail</strong></th>
+          <th><strong>Mobile Number</strong></th>
+        </tr>
+      </thead>
+      <tbody id= "rTable">
+      </tbody>
+    </table>
+  </div>
+  </body>
+</html>

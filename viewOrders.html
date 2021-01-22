@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Orders</title>
+    <script src="js/orders.js"></script>
+  </head>
+<body onload="showOrders()">
+    <h2>Orders</h2>
+
+    <!-- <button type="button" id="addBtn" onclick="view_add()">Add Product</button>
+    <div id="addOrder" style="display: none">
+      <form class="addP" action="" method="post">
+        <label for="Date">Date</label> <input type="text" name="date" id="date" value="" required> <br>
+        <button type="button" name="submitEBtn" id="submitEBtn" style="display: none;" onclick="submitEdit()">SubmitE</button>
+      </form>
+    </div> -->
+
+<div id="viewOrder">
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showOrders()">
+    <select name="searchBy" id="searchBy" onchange="showOrders()">
+      <option value="ID" >ID</option>
+      <option value="Name" >name</option>
+      <option value="product_id" >Product ID</option>
+      <option value="customer" >Customer ID</option>
+      <option value="Status">Status</option>
+      <!--<option value="Date">Date</option>-->
+    </select>
+    <label for="" style="margin-left: 6px;" name="label" id="label">Price Range</label>
+    <input type="range" name="range1"  id="range1" oninput="showOrders()">
+    <input type="range" name="range2"  id="range2" oninput="showOrders()">
+
+    <table width="100%" border="1" style="border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th><strong>ID</strong></th>
+          <th><strong>Product ID</strong></th>
+          <th><strong>Name</strong></th>
+          <th><strong>Price</strong></th>
+          <th><strong>Customer ID</strong></th>
+          <th><strong>Status</strong></th>
+          <th><strong>Date</strong></th>
+
+        </tr>
+      </thead>
+      <tbody id="rTable">
+      </tbody>
+    </table>
+</div>
+  </body>
+</html>
