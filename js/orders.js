@@ -1,8 +1,8 @@
 function showOrders() {
   var select = document.getElementById("searchBy").value;
   var bar = document.getElementById("searchBar").value;
-  var range1 = document.getElementById("range1").value;
-  var range2 = document.getElementById("range2").value;
+  var range1 = document.getElementById("min").value;
+  var range2 = document.getElementById("max").value;
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {

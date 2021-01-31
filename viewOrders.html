@@ -3,6 +3,9 @@
     <meta charset="utf-8">
     <title>Orders</title>
     <script src="js/orders.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/minmax.css">
+
   </head>
 <body onload="showOrders()">
     <h2>Orders</h2>
@@ -15,7 +18,7 @@
       </form>
     </div> -->
 
-<div id="viewOrder">
+<div class="viewOrder">
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showOrders()">
     <select name="searchBy" id="searchBy" onchange="showOrders()">
       <option value="ID" >ID</option>
@@ -25,9 +28,12 @@
       <option value="Status">Status</option>
       <!--<option value="Date">Date</option>-->
     </select>
-    <label for="" style="margin-left: 6px;" name="label" id="label">Price Range</label>
-    <input type="range" name="range1"  id="range1" oninput="showOrders()">
-    <input type="range" name="range2"  id="range2" oninput="showOrders()">
+    from
+      <input  type="number" value="0" min="0" max="25000" onchange="showOrders()">    to
+      <input  type="number" value="25000" min="0" max="25000" onchange="showOrders()">
+      <input id="min" value="0" min="0" max="25000" step="1" type="range" onchange="showOrders()">
+      <input id="max" value="25000" min="0" max="25000" step="1" type="range" onchange="showOrders()">
+
 
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
@@ -46,5 +52,7 @@
       </tbody>
     </table>
 </div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script  src="js/minmax.js"></script>
   </body>
 </html>

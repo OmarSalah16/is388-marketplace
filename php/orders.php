@@ -10,7 +10,7 @@ function viewO($con){
   $range2 = $_GET['range2'];
   $sql = "SELECT * FROM orders";
   $sql2="SELECT * FROM orders WHERE $select = '".$bar."'";
- 
+
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
@@ -26,6 +26,9 @@ function viewO($con){
     $sql3 = "SELECT name,price FROM products WHERE ID=$row[product_id]";
     $result2 = mysqli_query($con,$sql3);
     $product = mysqli_fetch_array($result2);
+    if ($product['price']<$range1 || $product['price']>$range2) {
+      continue;
+    }
     echo "<tr>";
     echo "<td>" . $row['ID'] . "</td>";
     echo "<td>" . $row['product_id'] . "</td>";
