@@ -10,7 +10,7 @@
       <a class="x2" href="viewClients.html">Client Database</a><br>
       <a class="x3" href="viewAdmins.php">Admin Database</a><br>
       <a class="x4" href="viewOrders.html">Order Database</a><br>
-      <a class="x5" href="#">View Messages</a>
+      <a class="x5" href="viewTickets.html">View Tickets</a>
     </div>
   </body>
 </html>

@@ -4,23 +4,20 @@
     <meta charset="utf-8">
     <title>Contact Us</title>
     <?php include "customerMenu.php"; ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/message.js"></script>
   </head>
   <body>
     <div class="contact">
       <h1>Contact Us</h1>
       <div class="txtb">
-        <input type="text" name="name" value="" placeholder="Full Name">
+      <div class="txtb">
+        <input class="subject" type="text" name="subject" value="" placeholder="Subject">
       </div>
       <div class="txtb">
-        <input type="text" name="email" value="" placeholder="Email">
+        <textarea class="content" name="content" placeholder="Enter your message..."></textarea>
       </div>
-      <div class="txtb">
-        <input type="text" name="" value="" placeholder="Mobile Number">
-      </div>
-      <div class="txtb">
-        <textarea name="message" placeholder="Enter your message.."></textarea>
-      </div>
-      <a class="btn">SEND</a>
+      <button class="submit">Send</button>
     </div>
   </body>
 </html>
@@ -70,11 +67,13 @@
     border: none;
     background: none;
     outline:none;
+    resize: vertical;
+    max-height: 250px;
     font-size: 18px;
     margin-top: 6px;
   }
 
-  .btn{
+  .submit{
     border-radius: 8px;
     display:block;
     background: orange;
@@ -87,7 +86,7 @@
     transition: 0.6s ease;
   }
 
-  .btn:hover{
+  .submit:hover{
     background: teal;
   }
 </style>

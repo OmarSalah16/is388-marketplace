@@ -7,8 +7,8 @@ function viewA($con){
       $select = intval($select);
     }
   $bar = $_GET['bar'];
-  $sql = "SELECT * FROM users WHERE role = 'admin'";
-  $sql2="SELECT * FROM users WHERE role = 'admin' AND $select = '".$bar."'";
+  $sql = "SELECT * FROM users INNER JOIN hierarchy ON hierarchy.admin_id = users.ID";
+  $sql2="SELECT * FROM users INNER JOIN hierarchy ON hierarchy.admin_id = users.ID WHERE $select = '".$bar."'";
 
   if($bar == ""){
     $result = mysqli_query($con,$sql);
@@ -21,15 +21,12 @@ function viewA($con){
   }
   else{
     while($row = mysqli_fetch_array($result)) {
-    $sql3 ="SELECT rank FROM hierarchy WHERE admin_id= '$row[ID]'";
-    $result2 = mysqli_query($con,$sql3);
-    $rank = mysqli_fetch_array($result2);
     echo "<tr>";
     echo "<td>" . $row['ID'] . "</td>";
     echo "<td>" . $row['name'] . "</td>";
     echo "<td>" . $row['email'] . "</td>";
-    echo "<td>" . $rank['rank'] . "</td>";
-    if($_SESSION['rank']<$rank['rank'])
+    echo "<td>" . $row['rank'] . "</td>";
+    if($_SESSION['rank']<$row['rank'])
     {
       echo "<td align='center'><button type='button' name='delete' onclick='deleteAdmin(".$row['ID'].")'>Delete</button></td>";;
     }
@@ -43,13 +40,11 @@ function viewA($con){
 function addA($con){
   $sql = "INSERT INTO users ( username,name ,password, mobile, email, role) VALUES ('$_GET[username]','$_GET[name]','$_GET[password]','$_GET[mobile]','$_GET[email]','admin')";
   $result=mysqli_query($con,$sql);
-  echo $sql;
   $sql2 = "SELECT ID FROM users WHERE username = '$_GET[username]'";
   $result2=mysqli_query($con,$sql2);
   $admin_id = mysqli_fetch_array($result2);
   $sql3 = "INSERT INTO hierarchy (admin_id, rank) VALUES ($admin_id[ID],$_GET[rank])";
   $result3 = mysqli_query($con,$sql3);
-  echo "test";
 }
 function deleteA($con){
   $id = intval($_GET['ID']);

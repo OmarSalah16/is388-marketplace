@@ -1,15 +1,15 @@
 <?php
 function viewO($con){
   $select = $_GET['select'];
-  if(is_numeric($select))
-    {
-      $select = intval($select);
-    }
   $bar = $_GET['bar'];
+  if ($select=="ID")
+  {
+    $select = "orders.ID";
+  }
   $range1 = $_GET['range1'];
   $range2 = $_GET['range2'];
-  $sql = "SELECT * FROM orders";
-  $sql2="SELECT * FROM orders WHERE $select = '".$bar."'";
+  $sql = "SELECT orders.ID, product_id, name, price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID";
+  $sql2="SELECT orders.ID, product_id, name, price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID WHERE $select = '$bar'";
 
   if($bar == ""){
     $result = mysqli_query($con,$sql);
@@ -23,17 +23,14 @@ function viewO($con){
   }
   else{
     while($row = mysqli_fetch_array($result)) {
-    $sql3 = "SELECT name,price FROM products WHERE ID=$row[product_id]";
-    $result2 = mysqli_query($con,$sql3);
-    $product = mysqli_fetch_array($result2);
-    if ($product['price']<$range1 || $product['price']>$range2) {
+    if ($row['price']<$range1 || $row['price']>$range2) {
       continue;
     }
     echo "<tr>";
     echo "<td>" . $row['ID'] . "</td>";
     echo "<td>" . $row['product_id'] . "</td>";
-    echo "<td>" . $product['name'] . "</td>";
-    echo "<td>" . $product['price'] . "</td>";
+    echo "<td>" . $row['name'] . "</td>";
+    echo "<td>" . $row['price'] . "</td>";
     echo "<td>" . $row['customer_id'] . "</td>";
     echo "<td>" . $row['status'] . "</td>";
     echo "<td>" . $row['date'] . "</td>";
