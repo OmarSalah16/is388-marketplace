@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Products</title>
+    <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=S1imGCUVKGwp1nV5ClDq25sKo3wMz_F2IfWV-TrAyMBTvpVpiAZUauXd_J-TqZqCJ_kVlJ7Z2Zon7HtML_xLlFk65IyJDDIkVwTC5yV8EAEfs3HW80QV6wNWujm3okpPOrY2p7g19L7N1lB3o7FBllyBRD9mizIi-M1xbeYsO5g" charset="UTF-8"></script><script src="js/productSearch.js"></script>
+    <style type="text/css">
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    </style>
+  </head>
+<body onload="showProducts()">
+    <h2>Products</h2>
+    <a href="cartView.php">cart</a>
+<div id="viewOrder">
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showProducts()">
+    <select name="searchBy" id="searchBy" onchange="selectChange()">
+      <option value="Name" >Name</option>
+      <option value="Price" >Price</option>
+    </select>
+    <label for="" style="display:none;" name="label" id="label">Price Range</label>
+    <input type="text" name="range1" style="display:none;" id="range1" oninput="showOrders()">
+    <input type="text" name="range2" style="display:none;" id="range2" oninput="showOrders()">
+
+    <table width="100%" border="1" style="border-collapse:collapse;">
+      <thead>
+        <tr>
+          <th><strong>ID</strong></th>
+          <th><strong>Name</strong></th>
+          <th><strong>Price</strong></th>
+          <th><strong>Stock</strong></th>
+          <th><strong>Rating</strong></th>
+          
+        </tr>
+      </thead>
+      <tbody id="rTable">
+      </tbody>
+    </table>
+</div>
+  </body>
+</html>

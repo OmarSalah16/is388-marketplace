@@ -1,32 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" id="rTable">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Login Page</title>
-    <script src="loginsignup.js"></script>
-  </head>
-  <body>
-    <form class="box" method="post">
-      <h1>Login</h1>    
-      <input type="text" name="username" id="username" placeholder="Username">
-      <input type="password" name="password" id="password" placeholder="Password">
-      <button type="button" id="submit" onclick="login()">Login</button>
-      <a href="signup.html">Sign Up</a>
-    </form>
-    <script type="text/javascript">  
-      function login() {
+    <title>Register Page</title>
+    <script src="js/loginsignup.js"></script>
+     <script type="text/javascript">
+  function signup() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
+  var email = document.getElementById("email").value;
+  var address = document.getElementById("address").value;
+  var mobile = document.getElementById("mobile").value;
+  var Cpassword = document.getElementById("Cpassword").value;
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       document.getElementById("rTable").innerHTML=this.responseText;
     }
   }
-  xmlhttp.open("GET","php/loginsignup.php?username="+username+"&password="+password+"&q=login",true);
+  xmlhttp.open("GET","php/loginsignup.php?username="+username+"&password="+password+"&email="+email+"&address="+address+"&mobile="+mobile+"&Cpassword="+Cpassword"&q=signup",true);
   xmlhttp.send();
 }</script>
-  
+  </head>
+  <body>
+    <form class="box" method="post">
+      <h1>Sign up</h1>
+      <input type="text" name="username" id="username" placeholder="Username">
+      <input type="email" name="email" id="email" placeholder="email">
+      <input type="number" name="mobile" id="mobile" placeholder="mobile">
+      <input type="text" name="address" id="address" placeholder="address">
+      <input type="password" name="password" id="password" placeholder="password">
+      <input type="password" name="Cpassword" id="Cpassword" placeholder="Confirm Password">
+      <button type="button" id="submit" onclick="signup()">Login</button>
+      <a href="register.php">Sign Up</a>
+    </form>
+
   </body>
 </html>
 
@@ -60,7 +68,7 @@
     font-weight: 500;
   }
 
-  .box input[type="text"], .box input[type="password"]{
+  .box input[type="text"], .box input[type="password"], .box input[type="email"], .box input[type="number"]{
     border:0;
     background: none;
     display: block;
