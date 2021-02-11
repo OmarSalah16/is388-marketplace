@@ -2,52 +2,54 @@
 
 function loginC($con){
 
-  $username = $_GET['username'];
-  $password = $_GET['password'];
-  $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-  echo $sql;
+  $sql = "SELECT * FROM users WHERE username = $_GET[''] AND password = $password";
   $result = mysqli_query($con,$sql);
-  if(!$result)
+  $row = mysqli_fetch_array($result);
+  if(mysql_num_rows($result) == 0)
   {
-    echo "incorrect";
+    session_start();
+    $_SESSION['client_id'] = $row['ID'];
+    $_SESSION['cart'] = [];
+    echo "Incorrect";
   }
   else{
-    
-    header('Location: ../customerHome.php');
+    session_start();
+    $_SESSION['client_id'] = $row['ID'];
+    $_SESSION['cart'] = [];
+    header('Location: ../customerHome.html');
+    // // window.location.href = "customerHome.html";
   }
 }
 
 function signupC($con){
-
-  $username = $_GET['username'];
-  $password = $_GET['password'];
-  $email = $_GET['email'];
-  $mobile = $_GET['mobile'];
-  $sql = "SELECT username FROM users WHERE username = '$username'";
-  $sql2 = "INSERT INTO users (username, password, email, mobile) VALUES ($username, $password, $email, $mobile);";
+  $sql = "SELECT * FROM users WHERE username = $username AND password = $password";
+  $sql2 = "INSERT INTO users (username, password, email, mobile, password, role) VALUES ($username, $password, $email, $mobile, $password, 'user');";
   $result = mysqli_query($con,$sql);
-  if(!$result)
+  $result2 = mysqli_query($con,$sql);
+  if(mysql_num_rows($result) == 0)
   {
-    echo "already done";
+
+    // window.location.href = "customerHome.html";
   }
   else{
-    $result2 = mysqli_query($con,$sql2);
-    header('Location: ../customerHome.php');
+    alert("Information is already used");
   }
 }
+
+
 $con = mysqli_connect('localhost','root','','marketplace');
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
 switch ($_GET['q']) {
-  
+
   case 'signup':
     signupC($con);
     break;
 
   case 'login':
     loginC($con);
-    break;  
+    break;
 }
 mysqli_close($con);
 ?>

@@ -4,7 +4,10 @@ function login() {
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
-      document.getElementById("rTable").innerHTML=this.responseText;
+      var response = JSON.parse(xhr.responseText);
+      if(response.location){
+        window.location.href = response.location;
+      }
     }
   }
   xmlhttp.open("GET","php/loginsignup.php?username="+username+"&password="+password+"&q=login",true);
@@ -27,8 +30,3 @@ function signup() {
   xmlhttp.open("GET","php/loginsignup.php?username="+username+"&password="+password+"&email="+email+"&address="+address+"&mobile="+mobile+"&Cpassword="+Cpassword"&q=signup",true);
   xmlhttp.send();
 }
-
-
-
-
-
