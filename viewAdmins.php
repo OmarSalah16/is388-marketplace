@@ -18,7 +18,6 @@
         <select id="rank" name="">
           <?php
           session_start();
-          $_SESSION['rank'] = 0;
             for($i=$_SESSION['rank'];$i<=9;$i++)
             {
               echo "<option value='$i'>".$i."</option>";

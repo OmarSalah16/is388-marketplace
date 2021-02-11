@@ -17,7 +17,7 @@
           <li class = "contact"><a href = "customerContact.php">Contact</a></li>
           <li> <a href="#">SEARCH</a> </li>
           <li> <input type="text" name="search" placeholder="Enter product name.."> </li>
-          <li> <a href="login.php">Sign Out</a> </li> </li>
+          <li> <a href="logout.php">Log Out</a> </li> </li>
         </ul>
       </div>
     </header>

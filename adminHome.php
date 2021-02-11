@@ -11,6 +11,7 @@
       <a class="x3" href="viewAdmins.php">Admin Database</a><br>
       <a class="x4" href="viewOrders.html">Order Database</a><br>
       <a class="x5" href="viewTickets.html">View Tickets</a>
+      <a class="x6" href="logout.php">Log Out</a>
     </div>
   </body>
 </html>

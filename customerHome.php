@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Home Page</title>
-    <?php include "customerMenu.php"; ?>
+    <?php include "navbar.php"; ?>
   </head>
   <body>
     <header>
