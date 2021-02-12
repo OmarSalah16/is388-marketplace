@@ -95,15 +95,14 @@
       }
 
     </style>
-    <script src="loginsignup.js"></script>
   </head>
   <body>
     <form class="box" method="post">
       <h1>Login</h1>
-      <input type="text" name="username" id="username" placeholder="Username">
+      <input type="text" name="email" id="email" placeholder="E-mail">
       <input type="password" name="password" id="password" placeholder="Password">
       <input type="submit" name="submit" value="Login">
-      <a href="signup.html">Sign Up</a>
+      <a href="signup.php">Sign Up</a>
     </form>
 
     <?php
@@ -111,7 +110,8 @@
     include 'php/dbhandler.php';
       if(isset($_POST['submit']))
       {
-        $sql = "SELECT * FROM users WHERE username = '$_POST[username]' AND password = '$_POST[password]'";
+        $sql = "SELECT * FROM users WHERE email = '$_POST[email]' AND password = '$_POST[password]'";
+        echo $sql;
         $result = mysqli_query($con, $sql);
           if(mysqli_num_rows($result) == 1)
         {

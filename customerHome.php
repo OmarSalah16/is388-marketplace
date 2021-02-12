@@ -6,7 +6,6 @@
     <?php include "navbar.php"; ?>
   </head>
   <body>
-    <header>
       <div class="subtitle">
         <h2>BEST.NEWS.EVER.</h2>
       </div>
@@ -26,7 +25,6 @@
         <h3>Winter Collection 2021</h3>
         <h2> NEW ARRIVALS</h3>
       </div>
-    </header>
   </body>
 </html>
 

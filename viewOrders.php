@@ -11,12 +11,12 @@
     <h2>Orders</h2>
 
 <div class="viewOrder">
-    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showOrders()">
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showOrders()" <?php if(isset($_GET['id'])){echo "value='$_GET[id]'";} ?>>
     <select name="searchBy" id="searchBy" onchange="showOrders()">
+      <option value="customer_id" >Customer ID</option>
       <option value="ID" >ID</option>
       <option value="Name" >name</option>
       <option value="product_id" >Product ID</option>
-      <option value="customer" >Customer ID</option>
       <option value="Status">Status</option>
       <!--<option value="Date">Date</option>-->
     </select>
@@ -30,10 +30,10 @@
       <thead>
         <tr>
           <th><strong>ID</strong></th>
+          <th><strong>Customer ID</strong></th>
           <th><strong>Product ID</strong></th>
           <th><strong>Name</strong></th>
           <th><strong>Price</strong></th>
-          <th><strong>Customer ID</strong></th>
           <th><strong>Status</strong></th>
           <th><strong>Date</strong></th>
 

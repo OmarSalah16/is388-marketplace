@@ -24,12 +24,11 @@ else{
   while($row = mysqli_fetch_array($result)) {
   echo "<tr>";
   echo "<td>" . $row['ID'] . "</td>";
-  echo "<td>" . $row['username'] . "</td>";
   echo "<td>" . $row['name'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
   echo "<td>" . $row['mobile'] . "</td>";
-  echo "<td align='center'><a href='#'>View Profile</a></td>";
-  echo "<td align='center'><a href='#'>View Orders</a></td>";
+  echo "<td align='center'><a href='viewClient?id=$row[ID]'>View Profile</a></td>";
+  echo "<td align='center'><a href='viewOrders?id=$row[ID]'>View Orders</a></td>";
   echo "</tr>";
   }
 }

@@ -14,6 +14,7 @@
         <ul>
           <li class = "home"><a href = "customerHome.php">Home</a></li>
           <li class = "profile"><a href = "customerProfile.php">Profile</a></li>
+          <li class = "profile"><a href = "customerProfile.php">Profile</a></li>
           <li class = "contact"><a href = "customerContact.php">Contact</a></li>
           <li> <a href="#">SEARCH</a> </li>
           <li> <input type="text" name="search" placeholder="Enter product name.."> </li>

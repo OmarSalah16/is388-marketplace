@@ -10,7 +10,6 @@ function viewO($con){
   $range2 = $_GET['range2'];
   $sql = "SELECT orders.ID, product_id, name, price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID";
   $sql2="SELECT orders.ID, product_id, name, price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID WHERE $select = '$bar'";
-
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
@@ -28,10 +27,10 @@ function viewO($con){
     }
     echo "<tr>";
     echo "<td>" . $row['ID'] . "</td>";
+    echo "<td>" . $row['customer_id'] . "</td>";
     echo "<td>" . $row['product_id'] . "</td>";
     echo "<td>" . $row['name'] . "</td>";
     echo "<td>" . $row['price'] . "</td>";
-    echo "<td>" . $row['customer_id'] . "</td>";
     echo "<td>" . $row['status'] . "</td>";
     echo "<td>" . $row['date'] . "</td>";
     echo "<td align='center'><button type='button' name='delete' onclick='deleteOrder(".$row['ID'].")'>Delete</button></td>";
