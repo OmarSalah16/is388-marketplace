@@ -111,7 +111,6 @@
       if(isset($_POST['submit']))
       {
         $sql = "SELECT * FROM users WHERE email = '$_POST[email]' AND password = '$_POST[password]'";
-        echo $sql;
         $result = mysqli_query($con, $sql);
           if(mysqli_num_rows($result) == 1)
         {
@@ -122,13 +121,21 @@
           $_SESSION['name'] = $row['name'];
           $_SESSION['role'] = $row['role'];
           if($_SESSION['role']=="customer")
-            header("Location: customerHome.php");
+            {
+              header("Location: customerHome.php");
+              $_SESSION['cart'] = [];
+              $_SESSION['Qcart'] = [];
+            }
           elseif ($_SESSION['role']=="admin") {
             $sql1 = "SELECT rank FROM hierarchy WHERE admin_id = $_SESSION[ID]";
             $result1 = mysqli_query($con, $sql1);
             $row = mysqli_fetch_array($result1);
             $_SESSION['rank'] = $row['rank'];
-            header("Location: adminHome.php");
+            header("Location: adminHome");
+          }
+          elseif($_SESSION['role']=="auditor")
+          {
+            header("Location: auditorHome");
           }
         }
         else {

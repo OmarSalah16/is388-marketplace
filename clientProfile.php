@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <title>My Profile</title>
-    <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=RE-lEFy46sKipzgvQT6UBc4vxizYlPC1HZfhzdy7ilV8Xd0AB1ActcWzZfeuEOdy8pL_weDEOpngnKpyg_N6nspRLsclPJqZzuxDARK1tytac-4z7qMsrRGnn-NKLfKQNMDRdsHsch0aTN8CzObbHV59bT3c3IgQ2ehmcfKq8Dg" charset="UTF-8"></script><script src="js/clientProfile.js"></script>
+    <script src="js/clientProfile.js"></script>
   </head>
   <style type="text/css">
     img{
@@ -11,8 +11,7 @@
     }
   </style>
 <body onload="showProfile()">
-<img style="border-radius: 50%" src="hidethepainharold.jpg" alt="Profile Picture">
-<h2>My Profile</h2>   
+<h2>My Profile</h2>
     <button type="button" id="addBtn" onclick="view_add()">Edit Profile</button>
     <div id="addProduct" style="display: none">
       <form class="addP" action="" method="post">
@@ -24,21 +23,12 @@
       </form>
     </div>
 
-<div id="viewProduct">   
+<div id="viewProduct">
     <table width="100%" border="1" style="border-collapse:collapse;">
-      <thead>
-        <tr>
-          <th><strong>ID</strong></th>
-          <th><strong>Username</strong></th>
-          <th><strong>Name</strong></th>
-          <th><strong>Role</strong></th>
-          <th><strong>Mobile</strong></th>
-        </tr>
-      </thead>
       <tbody id="rTable">
       </tbody>
     </table>
-    
+
 </div>
 <div id="rTable" style="display: none;">
       <form class="review" action="" method="post">
@@ -47,19 +37,12 @@
         <button type="button" name="submitABtn" id="submitABtn" onclick="review()">Submit</button>
       </form>
     </div>
-<!-- <div id="viewProduct">   
-    <table width="100%" border="1" style="border-collapse:collapse;">
-      <thead>
-        <tr>
-          <th><strong>ID</strong></th>
-          <th><strong>Product ID</strong></th>
-          <th><strong>Status</strong></th>
-          <th><strong>Date</strong></th>
-        </tr>
-      </thead>
-      <tbody id="rTable">
-      </tbody>
-    </table>
-</div> -->
+
+    <form class="addP" action="php/upload.php" method="post" enctype="multipart/form-data">
+        <label for="stock">Change Picture</label>
+        <input type="file" name="file" id="file" accept="image/x-png,image/jpeg">
+        <input type="submit" name="submit" value="Start Upload">
+      </form>
+
   </body>
 </html>

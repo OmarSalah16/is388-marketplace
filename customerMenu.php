@@ -12,13 +12,13 @@
         </div>
 
         <ul>
-          <li class = "home"><a href = "customerHome.php">Home</a></li>
-          <li class = "profile"><a href = "customerProfile.php">Profile</a></li>
-          <li class = "profile"><a href = "customerProfile.php">Profile</a></li>
-          <li class = "contact"><a href = "customerContact.php">Contact</a></li>
-          <li> <a href="#">SEARCH</a> </li>
+          <li class = "home"><a href = "customerHome">Home</a></li>
+          <li class = "profile"><a href = "customerProfile">Profile</a></li>
+          <li class = "contact"><a href = "customerContact">Contact Us</a></li>
+          <li class = "profile"><a href = "support">Messages</a></li>
           <li> <input type="text" name="search" placeholder="Enter product name.."> </li>
-          <li> <a href="logout.php">Log Out</a> </li> </li>
+          <li> <a href="productSearch">SEARCH</a> </li>
+          <li> <a href="logout">Log Out</a> </li> </li>
         </ul>
       </div>
     </header>

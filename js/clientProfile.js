@@ -24,11 +24,15 @@ function submitReview(id,rating,review){
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
-       window.location.href = "clientProfile.html";
+       window.location.href = "clientProfile.php";
     }
   }
   xmlhttp.open("GET","php/clientProfile.php?&q=review&id="+id,true);
   xmlhttp.send();
+}
+
+function viewOrder(id){
+  window.location.href = "viewOrderC.php?&q=view&id="+id;
 }
 
 function writeReview(id){

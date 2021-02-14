@@ -20,11 +20,12 @@ function viewC($con){
   $i+=1;
   }
   // echo $sql;
-  $result = mysqli_query($con,$sql);
-  if (mysqli_num_rows($result) == 0) {
-     echo "No result found";
+  if ($i==0)
+  {
+    echo "Cart is Empty";
   }
   else{
+    $result = mysqli_query($con,$sql);
     while($row = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td>" . $row['ID'] . "</td>";

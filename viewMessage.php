@@ -21,7 +21,7 @@
       }
       .unread{
         text-decoration: underline;
-        font-weight: bold; 
+        font-weight: bold;
       }
       textarea{
         width: 400px;
@@ -30,6 +30,9 @@
     </style>
   </head>
   <body onload="displayTicket()">
+    <div id="error">
+
+    </div>
     <div id="rTable"></div>
     <textarea id="content" name="content" placeholder="Enter your message..."></textarea> <br>
     <button type="button" onclick="sendResponse()">Send</button>

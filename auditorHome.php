@@ -6,10 +6,6 @@
   </head>
   <body>
     <div class="box" >
-      <a class="x1" href="viewProducts">Product Database</a><br>
-      <a class="x2" href="viewClients">Client Database</a><br>
-      <a class="x3" href="viewAdmins">Admin Database</a><br>
-      <a class="x4" href="viewOrders">Order Database</a><br>
       <a class="x5" href="viewTickets">View Tickets</a>
       <a class="x6" href="logout">Log Out</a>
     </div>

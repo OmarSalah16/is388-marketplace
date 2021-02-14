@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['cart'] = [];
 
 function viewP($con){
   $select = $_GET['select'];
@@ -13,44 +12,64 @@ function viewP($con){
   $range2 = $_GET['range2'];
   $sql = "SELECT * FROM products";
   $sql2="SELECT * FROM products WHERE $select = '".$bar."'";
- 
+
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
   else {
     $result = mysqli_query($con,$sql2);
   }
-
   if (mysqli_num_rows($result) == 0) {
      echo "No result found";
   }
   else{
     while($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['ID'] . "</td>";
-    echo "<td>" . $row['name'] . "</td>";
-    echo "<td>" . $row['price'] . "</td>";
-    echo "<td>" . $row['stock'] . "</td>";
-    echo "<td>" . $row['rating'] . "</td>";
-    echo "<td align='center'><button type='button' name='delete' onclick='addToCart(".$row['ID'].")'>Add to cart</button></td>";
-    echo "<td align='center'><button type='button' name='delete' onclick='viewProduct(".$row['ID'].")'>View</button></td>";
-    echo "</tr>";
+      if ($row['stock']>0) {
+        $val = 1;
+        $min = 1;
+      }
+      else {
+        $val = 0;
+        $min = 0;
+      }
+      echo "<tr>";
+      echo "<td>" . $row['ID'] . "</td>";
+      echo "<td>" . $row['name'] . "</td>";
+      echo "<td>" . $row['price'] . "</td>";
+      echo "<td>" . $row['stock'] . "</td>";
+      echo "<td>" . $row['rating'] . "</td>";
+      echo "<td align='center'><button type='button' name='delete' onclick='addToCart(".$row['ID'].")'>Add to cart</button></td>";
+      echo "<td align='center'><input type = 'number' id = '$row[ID]' name = 'step' value = '$val' step = '1' min = '$min' max='$row[stock]'></td>";
+      echo "<td align='center'><button type='button' name='delete' onclick='viewProduct(".$row['ID'].")'>View</button></td>";
+      echo "</tr>";
     }
   }
 }
 
 function addCart($con){
-  echo "test";
   $ID = intval($_GET['ID']);
-  array_push($_SESSION['cart'], $ID);
+  $quantity = intval($_GET['quantity']);
+  $sql = "SELECT * FROM products WHERE ID = $ID";
+  $result = mysqli_query($con,$sql);
+  $row = mysqli_fetch_array($result);
+  if($row['stock']<$quantity||$row['stock']==0){
+    die("Quantity larger than available stock.");
+  }
 
-  
+  $key = array_search($ID,$_SESSION['cart']);
+  //echo $ID."  ".$key;
+  if(is_numeric($key)){
+    unset($_SESSION['cart'][$key]);
+    unset($_SESSION['Qcart'][$key]);
+  }
+    array_push($_SESSION['cart'], $ID);
+    array_push($_SESSION['Qcart'], $quantity);
+    $_SESSION['cart'] = array_values($_SESSION['cart']);
+    $_SESSION['Qcart'] = array_values($_SESSION['Qcart']);
+    echo "Added to cart.";
 }
 
-$con = mysqli_connect('localhost','root','','marketplace');
-if (!$con) {
-  die('Could not connect: ' . mysqli_error($con));
-}
+include 'dbhandler.php';
 switch ($_GET['q']) {
 
   case 'del':
@@ -63,7 +82,7 @@ switch ($_GET['q']) {
 
   case 'cart':
     addCart($con);
-    break;  
+    break;
 
 
 }
