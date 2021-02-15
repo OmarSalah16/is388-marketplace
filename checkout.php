@@ -46,6 +46,19 @@
       $Qcart1 = implode(",",$Qcart);
       $sql = "INSERT INTO orders ( customer_id, product_id, quantity) VALUES ( $client_id, '$cart1', '$Qcart1');";
       $result = mysqli_query($con,$sql);
+
+      $lastID = mysqli_insert_id($con);
+      $sql2 = "INSERT INTO reviews (order_id, product_id) VALUES (";
+      foreach ($cart as $value) {
+        $sql2 .= $lastID . ", " . $value . ")," . "(";
+      }
+      $sql2 = substr($sql2, 0, -2);
+      $result2 = mysqli_query($con,$sql2);
+      for ($i=0; $i < $count; $i++) {
+        $sql3 = "UPDATE products SET stock = stock-$Qcart[$i] WHERE ID = $cart[$i]";
+        $result3 = mysqli_query($con,$sql3);
+      }
+
       $_SESSION['cart'] = [];
       $_SESSION['Qcart'] = [];
       header("Location: clientProfile");

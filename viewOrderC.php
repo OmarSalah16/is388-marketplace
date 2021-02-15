@@ -12,16 +12,16 @@ function viewO($con){
   $priceTracker = 0;
 
 
-  echo "Order " . $ID . "<br>";
+  echo "<h2>Order " . $ID . "</h2>";
   echo "<table border = '1' style='border-collapse:collapse;'>";
-   echo "<thead>
-           <tr>
-             <th><strong>Name</strong></th>
-             <th><strong>Price</strong></th>
-             <th><strong>Quantity</strong></th>
-             <th><strong>Total Price</strong></th>
-           </tr>
-         </thead>";
+  echo "<thead>
+         <tr>
+           <th><strong>Name</strong></th>
+           <th><strong>Price</strong></th>
+           <th><strong>Quantity</strong></th>
+           <th><strong>Total Price</strong></th>
+         </tr>
+       </thead>";
   while($row = mysqli_fetch_array($result)) {
     $arrayP = explode(",", $row['product_id']);
     $arrayQ = explode(",", $row['quantity']);
@@ -49,7 +49,7 @@ function viewO($con){
     echo "<td>" . $row2['price']*$arrayQ[$j] . "</td>";
 
     }
-    echo "</table;";
+    echo "</table>";
 }
 
 

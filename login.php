@@ -137,6 +137,10 @@
           {
             header("Location: auditorHome");
           }
+          elseif($_SESSION['role']=="HR")
+          {
+            header("Location: hrHome");
+          }
         }
         else {
           echo "incorrect credentials";

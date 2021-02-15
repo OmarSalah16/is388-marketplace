@@ -62,7 +62,7 @@ function viewTickets($con){
       echo "<td>" . $row['title'] . "</td>";
       echo "<td>" . $row['status'] . "</td>";
       echo "<td>" . $row['created'] . "</td>";
-      echo "<td align='center'><a href='viewMessage.php?id=$row[ID]'>View Ticket</a></td>";
+      echo "<td align='center'><a href='viewAMessage.php?id=$row[ID]'>View Ticket</a></td>";
       echo "</tr>";
     }
   }
@@ -107,17 +107,23 @@ function displayTicket($con){
     echo "</div>";
   }
 
-  $sql1 = "SELECT * FROM tickets_response where ticket_id = $id";
+  $sql1 = "SELECT * FROM tickets_response WHERE ticket_id = $id";
   $result1 = mysqli_query($con,$sql1);
   while($row = mysqli_fetch_array($result1)){
-    if($row['is_admin']) $class="admin ";
-    else $class = "customer ";
+    if($row['is_admin']) {
+      $class="admin ";
+      $role = "Admin";
+    }
+    else {
+      $class = "customer ";
+      $role = "Customer";
+    }
     if($row['is_read']) $class .= "read";
     else $class .= "unread";
     echo "<div class='$class'>";
     echo "Date: ".$row['created']."<br>";
     echo "Response ID: ".$row['ID']."<br>";
-    echo ucfirst($_SESSION['role'])." ID: ".$row['author_id']."<br>";
+    echo $role." ID: ".$row['author_id']."<br>";
     //echo "Ticket ID".$row['ticket_id']."<br>";
     echo "Message: ".$row['msg']."<br>";
     echo "</div>";
@@ -125,6 +131,198 @@ function displayTicket($con){
   $sql2 ="UPDATE tickets_response SET is_read = 1 WHERE ticket_id = $id AND is_read != 1 AND author_id != $_SESSION[ID]";
   $result2 = mysqli_query($con,$sql2);
 }
+
+function displayATicket($con){
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM tickets WHERE ID = $id";
+  $result = mysqli_query($con,$sql);
+  $class = "customer ";
+  while($row = mysqli_fetch_array($result)){
+    if($row['status']=="pending") $class .= "unread ";
+    else $class .= "read ";
+    echo "<div class='$class'>";
+    echo "Date: ".$row['created']."<br>";
+    echo "Status: ".$row['status']."<br>";
+    echo "Ticket ID: ".$row['ID']."<br>";
+    echo "Customer ID: ".$row['customer_id']."<br>";
+    echo "Title: ".$row['title']."<br>";
+    echo "Message: ".$row['msg']."<br>";
+    echo "</div>";
+  }
+
+  $sql1 = "SELECT * FROM tickets_response WHERE ticket_id = $id";
+  $result1 = mysqli_query($con,$sql1);
+  while($row = mysqli_fetch_array($result1)){
+    if($row['is_admin']) {
+      $class="admin ";
+      $radio = "<input type='radio' name='select' id='$row[ID]' value='$row[ID]'><label>Select</label><br>";
+      $role = "Admin";
+    }
+    else {
+      $class = "customer ";
+      $radio = "";
+      $role = "Customer";
+    }
+    if($row['is_read']) $class .= "read";
+    else $class .= "unread";
+    echo "<div class='$class'>";
+    echo $radio;
+    echo "Date: ".$row['created']."<br>";
+    echo "Response ID: ".$row['ID']."<br>";
+    echo $role." ID: ".$row['author_id']."<br>";
+    //echo "Ticket ID".$row['ticket_id']."<br>";
+    echo "Message: ".$row['msg']."<br>";
+    if($role == "Admin") {
+      $sql3 = "SELECT * FROM report WHERE response_id = $row[ID]";
+      $result3 = mysqli_query($con,$sql3);
+      while($row3 = mysqli_fetch_array($result3)){
+        echo "<div style = 'border-style: solid; border-color: blue;'>";
+        echo "Auditor ID: $row3[auditor_id] <br>";
+        echo "Comments: $row3[comment] <br>";
+        if ($row3['is_report'] == 0) {
+          echo "<button type='button' onclick='report($row3[ID])'>Report to HR</button>";
+        }
+        else {
+          echo "Reported to HR";
+        }
+        echo "</div>";
+      }
+    }
+    echo "</div>";
+  }
+  $sql2 ="UPDATE tickets_response SET is_read = 1 WHERE ticket_id = $id AND is_read != 1 AND author_id != $_SESSION[ID]";
+  $result2 = mysqli_query($con,$sql2);
+}
+
+function ticket_comment($con){
+  $comment = $_GET['comment'];
+  $response_id = $_GET['id'];
+  $auditor_id = $_SESSION['ID'];
+  if(isset($comment,$response_id))
+  {
+    if(empty($comment)||empty($response_id))
+    {
+      //error
+      die('Empty Variables');
+    }
+    else{
+      $sql = "INSERT INTO report (auditor_id, response_id, comment) VALUES ($auditor_id, $response_id, '$comment')";
+      $result=mysqli_query($con,$sql);
+    }
+  }
+}
+
+function report($con){
+  $report_id = $_GET['id'];
+  $sql = "UPDATE report SET is_report = 1 WHERE ID = $report_id";
+  $result=mysqli_query($con,$sql);
+}
+
+function viewR($con){
+  $sql2 = "SELECT * FROM tickets_response INNER JOIN report ON report.response_id = tickets_response.ID WHERE report.is_report = 1 AND report.archived = 0";
+  $result2 = mysqli_query($con,$sql2);
+  $ticket_id = [];
+  while ($row2 = mysqli_fetch_array($result2)) {
+    $ticket_id[$row2['ticket_id']] = true;
+  }
+  if (mysqli_num_rows($result2) == 0) {
+     echo "No reports found";
+  }
+  else{
+    $sql = "SELECT * FROM tickets WHERE ID = ";
+    foreach ($ticket_id as $key => $value) {
+      if($value)
+        $sql .= $key . " OR ";
+    }
+    $sql = substr($sql,0,-4);
+    $result = mysqli_query($con,$sql);
+    while($row = mysqli_fetch_array($result)){
+      echo "<tr>";
+      echo "<td>" . $row['ID'] . "</td>";
+      echo "<td>" . $row['customer_id'] . "</td>";
+      echo "<td>" . $row['title'] . "</td>";
+      echo "<td>" . $row['status'] . "</td>";
+      echo "<td>" . $row['created'] . "</td>";
+      echo "<td align='center'><a href='viewReport.php?id=$row[ID]'>View Ticket</a></td>";
+      echo "</tr>";
+    }
+  }
+}
+
+function displayRTicket($con){
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM tickets WHERE ID = $id";
+  $result = mysqli_query($con,$sql);
+  $class = "customer ";
+  while($row = mysqli_fetch_array($result)){
+    if($row['status']=="pending") $class .= "unread ";
+    else $class .= "read ";
+    echo "<div class='$class'>";
+    echo "Date: ".$row['created']."<br>";
+    echo "Status: ".$row['status']."<br>";
+    echo "Ticket ID: ".$row['ID']."<br>";
+    echo "Customer ID: ".$row['customer_id']."<br>";
+    echo "Title: ".$row['title']."<br>";
+    echo "Message: ".$row['msg']."<br>";
+    echo "</div>";
+  }
+  $sql1 = "SELECT * FROM tickets_response WHERE ticket_id = $id";
+  // $sql1 = "SELECT * FROM tickets_response INNER JOIN report ON tickets_response.ID = report.response_id WHERE report.is_report = 1 AND  tickets_response.ticket_id = $id ";
+  $result1 = mysqli_query($con,$sql1);
+  while($row = mysqli_fetch_array($result1)){
+    if($row['is_admin']) {
+      $class="admin ";
+      $role = "Admin";
+    }
+    else {
+      $class = "customer ";
+      $role = "Customer";
+    }
+    if($row['is_read']) $class .= "read";
+    else $class .= "unread";
+    echo "<div class='$class'>";
+    echo "Date: ".$row['created']."<br>";
+    echo "Response ID: ".$row['ID']."<br>";
+    echo $role." ID: ".$row['author_id']."<br>";
+    //echo "Ticket ID".$row['ticket_id']."<br>";
+    echo "Message: ".$row['msg']."<br>";
+    if($role == "Admin") {
+      $sql3 = "SELECT * FROM report WHERE response_id = $row[ID] AND is_report = 1 AND archived = 0";
+      $result3 = mysqli_query($con,$sql3);
+      while($row3 = mysqli_fetch_array($result3)){
+        echo "<div style = 'border-style: solid; border-color: blue;'>";
+        echo "<input type='radio' name='select' id='$row3[ID]' value='$row3[ID]'><label>Select</label><br>";
+        echo "Auditor ID: $row3[auditor_id] <br>";
+        echo "Comments: $row3[comment] <br>";
+        echo "</div>";
+      }
+    }
+    echo "</div>";
+  }
+  $sql2 ="UPDATE tickets_response SET is_read = 1 WHERE ticket_id = $id AND is_read != 1 AND author_id != $_SESSION[ID]";
+  $result2 = mysqli_query($con,$sql2);
+}
+
+  function addPenalty($con){
+    $comment = $_GET['comment'];
+    $report_id = $_GET['id'];
+    $hr_id = $_SESSION['ID'];
+    if(isset($comment,$report_id))
+    {
+      if(empty($comment)||empty($report_id))
+      {
+        //error
+        die('Empty Variables');
+      }
+      else{
+        $sql = "INSERT INTO penalty (report_id, hr_id, comment) VALUES ($report_id, $hr_id, '$comment')";
+        $result=mysqli_query($con,$sql);
+        $sql1 = "UPDATE report SET archived = 1 WHERE ID = $report_id";
+        $result1=mysqli_query($con,$sql1);
+      }
+    }
+  }
+
   session_start();
  include 'dbhandler.php';
 switch ($_GET['q']) {
@@ -137,11 +335,29 @@ switch ($_GET['q']) {
   case 'display':
     displayTicket($con);
     break;
+  case 'displayA':
+    displayATicket($con);
+    break;
   case 'contact':
     create_ticket($con);
     break;
   case 'response':
     ticket_response($con);
+    break;
+  case 'comment':
+    ticket_comment($con);
+    break;
+  case 'report':
+    report($con);
+    break;
+  case 'viewR':
+    viewR($con);
+    break;
+  case 'displayR':
+    displayRTicket($con);
+    break;
+  case 'penalty':
+    addPenalty($con);
     break;
 }
 mysqli_close($con);
