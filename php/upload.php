@@ -23,7 +23,6 @@
     "Size: "  . ($_FILES["file"]["size"] / 1024) . " Kb<br>" .
     "Temp file:  " . $_FILES["file"]["tmp_name"] . "<br>";
 
-    $temp = explode(".", $_FILES["file"]["name"]);
     $newfilename = $_SESSION['ID'] .'.' . 'jpg';
     move_uploaded_file($_FILES["file"]["tmp_name"], "F:\\\\XAMPP\htdocs\marketplace\user_images\\" . $newfilename);
 

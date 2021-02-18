@@ -5,8 +5,8 @@
     <title>View Tickets</title>
     <script src="js/ticket.js"></script>
   </head>
-  <body onload="viewPenalty()">
-    <button type="button" onclick="viewReports()">Refresh</button>
+  <body onload="viewPenaltys()">
+    <button type="button" onclick="viewPenaltys()">Refresh</button>
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>

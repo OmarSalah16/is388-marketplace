@@ -146,13 +146,25 @@ function addPenalty() {
   xmlhttp.send();
 }
 
-function viewPenalty(){
+function viewPenaltys(){
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       document.getElementById("rTable").innerHTML=this.responseText;
     }
   }
-  xmlhttp.open("GET","php/ticket.php?q=viewR",true);
+  xmlhttp.open("GET","php/ticket.php?q=viewP",true);
+  xmlhttp.send();
+}
+
+function displayPenalty(){
+  var $_GET = getGet();
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("rTable").innerHTML=this.responseText;
+    }
+  }
+  xmlhttp.open("GET","php/ticket.php?q=displayP&id="+$_GET['id'],true);
   xmlhttp.send();
 }
