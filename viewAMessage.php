@@ -38,3 +38,22 @@
     <button type="button" onclick="addComment()">Add Comment</button>
   </body>
 </html>
+
+<style media="screen">
+
+*{
+  margin:0;
+  padding:0;
+  font-family: Century Gothic;
+  font-size: 15px;
+}
+
+body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), url(pics/message1.jpg);
+  height:100vh;
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+
+</style>

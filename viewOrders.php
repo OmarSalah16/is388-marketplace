@@ -8,11 +8,11 @@
 
   </head>
 <body onload="showOrders()">
-    <h2>Orders</h2>
+    <h1><u>Orders</u></h1><br>
 
 <div class="viewOrder">
-    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showOrders()" <?php if(isset($_GET['id'])){echo "value='$_GET[id]'";} ?>>
-    <select name="searchBy" id="searchBy" onchange="showOrders()">
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" placeholder="Search for Order.." oninput="showOrders()" <?php if(isset($_GET['id'])){echo "value='$_GET[id]'";} ?>>
+    <select name="searchBy" id="searchBy" onchange="showOrders()" style="width:120px;">
       <option value="customer_id" >Customer ID</option>
       <option value="ID" >ID</option>
       <option value="Name" >name</option>
@@ -47,3 +47,27 @@
 <script  src="js/minmax.js"></script>
   </body>
 </html>
+
+<style media="screen">
+*{
+  margin:0;
+  padding:0;
+  font-family: Century Gothic;
+}
+
+body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/delivery.jpg);
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+
+h1{
+  color:white;
+  margin-left: 45%;
+}
+
+table{
+  background-color: lightgrey;
+}
+</style>

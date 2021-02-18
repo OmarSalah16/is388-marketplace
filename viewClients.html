@@ -6,15 +6,15 @@
   </head>
 <body onload=showClients()>
   <div class="form">
-    <h2>View Clients</h2>
-    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showClients()">
+    <h1><u>Client Database</u></h1>
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showClients()" placeholder="Search for Client.." style="width:200px;margin-left:5px;">
     <select name="searchBy" id="searchBy" onchange="showClients()">
       <option value="ID">ID</option>
       <option value="username">Username</option>
       <option value="name">name</option>
       <option value="email">E-mail</option>
       <option value="mobile">Mobile Number</option>
-    </select>
+    </select><br>
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>
@@ -31,3 +31,25 @@
   </div>
   </body>
 </html>
+
+<style media="screen">
+*{
+  margin:0;
+  padding:0;
+  font-family: Century Gothic;
+}
+
+body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.3)), url(pics/viewclient.jpg);
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+ h1{
+   margin-left: 40%;
+ }
+table{
+  background-color: lightgrey;
+}
+
+</style>

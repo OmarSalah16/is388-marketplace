@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Profile Menu</title>
   </head>
   <body>
     <header>
@@ -12,8 +12,7 @@
           <li class = "profile"><a href = "customerProfile">Profile</a></li>
           <li class = "contact"><a href = "customerContact">Contact Us</a></li>
           <li class = "profile"><a href = "support">Messages</a></li>
-          <li> <input type="text" name="search" placeholder="Enter product name.."> </li>
-          <li> <a href="productSearch">Search</a> </li>
+          <li> <a href="productSearch">Products</a> </li>
           <li> <a href="logout">Log Out</a> </li> </li>
         </ul>
       </div>
@@ -51,6 +50,15 @@ ul li input{
   text-decoration: none;
   color:teal;
   padding: 5px 20px;
+}
+
+
+.logo img{
+  margin-top: 10px;
+  margin-left: 20px;
+  float:left;
+  width: 100px;
+  height: auto;
 }
 
 </style>
