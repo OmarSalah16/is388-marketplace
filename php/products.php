@@ -25,8 +25,8 @@ function viewP($con){
     echo "<td>" . $row['price'] . "</td>";
     echo "<td>" . $row['stock'] . "</td>";
     echo "<td>" . $row['rating'] . "</td>";
-    echo "<td align='center'><button type='button' name='edit' onclick='editProduct(".$row['ID'].",\"".$row['name']."\", ".$row['price'].",".$row['stock'].")'>Edit</button></td>";
-    echo "<td align='center'><button type='button' name='delete' onclick='deleteProduct(".$row['ID'].")'>Delete</button></td>";
+    echo "<td align='center'><button type='button' name='Edit' onclick='editProduct(".$row['ID'].",\"".$row['name']."\", ".$row['price'].",".$row['stock'].")'>Edit</button></td>";
+    echo "<td align='center'><button type='button' name='Delete' onclick='deleteProduct(".$row['ID'].")'>Delete</button></td>";
     echo "</tr>";
     }
   }

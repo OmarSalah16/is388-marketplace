@@ -299,8 +299,6 @@ function displayRTicket($con){
     }
     echo "</div>";
   }
-  $sql2 ="UPDATE tickets_response SET is_read = 1 WHERE ticket_id = $id AND is_read != 1 AND author_id != $_SESSION[ID]";
-  $result2 = mysqli_query($con,$sql2);
 }
 
   function addPenalty($con){
@@ -315,11 +313,97 @@ function displayRTicket($con){
         die('Empty Variables');
       }
       else{
-        $sql = "INSERT INTO penalty (report_id, hr_id, comment) VALUES ($report_id, $hr_id, '$comment')";
+        $sql = "INSERT INTO penalty (report_id, hr_id, comments) VALUES ($report_id, $hr_id, '$comment')";
         $result=mysqli_query($con,$sql);
         $sql1 = "UPDATE report SET archived = 1 WHERE ID = $report_id";
         $result1=mysqli_query($con,$sql1);
       }
+    }
+  }
+
+  function viewP($con){
+    $sql2 = "SELECT ticket_id from penalty INNER JOIN report ON penalty.report_id = report.ID INNER JOIN tickets_response ON report.response_id = tickets_response.ID";
+    $result2 = mysqli_query($con,$sql2);
+    $ticket_id = [];
+    while ($row2 = mysqli_fetch_array($result2)) {
+      $ticket_id[$row2['ticket_id']] = true;
+    }
+    if (mysqli_num_rows($result2) == 0) {
+       echo "No reports found";
+    }
+    else{
+      $sql = "SELECT * FROM tickets WHERE ID = ";
+      foreach ($ticket_id as $key => $value) {
+        if($value)
+          $sql .= $key . " OR ";
+      }
+      $sql = substr($sql,0,-4);
+      $result = mysqli_query($con,$sql);
+      while($row = mysqli_fetch_array($result)){
+        echo "<tr>";
+        echo "<td>" . $row['ID'] . "</td>";
+        echo "<td>" . $row['customer_id'] . "</td>";
+        echo "<td>" . $row['title'] . "</td>";
+        echo "<td>" . $row['status'] . "</td>";
+        echo "<td>" . $row['created'] . "</td>";
+        echo "<td align='center'><a href='viewPenalty.php?id=$row[ID]'>View Ticket</a></td>";
+        echo "</tr>";
+      }
+    }
+  }
+
+  function displayPTicket($con){
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM tickets WHERE ID = $id";
+    $result = mysqli_query($con,$sql);
+    $class = "customer ";
+    while($row = mysqli_fetch_array($result)){
+      if($row['status']=="pending") $class .= "unread ";
+      else $class .= "read ";
+      echo "<div class='$class'>";
+      echo "Date: ".$row['created']."<br>";
+      echo "Status: ".$row['status']."<br>";
+      echo "Ticket ID: ".$row['ID']."<br>";
+      echo "Customer ID: ".$row['customer_id']."<br>";
+      echo "Title: ".$row['title']."<br>";
+      echo "Message: ".$row['msg']."<br>";
+      echo "</div>";
+    }
+    $sql1 = "SELECT * FROM tickets_response WHERE ticket_id = $id";
+    // $sql1 = "SELECT * FROM tickets_response INNER JOIN report ON tickets_response.ID = report.response_id WHERE report.is_report = 1 AND  tickets_response.ticket_id = $id ";
+    $result1 = mysqli_query($con,$sql1);
+    while($row = mysqli_fetch_array($result1)){
+      if($row['is_admin']) {
+        $class="admin ";
+        $role = "Admin";
+      }
+      else {
+        $class = "customer ";
+        $role = "Customer";
+      }
+      if($row['is_read']) $class .= "read";
+      else $class .= "unread";
+      echo "<div class='$class'>";
+      echo "Date: ".$row['created']."<br>";
+      echo "Response ID: ".$row['ID']."<br>";
+      echo $role." ID: ".$row['author_id']."<br>";
+      //echo "Ticket ID".$row['ticket_id']."<br>";
+      echo "Message: ".$row['msg']."<br>";
+      if($role == "Admin") {
+        $sql3 = "SELECT * FROM penalty INNER JOIN report ON penalty.report_id = report.ID  WHERE response_id = $row[ID] AND is_report = 1";
+        $result3 = mysqli_query($con,$sql3);
+        while($row3 = mysqli_fetch_array($result3)){
+          echo "<div style = 'border-style: solid; border-color: blue; margin:2px;'>";
+          echo "Auditor ID: $row3[auditor_id] <br>";
+          echo "Comments: $row3[comment] <br>";
+          echo "<div style = 'border-style: solid; border-color: purple; margin:2px;'>";
+          echo "HR ID: $row3[hr_id] <br>";
+          echo "Comments: $row3[comments] <br>";
+          echo "</div>";
+          echo "</div>";
+        }
+      }
+      echo "</div>";
     }
   }
 
@@ -358,6 +442,12 @@ switch ($_GET['q']) {
     break;
   case 'penalty':
     addPenalty($con);
+    break;
+  case 'viewP':
+    viewP($con);
+    break;
+  case 'displayP':
+    displayPTicket($con);
     break;
 }
 mysqli_close($con);
