@@ -1,7 +1,6 @@
 <?php
   session_start();
 
-
   $file_result = "";
 
   $file_size =$_FILES['file']['size'];
@@ -28,6 +27,10 @@
 
     $file_result .= "Congrats :)! You file uploaded succeful!";
     }
-    sleep(3);
-    header("Location: ../clientProfile");
+    include 'dbhandler.php';
+    $sql = "INSERT INTO user_image (user_id,image_name) VALUES ($_SESSION[ID],'$newfilename')";
+    $result = mysqli_query($con,$sql);
+    mysqli_close($con);
+  //  sleep(3);
+   header("Location: ../clientProfile");
 ?>

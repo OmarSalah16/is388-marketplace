@@ -9,7 +9,7 @@
       <div class="main">
         <ul>
           <li class = "home"><a href = "customerHome">Home</a></li>
-          <li class = "profile"><a href = "customerProfile">Profile</a></li>
+          <li class = "profile"><a href = "clientProfile">Profile</a></li>
           <li class = "contact"><a href = "customerContact">Contact Us</a></li>
           <li class = "profile"><a href = "support">Messages</a></li>
           <li> <input type="text" name="search" placeholder="Enter product name.."> </li>
