@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>View Surveys</title>
-    <script src="js/ticket.js"></script>
+    <script src="js/survey.js"></script>
   </head>
   <body onload="viewSurveys()">
-    <button type="button" onclick="viewReports()">Refresh</button>
+    <button type="button">Refresh</button>
+    <a href="addSurvey.php">Add Survey</a>
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>
