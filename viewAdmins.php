@@ -9,13 +9,13 @@
 
     <div id="addAdmin" style="display: none">
       <form class="addP" action="" method="post">
-        <label for="username">Username</label> <input type="text" name="username" id="username" value="" required > <br><br>
-        <label for="name">Name</label> <input type="text" name="name" id="name" value="" required style="margin-left:30px;"> <br><br>
-        <label for="email">E-mail</label> <input type="email" name="email" id="email" value="" required style="margin-left:32px;"> <br><br>
-        <label for="password">Password</label> <input type="password" name="password" id="password" value="" required style="margin-left:5.5px;"> <br><br>
-        <label for="mobile">Mobile</label> <input type="text" name="mobile" id="mobile" value="" required style="margin-left:25px;"> <br><br>
+        <!-- <label for="username">Username</label> <input type="text" name="username" id="username" class="form" value="" required > <br><br> -->
+        <label for="name">Name</label> <input type="text" name="name" id="name" class="form" value="" required style="margin-left:30px;"> <br><br>
+        <label for="email">E-mail</label> <input type="email" name="email" id="email" class="form" value="" required style="margin-left:32px;"> <br><br>
+        <label for="password">Password</label> <input type="password" name="password" id="password" class="form" value="" required style="margin-left:5.5px;"> <br><br>
+        <label for="mobile">Mobile</label> <input type="text" name="mobile" id="mobile" class="form" value="" required style="margin-left:25px;"> <br><br>
         <label for="rank">Rank</label>
-        <select id="rank" name="" style="margin-left:39.5px;">
+        <select id="rank" name="rank" class="form" style="margin-left:39.5px;">
           <?php
           session_start();
             for($i=$_SESSION['rank'];$i<=9;$i++)
@@ -29,8 +29,8 @@
     </div>
 
 <div id="viewAdmin">
-    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showAdmins()" placeholder="Search for Admin.." style="margin-left:10px;width:170px;">
-    <select name="searchBy" id="searchBy" onchange="showAdmins()" style="width:70px;">
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="form" oninput="showAdmins()" placeholder="Search for Admin.." style="margin-left:10px;width:170px;">
+    <select name="searchBy" id="searchBy" class="form" onchange="showAdmins()" style="width:70px;">
       <option value="ID">ID</option>
       <option value="name">Name</option>
       <option value="email">Email</option>

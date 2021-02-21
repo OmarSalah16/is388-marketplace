@@ -12,13 +12,16 @@
     }
   </style>
 <body onload="showProfile()">
+  <div id = "error">
+
+  </div>
 <h1>My Profile</h1>
 
     <div id="addProduct" style="display: none">
       <form class="addP" action="" method="post">
-        <label for="name">Name</label> <input type="text" name="name" id="name" value="" required> <br>
-        <label for="price">Mobile</label> <input type="number" name="mobile" id="mobile"  required> <br>
-        <label for="stock">Username</label> <input type="text" name="username" id="username" required> <br>
+        <label for="name">Name</label> <input type="text" name="name" id="name"  class="form" required> <br>
+        <label for="price">Mobile</label> <input type="number" name="mobile" id="mobile" class="form" required> <br>
+        <label for="stock">Email</label> <input type="text" name="email" id="email" class="form" required> <br>
         <button type="button" name="submitABtn" id="submitABtn" onclick="submitEdit()">Submit</button>
         <button type="button" name="submitEBtn" id="submitEBtn" style="display: none;" onclick="submitEdit()">SubmitE</button>
       </form>
@@ -82,5 +85,8 @@ button{
 
 button:hover{
   background: #2ecc71;
+}
+input{
+  color: black;
 }
 </style>

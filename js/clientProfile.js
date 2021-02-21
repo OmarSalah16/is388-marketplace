@@ -1,35 +1,37 @@
 function showProfile() {
+  var formData = new FormData();
+  formData.append('q', 'view');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       document.getElementById("rTable").innerHTML=this.responseText;
     }
   }
-  xmlhttp.open("GET","php/clientProfile.php?select="+"&q=view",true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/clientProfile.php",true);
+  xmlhttp.send(formData);
 }
 
-function delProfile(){
-  var xmlhttp=new XMLHttpRequest();
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      showProfile();
-    }
-  }
-  xmlhttp.open("GET","php/clientProfile.php?&q=del",true);
-  xmlhttp.send();
-}
+// function delProfile(){
+//   var xmlhttp=new XMLHttpRequest();
+//   xmlhttp.onreadystatechange=function() {
+//     if (this.readyState==4 && this.status==200) {
+//       showProfile();
+//     }
+//   }
+//   xmlhttp.open("GET","php/clientProfile.php?&q=del",true);
+//   xmlhttp.send();
+// }
 
-function submitReview(id,rating,review){
-  var xmlhttp=new XMLHttpRequest();
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-       window.location.href = "clientProfile.php";
-    }
-  }
-  xmlhttp.open("GET","php/clientProfile.php?&q=review&id="+id,true);
-  xmlhttp.send();
-}
+// function submitReview(id,rating,review){
+//   var xmlhttp=new XMLHttpRequest();
+//   xmlhttp.onreadystatechange=function() {
+//     if (this.readyState==4 && this.status==200) {
+//        window.location.href = "clientProfile.php";
+//     }
+//   }
+//   xmlhttp.open("GET","php/clientProfile.php?&q=review&id="+id,true);
+//   xmlhttp.send();
+// }
 
 function viewOrder(id){
   window.location.href = "viewOrderC.php?&q=view&id="+id;
@@ -51,19 +53,24 @@ function editProfile(id,name,price,stock) {
 }
 
 function submitEdit(){
-  var name = document.getElementById("name").value;
-  var mobile = document.getElementById("mobile").value;
-  var username = document.getElementById("username").value;
+  var elements = document.getElementsByClassName("form");
+  var formData = new FormData();
+  for (var i = 0; i < elements.length; i++) {
+    formData.append(elements[i].name, elements[i].value);
+    console.log(elements[i].name + " " + elements[i].value);
+  }
+  formData.append('q', 'edit');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
 
     if (this.readyState==4 && this.status==200) {
       view_add();
       showProfile();
+      document.getElementById("error").innerHTML = this.responseText;
     }
   }
-  xmlhttp.open("GET","php/clientProfile.php?name="+name+"&mobile="+mobile+"&username="+username+"&id="+globalID+"&q=edit",true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/clientProfile.php",true);
+  xmlhttp.send(formData);
 }
 
 function view_add(){

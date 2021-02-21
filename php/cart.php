@@ -3,7 +3,6 @@ session_start();
 
 function viewC($con){
   $cart = $_SESSION['cart'];
-  // $cart=explode(",",$cart);
 
   $sql = "SELECT * FROM products WHERE  ";
   $i=0;
@@ -19,7 +18,7 @@ function viewC($con){
     }
   $i+=1;
   }
-  // echo $sql;
+
   if ($i==0)
   {
     echo "Cart is Empty";
@@ -45,7 +44,6 @@ function deleteC($con){
  $id = intval($_GET['ID']);
  $cart = $_SESSION['cart'];
  echo "<br>";
- // unset($cart[$id]]);
  $cart = array_diff($cart,[$id]);
  $_SESSION['cart'] = $cart;
 }

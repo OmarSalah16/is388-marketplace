@@ -6,7 +6,7 @@ function editP($con){
  $price = $_POST['price'];
  $stock = $_POST['stock'];
  $ID = $_POST['q'];
- 
+
  $sql = "UPDATE products SET name='$name', price=$price , stock=$stock WHERE ID= $ID";
  $result = mysqli_query($con,$sql);
 
@@ -15,7 +15,7 @@ function editP($con){
 
         $myFile = $_FILES['my_file'];
 
-         $folder = "F:\\\\_Marwan Documents\\Data Management\\Xampp\\htdocs\\Marketplace1\\product_images\\$ID";
+         $folder = "..\\product_images\\$ID";
          if (! is_dir($folder)) {
         throw new InvalidArgumentException("$folder must be a directory");
     }
@@ -25,22 +25,22 @@ function editP($con){
     $files = glob($folder . '*', GLOB_MARK);
     foreach ($files as $file) {
         if (is_dir($file)) {
-            deleteDir($file);
+            rmdir($file);
         } else {
             unlink($file);
         }
     }
- 
+
     rmdir($folder);
           $result2 = mysqli_query($con,$sql2);
-          mkdir("F:\\\\_Marwan Documents\\Data Management\\Xampp\\htdocs\\Marketplace1\\product_images\\$ID");
+          mkdir("..\\product_images\\$ID");
           $fileCount = count($myFile["name"]);
           for ($i = 0; $i < $fileCount; $i++) {
                     $img_num = $i+1  . ".jpg";
                     $sql3 = "INSERT INTO product_image (product_id, image_name) VALUES ($ID, '$img_num')";
                     echo $sql3;
                     $result3 = mysqli_query($con,$sql3);
-                    move_uploaded_file($myFile["tmp_name"][$i], "F:\\\\_Marwan Documents\\Data Management\\Xampp\\htdocs\\Marketplace1\\product_images\\$ID\\$img_num");
+                    move_uploaded_file($myFile["tmp_name"][$i], "..\\product_images\\$ID\\$img_num");
                 }
           }
 	}
@@ -59,12 +59,12 @@ $ID = mysqli_insert_id($con);
 if (isset($_FILES['my_file'])) {
         $myFile = $_FILES['my_file'];
         $fileCount = count($myFile["name"]);
-        mkdir("F:\\\\_Marwan Documents\\Data Management\\Xampp\\htdocs\\Marketplace1\\product_images\\$ID");
+        mkdir("..\\product_images\\$ID");
             for ($i = 0; $i < $fileCount; $i++) {
                     $img_num = $i+1  . ".jpg";
                     $sql3 = "INSERT INTO product_image (product_id, image_name) VALUES ($ID, '$img_num')";
                     $result3 = mysqli_query($con,$sql3);
-                    move_uploaded_file($myFile["tmp_name"][$i], "F:\\\\_Marwan Documents\\Data Management\\Xampp\\htdocs\\Marketplace1\\product_images\\$ID\\$img_num");
+                    move_uploaded_file($myFile["tmp_name"][$i], "..\\product_images\\$ID\\$img_num");
                 }
             }
 }

@@ -20,8 +20,6 @@
     include 'php/dbhandler.php';
     if(isset($_POST['submit']))
     {
-
-      //add updated qcart
       $count = count($cart);
       $i=0;
       for($i;$i<$count;$i++)
@@ -145,5 +143,8 @@ body{
   background-size: cover;
   background-position:center;
   background-repeat: no-repeat;
+}
+input{
+  color: black;
 }
 </style>

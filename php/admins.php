@@ -1,15 +1,15 @@
 <?php
 session_start();
+include "dbhandler.php";
 function viewA($con){
-  $select = $_GET['select'];
+  $select = $_POST['searchBy'];
   if(is_numeric($select))
     {
       $select = intval($select);
     }
-  $bar = $_GET['bar'];
+  $bar = $_POST['searchBar'];
   $sql = "SELECT * FROM users INNER JOIN hierarchy ON hierarchy.admin_id = users.ID";
-  $sql2="SELECT * FROM users INNER JOIN hierarchy ON hierarchy.admin_id = users.ID WHERE $select = '".$bar."'";
-
+  $sql2 = "SELECT * FROM users INNER JOIN hierarchy ON hierarchy.admin_id = users.ID WHERE $select = '".$bar."'";
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
@@ -37,25 +37,26 @@ function viewA($con){
     }
   }
 }
+
 function addA($con){
-  $sql = "INSERT INTO users ( username,name ,password, mobile, email, role) VALUES ('$_GET[username]','$_GET[name]','$_GET[password]','$_GET[mobile]','$_GET[email]','admin')";
+  echo "testst";
+  $sql = "INSERT INTO users (name , password, mobile, email, role) VALUES ('$_POST[name]','$_POST[password]','$_POST[mobile]','$_POST[email]','admin')";
   $result=mysqli_query($con,$sql);
-  $sql2 = "SELECT ID FROM users WHERE username = '$_GET[username]'";
+  $sql2 = "SELECT ID FROM users WHERE email = '$_POST[email]'";
   $result2=mysqli_query($con,$sql2);
   $admin_id = mysqli_fetch_array($result2);
-  $sql3 = "INSERT INTO hierarchy (admin_id, rank) VALUES ($admin_id[ID],$_GET[rank])";
+  $sql3 = "INSERT INTO hierarchy (admin_id, rank) VALUES ($admin_id[ID],$_POST[rank])";
+  echo $sql3;
   $result3 = mysqli_query($con,$sql3);
 }
+
 function deleteA($con){
-  $id = intval($_GET['ID']);
+  $id = intval($_POST['ID']);
   $sql = "DELETE FROM users WHERE ID = $id ";
   $result = mysqli_query($con,$sql);
 }
-$con = mysqli_connect('localhost','root','','marketplace');
-if (!$con) {
-  die('Could not connect: ' . mysqli_error($con));
-}
-switch ($_GET['q']) {
+
+switch ($_POST['q']) {
   case 'add':
     addA($con);
     break;

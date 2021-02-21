@@ -117,7 +117,7 @@
           echo "correct credentials";
           $row = mysqli_fetch_array($result);
           $_SESSION['ID'] = $row['ID'];
-          $_SESSION['username'] = $row['username'];
+          $_SESSION['email'] = $row['email'];
           $_SESSION['name'] = $row['name'];
           $_SESSION['role'] = $row['role'];
           if($_SESSION['role']=="customer")

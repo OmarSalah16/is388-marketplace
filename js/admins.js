@@ -1,34 +1,41 @@
 function showAdmins() {
-  var select = document.getElementById("searchBy").value;
-  var bar = document.getElementById("searchBar").value;
+  var elements = document.getElementsByClassName("form");
+  var formData = new FormData();
+  for (var i = 0; i < elements.length; i++) {
+    formData.append(elements[i].name, elements[i].value);
+  }
+  formData.append('q', 'view');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       document.getElementById("rTable").innerHTML=this.responseText;
     }
   }
-  xmlhttp.open("GET","php/admins.php?select="+select+"&bar="+bar+"&q=view",true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/admins.php",true);
+  xmlhttp.send(formData);
 }
 
 function deleteAdmin(id){
+  var formData = new FormData();
+  formData.append('ID', id);
+  formData.append('q', 'del');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       showAdmins();
     }
   }
-  xmlhttp.open("GET","php/admins.php?ID="+id+"&q=del",true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/admins.php",true);
+  xmlhttp.send(formData);
 }
 
 function addAdmin(){
-  var username = document.getElementById("username").value;
-  var name = document.getElementById("name").value;
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  var mobile = document.getElementById("mobile").value;
-  var rank = document.getElementById("rank").value;
+  var elements = document.getElementsByClassName("form");
+  var formData = new FormData();
+  for (var i = 0; i < elements.length; i++) {
+    formData.append(elements[i].name, elements[i].value);
+  }
+  formData.append('q', 'add');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
@@ -36,8 +43,8 @@ function addAdmin(){
       showAdmins();
     }
   }
-  xmlhttp.open("GET","php/admins.php?username="+username+"&name="+name+"&password="+password+"&mobile="+mobile+"&rank="+rank+"&email="+email+"&q=add",true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/admins.php",true);
+  xmlhttp.send(formData);
 }
 
 function view_add(){
@@ -48,7 +55,6 @@ function view_add(){
     add.style.display = "block";
     view.style.display = "none";
     btn.innerHTML = "View Admins"
-    var username = document.getElementById("username").value = "";
     var name = document.getElementById("name").value = "";
     var email = document.getElementById("email").value = "";
     var password = document.getElementById("password").value = "";

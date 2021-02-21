@@ -1,3 +1,9 @@
+<?php
+session_start();
+include "adminVerification.php";
+include "php/dbhandler.php";
+include "cartInit.php";
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -9,21 +15,23 @@
     <button type="button" id="addBtn" onclick="view_add()">Add Product</button>
     <div id="addProduct" style="display: none">
       <form class="addP" action="php/addProduct.php" method="post" enctype="multipart/form-data">
-        <label for="name">Name</label> <input type="text" name="name" id="name" required> <br>
-        <label for="price">Price</label> <input type="number" name="price" id="price" value="1" step="0.01" min="1" required> <br>
-        <label for="stock">Stock</label> <input type="number" name="stock" id="stock" value="1" min="1" required> <br>
-        <input type="file" name="my_file[]" accept="image/x-png,image/jpeg" multiple > <br>
+        <label for="name">Name</label> <input type="text" name="name" id="name" class="form" required>
+        <br>
+        <label for="price">Price</label> <input type="number" name="price" class="form" id="price" value="1" step="0.01" min="1" required> <br>
+        <label for="stock">Stock</label> <input type="number" name="stock" class="form" id="stock" value="1" min="1" required>
+         <br>
+        <input type="file" name="my_file[]" class="form" accept="image/x-png,image/jpeg" multiple >
+         <br>
         <input type="text" name="q" id="q" style="display: none">
         <input type="submit" value="Add" id="submitA" name="submit">
         <input type="submit" value="Edit" id="submitE" name="submit">
 
       </form>
-      <!-- <button value="Submit Edit" id="submitE" style="display: none;" onclick="submitEdit()"> Submit Edit</button> -->
     </div>
 
 <div id="viewProduct">
-    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showProducts()">
-    <select name="searchBy" id="searchBy" onchange="showProducts()">
+    <label for=""></label> <input type="text" name="searchBar" class="form" id="searchBar" oninput="showProducts()">
+    <select name="searchBy" id="searchBy" class="form" onchange="showProducts()">
       <option value="ID">ID</option>
       <option value="name">name</option>
       <option value="price">price</option>

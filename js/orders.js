@@ -1,27 +1,32 @@
 function showOrders() {
-  var select = document.getElementById("searchBy").value;
-  var bar = document.getElementById("searchBar").value;
-  var range1 = document.getElementById("min").value;
-  var range2 = document.getElementById("max").value;
+  var elements = document.getElementsByClassName("data");
+  var data = new FormData();
+  for (var i = 0; i < elements.length; i++) {
+    data.append(elements[i].name, elements[i].value);
+  }
+  data.append('q', 'view');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       document.getElementById("rTable").innerHTML=this.responseText;
     }
   }
-  xmlhttp.open("GET","php/orders.php?select="+select+"&bar="+bar+"&q=view&range1="+range1+"&range2="+range2,true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/orders.php",true);
+  xmlhttp.send(data);
 }
 
 function deleteOrder(id){
+  var data = new FormData();
+  data.append('ID', id);
+  data.append('q', 'del');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       showOrders();
     }
   }
-  xmlhttp.open("GET","php/orders.php?ID="+id+"&q=del",true);
-  xmlhttp.send();
+  xmlhttp.open("GET","php/orders.php",true);
+  xmlhttp.send(data);
 }
 
 function view_add(){

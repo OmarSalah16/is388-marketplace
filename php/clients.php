@@ -1,12 +1,12 @@
 <?php
 include 'dbhandler.php';
 function showClients($con){
-  $select = $_GET['select'];
+  $select = $_POST['searchBy'];
   if(is_numeric($select))
     {
       $select = intval($select);
     }
-  $bar = $_GET['bar'];
+  $bar = $_POST['searchBar'];
   $sql = "SELECT * FROM users WHERE role = 'customer'";
   $sql2="SELECT * FROM users WHERE role = 'customer' AND $select = '".$bar."'";
   if($bar == ""){
@@ -34,7 +34,7 @@ function showClients($con){
 
 function viewClient($con){
 
-    $ID = $_GET['id'];
+    $ID = $_POST['ID'];
     $sql = "SELECT * FROM users WHERE ID = $ID";
     $sql2 = "SELECT * FROM orders WHERE customer_id = $ID";
     $sql3 = "SELECT * FROM user_image WHERE user_id = $ID";
@@ -98,7 +98,7 @@ function viewClient($con){
       echo "<td>" . substr($productString, 0, -1) . "</td></tr>";
     }
 }
-switch ($_GET['q']) {
+switch ($_POST['q']) {
   case 'show':
     showClients($con);
     break;

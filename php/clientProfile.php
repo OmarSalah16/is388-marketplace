@@ -36,61 +36,58 @@ function viewP($con){
     }
   echo "<h1>My Orders</h1>";
 
-
-  while($row3 = mysqli_fetch_array($result2)) {
-  $sql4 = "SELECT name FROM products WHERE ID = ";
-  $productString = "";
-  echo "<tr>";
-  echo "<td>" . $row3['ID'] . "</td>";
-  $array = explode(",", $row3['product_id']);
-  $count = count($array);
-  $i = 0;
-  for($i;$i<$count;$i++) {
-    if($i==($count-1))
-    {
-      $sql4 .= $array[$i];
-    }
-    else{
-      $sql4 .= $array[$i] . " OR ";
-    }
+  if (mysqli_num_rows($result2) == 0) {
+    echo "<tr>";
+    echo "<td>" . "Your orders are empty." . "<td>";
+    echo "</tr>";
   }
-  $result4 = mysqli_query($con,$sql4);
-  while($row4 = mysqli_fetch_array($result4)) {
-    $productString .= $row4['name'] . ",";
+  else {
+    while($row3 = mysqli_fetch_array($result2)) {
+    $sql4 = "SELECT name FROM products WHERE ID = ";
+    $productString = "";
+    echo "<tr>";
+    echo "<td>" . $row3['ID'] . "</td>";
+    $array = explode(",", $row3['product_id']);
+    $count = count($array);
+    $i = 0;
+    for($i;$i<$count;$i++) {
+      if($i==($count-1))
+      {
+        $sql4 .= $array[$i];
+      }
+      else{
+        $sql4 .= $array[$i] . " OR ";
+      }
     }
+    $result4 = mysqli_query($con,$sql4);
+    while($row4 = mysqli_fetch_array($result4)) {
+      $productString .= $row4['name'] . ",";
+      }
 
-    echo "<td>" . substr($productString, 0, -1) . "</td>";
+      echo "<td>" . substr($productString, 0, -1) . "</td>";
 
-    echo "<td align='center'><button type='button' onclick='viewOrder(".$row3['ID'].")'>View</button></td>";
-  }
+      echo "<td align='center'><button type='button' onclick='viewOrder(".$row3['ID'].")'>View</button></td>";
+    }  }
+
 }
 
 
 function deleteP($con){
   $id = intval($_GET['ID']);
-  $sql = "DELETE FROM users WHERE ID = 3 ";
+  $sql = "DELETE FROM users WHERE ID = $ID ";
   $result = mysqli_query($con,$sql);
 }
 
-// function reviewP($con){
-//   $id = intval($_GET['ID']);
-//   $rating = ($_GET['rating']);
-//   $review = ($_GET['review']);
-
-
-
-// }
 
 function editP($con){
-  $sql ="UPDATE users SET name='$_GET[name]',mobile='$_GET[mobile]',username='$_GET[username]' WHERE ID= 1";
+  $sql = "UPDATE users SET name='$_POST[name]',mobile='$_POST[mobile]',email='$_POST[email]' WHERE ID= $_SESSION[ID]";
   $result = mysqli_query($con,$sql);
-  //echo $sql;
 }
 $con = mysqli_connect('localhost','root','','marketplace');
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-switch ($_GET['q']) {
+switch ($_POST['q']) {
 
   case 'del':
     deleteP($con);
