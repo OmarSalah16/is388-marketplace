@@ -1,11 +1,13 @@
 <?php
 session_start();
+error_reporting(E_ALL & ~E_NOTICE);
 function viewO($con){
-
   $ID = $_GET['id'];
   $sql = "SELECT * FROM orders WHERE ID = $ID";
   $sql2 = "SELECT * FROM products WHERE ID = ";
+  $sql3 = "SELECT * FROM reviews WHERE order_id = $ID";
   $result = mysqli_query($con,$sql);
+  $result3 = mysqli_query($con,$sql3);
   $productString = "";
   $priceTracker = 0;
 
@@ -43,8 +45,18 @@ function viewO($con){
     echo "<td>" . $row2['price'] . "</td>";
     echo "<td>" . $arrayQ[$j] . "</td>";
     echo "<td>" . $row2['price']*$arrayQ[$j] . "</td>";
+    $row3 = mysqli_fetch_array($result3);
+    // echo $row3['ID'];
+      if( $row3['is_reviewed'] == 0)
+  {
+    echo "<td align='center'><a href = 'review.php?ID=$row3[ID]'>Review</a></td>";
+  }
+  else
+  {
+     echo "<td align = 'center'>Reviewed</td>";
+  }
 
-    }
+}
     echo "</table>";
 }
 
