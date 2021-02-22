@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "adminVerification.php";
+//include "adminVerification.php";
 include "php/dbhandler.php";
 include "cartInit.php";
 ?>
@@ -43,6 +43,7 @@ include "cartInit.php";
       <thead>
         <tr>
           <!-- <th><strong>Image</strong></th> -->
+          <th></th>
           <th><strong>ID</strong></th>
           <th><strong>Name</strong></th>
           <th><strong>Price</strong></th>

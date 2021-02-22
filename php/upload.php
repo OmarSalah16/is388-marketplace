@@ -24,7 +24,7 @@
  //    "Temp file:  " . $_FILES["file"]["tmp_name"] . "<br>";
 
     $newfilename = $_SESSION['ID'] .'.' . 'jpg';
-    move_uploaded_file($_FILES["file"]["tmp_name"], "F:\\\\XAMPP\htdocs\marketplace\user_images\\" . $newfilename);
+    move_uploaded_file($_FILES["file"]["tmp_name"], "..\user_images\\" . $newfilename);
 
     // $file_result .= "Congrats :)! You file uploaded succeful!";
     }
@@ -32,6 +32,6 @@
     $sql = "INSERT INTO user_image (user_id,image_name) VALUES ($_SESSION[ID],'$newfilename')";
     $result = mysqli_query($con,$sql);
     mysqli_close($con);
-  //  sleep(3);
-   header("Location: ../clientProfile");
+    sleep(3);
+    header("Location: ../clientProfile");
 ?>

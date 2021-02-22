@@ -33,6 +33,7 @@ function viewP($con){
         $min = 0;
       }
       echo "<tr>";
+      echo "<td width='160px'><img width='160px' alt='pic' src='product_images/$row[ID]/1.jpg'></td>";
       echo "<td>" . $row['ID'] . "</td>";
       echo "<td>" . $row['name'] . "</td>";
       echo "<td>" . $row['price'] . "</td>";
