@@ -26,19 +26,8 @@ function deleteSurvey(ID) {
 }
 
 function selectAll(){
-
-}
-
-function sendSurvey(){
-  var formData = new FormData();
-  formData.append("q","send");
-  var elements = getElementsByClass('');
-  var xmlhttp=new XMLHttpRequest();
-  xmlhttp.onreadystatechange=function() {
-    if (this.readyState==4 && this.status==200) {
-      windows.location.href = "../viewSurveys";
-    }
+  var elements = document.getElementsByClassName("select");
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].checked = !elements[i].checked;
   }
-  xmlhttp.open("POST","php/survey.php",true);
-  xmlhttp.send(formData);
 }

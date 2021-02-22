@@ -37,9 +37,6 @@
             echo "<td>".$row['replies']."<td";
             echo "</tr>";
           }
-          else {
-            //header("Location: ");
-          }
       ?>
    </table>
    <h2>Replies: </h2>
@@ -63,9 +60,12 @@
          echo "</div>";
        }
      }
+     else {
+       echo "No Replies";
+     }
    }
  else {
-   //header("Location: ");
+   header("Location: viewSurveys");
  }
     mysqli_close($con);
    ?>

@@ -23,11 +23,8 @@ function deleteSurvey($con)
 {
   $sql = "DELETE FROM survey WHERE ID = $_POST[ID]";
   $result = mysqli_query($con,$sql);
-}
-
-function sendSurvey($con){
-  $sql = "";
-  $result = mysqli_query($con,$sql);
+  $sql2 = "DELETE FROM survey_answers WHERE survey_id = $_POST[ID]";
+  $result2 = mysqli_query($con,$sql2);
 }
 
   include 'dbhandler.php';
@@ -37,9 +34,6 @@ function sendSurvey($con){
       break;
     case 'delete':
       deleteSurvey($con);
-      break;
-    case 'send':
-      sendSurvey($con);
       break;
   }
   mysqli_close($con);

@@ -13,6 +13,7 @@
           <li class = "profile"><a href = "clientProfile">Profile</a></li>
           <li class = "contact"><a href = "customerContact">Contact Us</a></li>
           <li class = "support"><a href = 'support'>Messages</a></li>
+          <li class = "survey"><a href = 'clientSurvey'>Surveys</a></li>
           <li> <input type="text" name="search" placeholder="Enter product name.."> </li>
           <li> <a href="productSearch">Search</a> </li>
           <li> <a href="logout">Log Out</a> </li> </li>
