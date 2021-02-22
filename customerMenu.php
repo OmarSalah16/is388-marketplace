@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+  <?php  ?>
   <body>
     <header>
       <div class="main">
@@ -11,7 +12,7 @@
           <li class = "home"><a href = "customerHome">Home</a></li>
           <li class = "profile"><a href = "clientProfile">Profile</a></li>
           <li class = "contact"><a href = "customerContact">Contact Us</a></li>
-          <li class = "profile"><a href = "support">Messages</a></li>
+          <li class = "support"><a href = 'support'>Messages</a></li>
           <li> <input type="text" name="search" placeholder="Enter product name.."> </li>
           <li> <a href="productSearch">Search</a> </li>
           <li> <a href="logout">Log Out</a> </li> </li>

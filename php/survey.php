@@ -9,9 +9,10 @@ function viewSurveys($con){
     while($row = mysqli_fetch_array($result)){
       echo "<tr>";
       echo "<td>" . $row['ID'] . "</td>";
-      echo "<td>" . $row['name'] . "</td>";
+      echo "<td><a href='viewSurvey?ID=$row[ID]'>".$row['name']."</a></td>";
       echo "<td>" . $row['auditor_id'] . "</td>";
       echo "<td>" . $row['replies'] . "</td>";
+      echo "<td><a href='sendSurvey?ID=$row[ID]'>Send Survey</a></td>";
       echo "<td align='center'><button type='button' onclick='deleteSurvey($row[ID])'>Delete</button></td>";
       echo "</tr>";
     }
@@ -24,6 +25,11 @@ function deleteSurvey($con)
   $result = mysqli_query($con,$sql);
 }
 
+function sendSurvey($con){
+  $sql = "";
+  $result = mysqli_query($con,$sql);
+}
+
   include 'dbhandler.php';
   switch ($_POST['q']) {
     case 'view':
@@ -31,6 +37,9 @@ function deleteSurvey($con)
       break;
     case 'delete':
       deleteSurvey($con);
+      break;
+    case 'send':
+      sendSurvey($con);
       break;
   }
   mysqli_close($con);

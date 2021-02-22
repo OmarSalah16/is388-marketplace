@@ -67,8 +67,8 @@ function submitEdit(){
 }
 
 function view_add(){
-  var add = document.getElementById("addProduct");
-  var view = document.getElementById("viewProduct");
+  var add = document.getElementById("addProfile");
+  var view = document.getElementById("viewProfile");
   var btn = document.getElementById("addBtn");
   document.getElementById("submitABtn").style.display = "block";
   document.getElementById("submitEBtn").style.display = "none";

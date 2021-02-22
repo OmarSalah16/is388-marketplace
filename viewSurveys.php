@@ -7,6 +7,7 @@
   </head>
   <body onload="viewSurveys()">
     <button type="button">Refresh</button>
+    <a href="viewSurvey.php?q=a">View Archives</a>
     <a href="addSurvey.php">Add Survey</a>
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>

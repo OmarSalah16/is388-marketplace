@@ -6,7 +6,7 @@ function viewTickets(myFlag) {
     }
   }
   if(myFlag) {xmlhttp.open("GET","php/ticket.php?&q=viewm",true);}
-  else{xmlhttp.open("GET","php/survey.php?q=view",true);}
+  else{xmlhttp.open("GET","php/ticket.php?q=view",true);}
   xmlhttp.send();
 }
 

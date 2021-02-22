@@ -24,3 +24,21 @@ function deleteSurvey(ID) {
   xmlhttp.open("POST","php/survey.php",true);
   xmlhttp.send(formData);
 }
+
+function selectAll(){
+
+}
+
+function sendSurvey(){
+  var formData = new FormData();
+  formData.append("q","send");
+  var elements = getElementsByClass('');
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      windows.location.href = "../viewSurveys";
+    }
+  }
+  xmlhttp.open("POST","php/survey.php",true);
+  xmlhttp.send(formData);
+}

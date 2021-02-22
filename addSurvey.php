@@ -19,18 +19,14 @@
   </head>
   <body>
     <h2>Survey Creator</h2>
-    <input type="number" value="1" min="1" max='10' id='n'>
-    <button type="button" id='add'>Add Questions</button>
+    Add <input type="number" value="1" min="1" max='10' id='n'>
+    question(s)<button type="button" id='add'>Go</button> <br><br>
     <form id="survey">
+      <label for="name">Survey Name:</label>
+        <input type="text" name="name" value="" required><br><br>
       <div id="question" class="question test">
         <h6>Question 1</h6>
-        <input type="text" name="q1" value="">
-        <select name="type" id="type">
-          <option value="text">Text</option>
-          <option value="radio">Radio</option>
-          <option value="check">Check</option>
-          <option value="select">Select</option>
-        </select>
+        <input type="text" name="q[]" value="" required>
       </div>
       <input class="submit" type="submit" name="submit" value="Submit">
     </form>
