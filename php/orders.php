@@ -1,15 +1,15 @@
 <?php
 function viewO($con){
-  $select = $_GET['select'];
-  $bar = $_GET['bar'];
-  if ($select=="ID")
+  $select = $_POST['searchBy'];
+  $bar = $_POST['searchBar'];
+  if ($select == "ID")
   {
     $select = "orders.ID";
   }
-  $range1 = $_GET['range1'];
-  $range2 = $_GET['range2'];
-  $sql = "SELECT orders.ID, product_id, name, price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID";
-  $sql2="SELECT orders.ID, product_id, name, price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID WHERE $select = '$bar'";
+  $range1 = $_POST['min'];
+  $range2 = $_POST['max'];
+  $sql = "SELECT orders.ID, product_id, name, orders.price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID";
+  $sql2="SELECT orders.ID, product_id, name, orders.price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID WHERE $select = '$bar'";
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
@@ -40,8 +40,8 @@ function viewO($con){
 }
 
 function deleteO($con){
-  $id = intval($_GET['ID']);
-  $sql = "DELETE FROM orders WHERE ID = $id ";
+  $ID = intval($_GET['ID']);
+  $sql = "DELETE FROM orders WHERE ID = $ID ";
   $result = mysqli_query($con,$sql);
 }
 
@@ -50,7 +50,7 @@ $con = mysqli_connect('localhost','root','','marketplace');
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-switch ($_GET['q']) {
+switch ($_POST['q']) {
 
   case 'del':
     deleteO($con);

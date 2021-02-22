@@ -1,8 +1,6 @@
 <?php
-// <img style="border-radius: 50%" src="hidethepainharold.jpg" alt="Profile Picture">
 session_start();
 function viewO($con){
-
 
   $ID = $_GET['id'];
   $sql = "SELECT * FROM orders WHERE ID = $ID";
@@ -10,7 +8,6 @@ function viewO($con){
   $result = mysqli_query($con,$sql);
   $productString = "";
   $priceTracker = 0;
-
 
   echo "<h2>Order " . $ID . "</h2>";
   echo "<table border = '1' style='border-collapse:collapse;'>";
@@ -40,7 +37,6 @@ function viewO($con){
   }
 
   $result2 = mysqli_query($con,$sql2);
-  echo $sql2;
   while($row2 = mysqli_fetch_array($result2)) {
     echo "<tr>";
     echo "<td>" . $row2['name'] . "</td>";
@@ -51,8 +47,6 @@ function viewO($con){
     }
     echo "</table>";
 }
-
-
 
 $con = mysqli_connect('localhost','root','','marketplace');
 if (!$con) {

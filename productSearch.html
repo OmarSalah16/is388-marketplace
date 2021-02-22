@@ -16,14 +16,14 @@
     <h1>Products</h1>
     <div id="error"></div>
     <a href="checkout">My Cart</a>
-    <label for=""></label> <input type="text" name="searchBar" id="searchBar" oninput="showProducts()">
-    <select name="searchBy" id="searchBy" onchange="selectChange()">
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="form" oninput="showProducts()">
+    <select name="searchBy" id="searchBy" class="form" onchange="selectChange()">
       <option value="Name" >Name</option>
       <option value="Price" >Price</option>
     </select>
     <label for="" style="display:none;" name="label" id="label">Price Range</label>
-    <input type="text" name="range1" style="display:none;" id="range1" oninput="showOrders()">
-    <input type="text" name="range2" style="display:none;" id="range2" oninput="showOrders()">
+    <input type="text" name="range1" style="display:none;" id="range1" class="form" oninput="showOrders()">
+    <input type="text" name="range2" style="display:none;" id="range2" class="form" oninput="showOrders()">
 
     <table width="100%" class="table table-hover">
       <thead>

@@ -9,26 +9,33 @@ function getGet(){
 }
 
 function showClients(){
-  var select = document.getElementById("searchBy").value;
-  var bar = document.getElementById("searchBar").value;
+  var elements = document.getElementsByClassName("form");
+  var formData = new FormData();
+  for (var i = 0; i < elements.length; i++) {
+    formData.append(elements[i].name, elements[i].value);
+  }
+  formData.append('q', 'show');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       document.getElementById("rTable").innerHTML=this.responseText;
     }
   }
-  xmlhttp.open("GET","php/clients.php?q=show&select="+select+"&bar="+bar,true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/clients.php",true);
+  xmlhttp.send(formData);
 }
 
 function viewClient() {
   var $_GET = getGet();
+  var formData = new FormData();
+  formData.append('q', 'view');
+  formData.append('ID', $_GET['id']);
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
       document.getElementById("rTable").innerHTML=this.responseText;
     }
   }
-  xmlhttp.open("GET","php/clients.php?select="+"&q=view&id="+$_GET['id'],true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/clients.php",true);
+  xmlhttp.send(formData);
 }

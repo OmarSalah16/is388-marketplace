@@ -90,7 +90,7 @@
         }
         $checksql = "SELECT email FROM users WHERE email = '$_POST[email]'";
         $checkres = mysqli_query($con,$checksql);
-        if (mysqli_num_rows($result)!=0){
+        if (mysqli_num_rows($checkres)!=0){
           array_push($err,"email already in use");
         }
         $i=0;

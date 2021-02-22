@@ -3,7 +3,6 @@
     <meta charset="utf-8">
     <title>Orders</title>
     <script src="js/orders.js"></script>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> -->
     <link rel="stylesheet" href="css/minmax.css">
 
   </head>
@@ -11,8 +10,9 @@
     <h1><u>Orders</u></h1><br>
 
 <div class="viewOrder">
-    <label for=""></label> <input type="text" name="searchBar" id="searchBar" placeholder="Search for Order.." oninput="showOrders()" <?php if(isset($_GET['id'])){echo "value='$_GET[id]'";} ?>>
-    <select name="searchBy" id="searchBy" onchange="showOrders()" style="width:120px;">
+    <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="data" placeholder="Search for Order.." oninput="showOrders()"
+    <?php if(isset($_GET['id'])){echo "value='$_GET[id]'";} ?>>
+    <select name="searchBy" id="searchBy" name="searchBy" class="data" onchange="showOrders()" style="width:120px;">
       <option value="customer_id" >Customer ID</option>
       <option value="ID" >ID</option>
       <option value="Name" >name</option>
@@ -23,8 +23,8 @@
     from
       <input  type="number" value="0" min="0" max="25000" onchange="showOrders()">    to
       <input  type="number" value="25000" min="0" max="25000" onchange="showOrders()">
-      <input id="min" value="0" min="0" max="25000" step="1" type="range" onchange="showOrders()">
-      <input id="max" value="25000" min="0" max="25000" step="1" type="range" onchange="showOrders()">
+      <input id="min" class="data" name="min" value="0" min="0" max="25000" step="1" type="range" onchange="showOrders()">
+      <input id="max" class="data" name="max" value="25000" min="0" max="25000" step="1" type="range" onchange="showOrders()">
 
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>

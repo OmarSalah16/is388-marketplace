@@ -2,16 +2,16 @@
 session_start();
 
 function viewP($con){
-  $select = $_GET['select'];
+  $select = $_POST['searchBy'];
   if(is_numeric($select))
     {
       $select = intval($select);
     }
-  $bar = $_GET['bar'];
-  $range1 = $_GET['range1'];
-  $range2 = $_GET['range2'];
+  $bar = $_POST['searchBar'];
+  $range1 = $_POST['range1'];
+  $range2 = $_POST['range2'];
   $sql = "SELECT * FROM products";
-  $sql2="SELECT * FROM products WHERE $select = '".$bar."'";
+  $sql2 = "SELECT * FROM products WHERE $select = '".$bar."'";
 
   if($bar == ""){
     $result = mysqli_query($con,$sql);
@@ -47,8 +47,8 @@ function viewP($con){
 }
 
 function addCart($con){
-  $ID = intval($_GET['ID']);
-  $quantity = intval($_GET['quantity']);
+  $ID = intval($_POST['ID']);
+  $quantity = intval($_POST['quantity']);
   $sql = "SELECT * FROM products WHERE ID = $ID";
   $result = mysqli_query($con,$sql);
   $row = mysqli_fetch_array($result);
@@ -57,7 +57,6 @@ function addCart($con){
   }
 
   $key = array_search($ID,$_SESSION['cart']);
-  //echo $ID."  ".$key;
   if(is_numeric($key)){
     unset($_SESSION['cart'][$key]);
     unset($_SESSION['Qcart'][$key]);
@@ -70,11 +69,7 @@ function addCart($con){
 }
 
 include 'dbhandler.php';
-switch ($_GET['q']) {
-
-  case 'del':
-    deleteO($con);
-    break;
+switch ($_POST['q']) {
 
   case 'view':
     viewP($con);
