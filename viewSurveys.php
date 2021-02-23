@@ -6,9 +6,9 @@
     <script src="js/survey.js"></script>
   </head>
   <body onload="viewSurveys()">
-    <button type="button">Refresh</button>
+    <h1>Surveys</h1>
     <a href="viewSurvey.php?q=a">View Archives</a>
-    <a href="addSurvey.php">Add Survey</a>
+    <a href="addSurvey.php">Add Survey</a><br><br>
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>
@@ -20,6 +20,52 @@
       </thead>
       <tbody id="rTable">
       </tbody>
-    </table>
+    </table><br>
+    <button class='refresh'type="button">Refresh</button>
   </body>
 </html>
+
+<style media="screen">
+  *{
+    font-family: Century Gothic;
+  }
+
+a{
+  color:green;
+}
+  body{
+    background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg8.jpg);
+    height:100vh;
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+  }
+
+
+  .refresh{
+    border:0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid red;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor:pointer;
+  }
+
+  .refresh:hover{
+    background: red;
+  }
+
+
+h1{
+  text-align: center;
+}
+  td{
+    text-align: center;
+  }
+</style>

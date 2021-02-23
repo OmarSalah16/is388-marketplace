@@ -5,6 +5,14 @@
     <title></title>
     <script src="js/ticket.js"></script>
     <style media="screen">
+
+    body{
+      background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(pics/background3.jpg);
+      height:100vh;
+      background-size: cover;
+      background-position:center;
+      background-repeat: no-repeat;
+    }
       .admin{
         border-style: solid;
         border-color: red;
@@ -26,6 +34,11 @@
       textarea{
         width: 400px;
         height: 300px;
+      }
+
+      div{
+        color:white;
+        border-color: black;
       }
     </style>
   </head>

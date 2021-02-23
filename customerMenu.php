@@ -11,10 +11,9 @@
         <ul>
           <li class = "home"><a href = "customerHome">Home</a></li>
           <li class = "profile"><a href = "clientProfile">Profile</a></li>
-          <li class = "contact"><a href = "customerContact">Contact Us</a></li>
+          <li class = "contact"><a href = "customerContact">Contact</a></li>
           <li class = "support"><a href = 'support'>Messages</a></li>
           <li class = "survey"><a href = 'clientSurvey'>Surveys</a></li>
-          <li> <input type="text" name="search" placeholder="Enter product name.."> </li>
           <li> <a href="productSearch">Search</a> </li>
           <li> <a href="logout">Log Out</a> </li> </li>
         </ul>
@@ -24,11 +23,14 @@
 </html>
 
 <style media="screen">
+
+
 ul{
   float: right;
   list-style-type: none;
-  margin-top: 25px;
-  margin-right: 50px;
+  margin: 0;
+  padding: 0;
+
 }
 
 ul li{
@@ -39,9 +41,10 @@ ul li a{
   border-radius: 8px;
   text-decoration: none;
   color:#fff;
-  padding: 5px 20px;
+  padding: 5px 10px;
   border: 1px solid #fff transparent;
   transition: 0.6s ease;
+  text-align: center;
 }
 
 ul li a:hover{
@@ -49,10 +52,5 @@ ul li a:hover{
   color: #000;
 }
 
-ul li input{
-  text-decoration: none;
-  color:teal;
-  padding: 5px 20px;
-}
 
 </style>

@@ -73,3 +73,57 @@
     </form>
   </body>
 </html>
+
+<style media="screen">
+
+  *{
+    margin-top: 20px;
+    text-align:center;
+  }
+
+
+  body{
+    background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg4.jpg);
+    height:100vh;
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+  }
+
+  input[type="text"]{
+    border:0;
+    background: white;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+  }
+
+  input[type="text"]:focus{
+    width: 280px;
+    border-color: #2ecc71;
+  }
+
+  input[type="submit"]{
+    border:0;
+    background: #2ecc71;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid black;
+    padding: 14px 40px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor:pointer;
+  }
+
+  input[type="submit"]:hover{
+    background: yellow;
+  }
+</style>

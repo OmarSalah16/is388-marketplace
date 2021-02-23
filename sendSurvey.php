@@ -20,7 +20,7 @@
 
       }
     ?>
-    <h2>Send Survey</h2>
+    <h1>Survey Dispatch</h1>
     <p id='error'></p>
       <table width="100%" border="1" style="border-collapse:collapse;">
         <thead>
@@ -43,8 +43,48 @@
             }
           ?>
     </tbody>
-    </table>
+  </table><br>
     <input type="submit" name="submit" value="Submit">
   </form>
   </body>
 </html>
+
+<style media="screen">
+*{
+  font-family: Century Gothic;
+}
+body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg8.jpg);
+  height:100vh;
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+
+td{
+  text-align: center;
+}
+
+input[type="submit"]{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid black;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor:pointer;
+}
+
+input[type="submit"]:hover{
+  background: black;
+}
+
+h1{
+  text-align: center;
+}
+</style>

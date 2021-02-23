@@ -36,3 +36,14 @@
     <button type="button" onclick="addPenalty()">Add Penalty</button> -->
   </body>
 </html>
+
+<style media="screen">
+body{
+  color:white;
+  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg5.jpg);
+  height:100vh;
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+</style>

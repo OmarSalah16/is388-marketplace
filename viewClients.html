@@ -6,7 +6,7 @@
   </head>
 <body onload=showClients()>
   <div class="form">
-    <h1><u>Client Database</u></h1>
+    <h1><u>Clients</u></h1>
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="form" oninput="showClients()" placeholder="Search for Client.." style="width:200px;margin-left:5px;">
     <select name="searchBy" id="searchBy" class="form" onchange="showClients()">
       <option value="ID">ID</option>
@@ -46,10 +46,12 @@ body{
   background-repeat: no-repeat;
 }
  h1{
-   margin-left: 40%;
+   text-align: center;
  }
 table{
   background-color: lightgrey;
 }
-
+td{
+  text-align: center;
+}
 </style>
