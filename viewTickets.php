@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <?php include "adminBar"; ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -9,7 +10,7 @@
     <script src="js/ticket.js"></script>
   </head>
   <body onload="viewTickets(false)">
-    <h1>Tickets</h1>
+    <h1><u>Tickets</u></h1>
     <button type="button" class="myTicket"onclick="viewTickets(true)">View my tickets</button><br><br>
     <table width="100%" border="2" style="border-collapse:collapse;" class="table table-striped">
       <thead>
@@ -33,10 +34,14 @@
   font-family:Century Gothic;
 }
 
-h1{text-align: center;}
+h1{
+  margin-left: 45%;
+  color:white;
+
+}
 
 body{
-  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bgr.jpg);
+  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg8.jpg);
   height:100vh;
   background-size: cover;
   background-position:center;

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <?php include "hrBar.php"; ?>
     <meta charset="utf-8">
     <title>View Tickets</title>
     <script src="js/ticket.js"></script>
   </head>
   <body onload="viewReports()">
-    <h1>Reports</h1>
+    <h1><u>Reports</u></h1>
 
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
@@ -32,11 +33,12 @@
   }
 
   h1{
-    text-align: center;
+    margin-left: 45%;
+    color:white;
   }
 
   body{
-    background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg7.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.1)), url(pics/bg7.jpg);
     height:100vh;
     background-size: cover;
     background-position:center;

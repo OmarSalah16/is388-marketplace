@@ -8,12 +8,9 @@
     <header>
       <div class="main">
         <ul>
-          <li class = "home"><a href = "customerHome">Home</a></li>
-          <li class = "profile"><a href = "clientProfile">Profile</a></li>
-          <li class = "contact"><a href = "customerContact">Contact</a></li>
-          <li class = "support"><a href = 'support'>Messages</a></li>
-          <li class = "survey"><a href = 'clientSurvey'>Surveys</a></li>
-          <li> <a href="productSearch">Search</a> </li>
+          <li class = "home"><a href = "auditorHome">Home</a></li>
+          <li class = "survey"><a href = "viewSurveys">Surveys</a></li>
+          <li class = "ticket"><a href = "viewATickets">Tickets</a></li>
           <li> <a href="logout">Log Out</a> </li> </li>
         </ul>
       </div>
@@ -23,11 +20,10 @@
 
 <style media="screen">
 
-
 ul{
   float: right;
   list-style-type: none;
-  margin: 0;
+  margin: 10;
   padding: 0;
 
 }
@@ -50,6 +46,5 @@ ul li a:hover{
   background-color: #fff;
   color: #000;
 }
-
 
 </style>

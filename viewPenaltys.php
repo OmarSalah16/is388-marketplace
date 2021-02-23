@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <?php include "hrBar.php"; ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -9,7 +10,7 @@
     <script src="js/ticket.js"></script>
   </head>
   <body onload="viewPenaltys()">
-    <h1>Penalties</h1>
+    <h1><u>Penalties</u></h1><br>
     <table width="100%" border="1" style="border-collapse:collapse;" class="table table-hover">
       <thead>
         <tr>
@@ -37,7 +38,8 @@
   }
 
   h1{
-    text-align: center;
+    margin-left: 45%;
+    color:white;
   }
   button{
     margin-left: 720px;
