@@ -8,17 +8,15 @@
   </head>
 <body onload="showOrders()">
     <h1><u>Orders</u></h1><br>
-
+<h4 id="error"></h4>
 <div class="viewOrder">
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="data" placeholder="Search for Order.." oninput="showOrders()"
     <?php if(isset($_GET['id'])){echo "value='$_GET[id]'";} ?>>
     <select name="searchBy" id="searchBy" name="searchBy" class="data" onchange="showOrders()" style="width:120px;">
       <option value="customer_id" >Customer ID</option>
       <option value="ID" >ID</option>
-      <option value="Name" >name</option>
-      <option value="product_id" >Product ID</option>
-      <option value="Status">Status</option>
-      <!--<option value="Date">Date</option>-->
+      <option value="products" >Product Name</option>
+      <option value="status">Status</option>
     </select>
     from
       <input  type="number" value="0" min="0" max="25000" onchange="showOrders()">    to
@@ -31,9 +29,9 @@
         <tr>
           <th><strong>ID</strong></th>
           <th><strong>Customer ID</strong></th>
-          <th><strong>Product ID</strong></th>
-          <th><strong>Name</strong></th>
-          <th><strong>Price</strong></th>
+          <th><strong>Products</strong></th>
+          <th><strong>Quantities</strong></th>
+          <th><strong>Total Price</strong></th>
           <th><strong>Status</strong></th>
           <th><strong>Date</strong></th>
 

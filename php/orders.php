@@ -2,49 +2,92 @@
 function viewO($con){
   $select = $_POST['searchBy'];
   $bar = $_POST['searchBar'];
-  if ($select == "ID")
-  {
-    $select = "orders.ID";
-  }
   $range1 = $_POST['min'];
   $range2 = $_POST['max'];
-  $sql = "SELECT orders.ID, product_id, name, orders.price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID";
-  $sql2="SELECT orders.ID, product_id, name, orders.price, customer_id, status, date FROM orders INNER JOIN products ON orders.product_id = products.ID WHERE $select = '$bar'";
-  if($bar == ""){
-    $result = mysqli_query($con,$sql);
+  $isResult = false;
+  $isProduct = false;
+  if ($bar == "" ) {  
+      $sql = "SELECT * FROM orders ";
   }
-  else {
-    $result = mysqli_query($con,$sql2);
+  else{
+    if ($select == "products") {
+      $isProduct = true;
+      $sql = "SELECT * FROM orders ";
+    }
+    else{
+      $sql = "SELECT * FROM orders WHERE $select = '$bar'";
+    }
+    
   }
-
+  $result = mysqli_query($con,$sql);
   if (mysqli_num_rows($result) == 0) {
      echo "No result found";
   }
   else{
     while($row = mysqli_fetch_array($result)) {
-    if ($row['price']<$range1 || $row['price']>$range2) {
-      continue;
+    $sql2 = "SELECT name FROM products WHERE ID = ";
+    $sql3 = "SELECT price FROM products WHERE ID = ";
+    $productString = [];
+    $arrayP = explode(",", $row['product_id']);
+    $arrayQ = explode(",", $row['quantity']);
+    $quantity = $row['quantity'];
+    $totalPrice = 0;
+    $count = count($arrayP);
+    $i = 0;
+    for($i;$i<$count;$i++) {
+      if($i==($count-1))
+      {
+        $sql2 .= $arrayP[$i];
+        $sql3 .= $arrayP[$i];
+      }
+      else{
+        $sql2 .= $arrayP[$i] . " OR ID = ";
+        $sql3 .= $arrayP[$i] . " OR ID = ";
+      }
     }
-    echo "<tr>";
-    echo "<td>" . $row['ID'] . "</td>";
-    echo "<td>" . $row['customer_id'] . "</td>";
-    echo "<td>" . $row['product_id'] . "</td>";
-    echo "<td>" . $row['name'] . "</td>";
-    echo "<td>" . $row['price'] . "</td>";
-    echo "<td>" . $row['status'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td align='center'><button type='button' name='delete' onclick='deleteOrder(".$row['ID'].")'>Delete</button></td>";
-    echo "</tr>";
+    $z = 0;
+    $result3 = mysqli_query($con,$sql3);
+    while($row3 = mysqli_fetch_array($result3)) {
+      $totalPrice += $row3['price'] * $arrayQ[$z];
+      $z++;
+      }
+      if ($totalPrice < $range1 || $totalPrice > $range2) {
+        continue;
+      }
+    
+    $result2 = mysqli_query($con,$sql2);
+    while($row2 = mysqli_fetch_array($result2)) {
+      array_push($productString,$row2['name']);
+      }     
+      if ($isProduct) {
+        $nameFound = false;
+        foreach ($productString as $value) {
+        if (is_int(strpos($value, $bar))) {
+          $nameFound = true;
+        }
+        
+      }
+      if (!$nameFound) {
+          continue;
+        }
+      }
+      $nameOutput = "";
+      foreach ($productString as $value) {$nameOutput .= $value .  "," ;}
+      $isResult = true;
+      echo "<tr>";
+      echo "<td>" . $row['ID'] . "</td>";  
+      echo "<td>" . $row['customer_id'] . "</td>";
+      echo "<td>" . substr($nameOutput, 0, -1) . "</td>";
+      echo "<td>" . $quantity . "</td>";
+      echo "<td>" . $totalPrice . "</td>";
+      echo "<td>" . $row['status'] . "</td>";
+      echo "<td>" . $row['date'] . "</td>";
+    }
+    if (!$isResult) {
+      echo "No results found.";
     }
   }
 }
-
-function deleteO($con){
-  $ID = intval($_GET['ID']);
-  $sql = "DELETE FROM orders WHERE ID = $ID ";
-  $result = mysqli_query($con,$sql);
-}
-
 
 $con = mysqli_connect('localhost','root','','marketplace');
 if (!$con) {
