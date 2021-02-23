@@ -12,10 +12,17 @@ function viewP($con){
   $range2 = $_POST['range2'];
   $sql = "SELECT * FROM products";
   $sql2 = "SELECT * FROM products WHERE $select = '".$bar."'";
+  $r1 = 0;
+  $r2 = 0;
+  $r3 = 0;
+  $r4 = 0;
+  $r5 = 0;
 
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
+  
+  
   else {
     $result = mysqli_query($con,$sql2);
   }
@@ -24,7 +31,9 @@ function viewP($con){
   }
   else{
     while($row = mysqli_fetch_array($result)) {
-      if ($row['stock']>0) {
+      $sql3 = "SELECT * FROM reviews WHERE product_id = $row[ID] AND is_reviewed = 1";
+      $result3 = mysqli_query($con,$sql3);
+      if ($row['stock'] > 0) {
         $val = 1;
         $min = 1;
       }
@@ -32,13 +41,30 @@ function viewP($con){
         $val = 0;
         $min = 0;
       }
+      
+      while($row3 = mysqli_fetch_array($result3)) {
+      if ($row3['rating'] == 5) {
+        $r5++;
+      }
+      if ($row3['rating'] == 4) {
+        $r4++;
+      }
+      if ($row3['rating'] == 3) {
+        $r3++;
+      }
+      if ($row3['rating'] == 2) {
+        $r2++;
+      }
+      if ($row3['rating'] == 1) {
+        $r1++;
+      }
+    }
       echo "<tr>";
       echo "<td width='160px'><img width='160px' alt='pic' src='product_images/$row[ID]/1.jpg'></td>";
-      echo "<td>" . $row['ID'] . "</td>";
       echo "<td>" . $row['name'] . "</td>";
       echo "<td>" . $row['price'] . "</td>";
       echo "<td>" . $row['stock'] . "</td>";
-      echo "<td>" . $row['rating'] . "</td>";
+      echo "<td class='tooltips'>" . $row['rating'] . "<span class='tooltiptexts'> 5 Stars:$r5 <br> 4 Stars:$r4 <br> 3 Stars:$r3 <br> 2 Stars:$r2 <br> 1 Stars:$r1 <br></span></td>";
       echo "<td align='center'><button type='button' name='delete' onclick='addToCart(".$row['ID'].")'>Add to cart</button></td>";
       echo "<td align='center'><input type = 'number' id = '$row[ID]' name = 'step' value = '$val' step = '1' min = '$min' max='$row[stock]'></td>";
       echo "<td align='center'><button type='button' name='delete' onclick='viewProduct(".$row['ID'].")'>View</button></td>";
