@@ -2,9 +2,10 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Surveys</title>
   </head>
   <body>
+    <h1>Surveys</h1>
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>
@@ -25,3 +26,29 @@
     </table>
   </body>
 </html>
+
+<style media="screen">
+
+*{
+  font-family: Century Gothic;
+}
+
+body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg2.jpg);
+  height:100vh;
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+  h1,td{
+    text-align: center;
+  }
+
+  th{
+    font-size: 20px;
+  }
+
+  td{
+    padding:5px;
+  }
+</style>

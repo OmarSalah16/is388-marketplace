@@ -6,7 +6,7 @@
   </head>
   <body>
     <div class="box" >
-      <a class="x4" href="viewPenaltys">View Penaltys</a>
+      <a class="x4" href="viewPenaltys">View Penalties</a>
       <a class="x5" href="viewReports">View Reports</a>
       <a class="x6" href="logout">Log Out</a>
     </div>

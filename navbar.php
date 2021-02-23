@@ -11,6 +11,11 @@
         float : right ;
         width: 80px;
     }
+
+    .topnav{
+        background: black;
+    }
+
     </style>
 <div class="topnav">
               <?php
@@ -22,11 +27,11 @@
                   }
                   elseif($_SESSION['role']=="admin")
                   {
-                    echo "admin";
+                    echo "Admin";
                   }
                   elseif($_SESSION['role']=="auditor")
                   {
-                    echo "auditor";
+                    echo "Auditor";
                   }
                   elseif($_SESSION['role']=="HR")
                   {
@@ -34,9 +39,20 @@
                   }
                 }
                 else {
-                  echo "LOGIN <a href='login.php'> Login </a>";
+                  echo "<a class='login' href='login.php'> Login </a>";
                 }
                 ?>
 </div>
 </body>
 </html>
+
+<style media="screen">
+
+  .login{
+    font-size: 25px;
+    color:white;
+    font-family: Century Gothic;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+</style>

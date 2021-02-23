@@ -72,3 +72,26 @@ switch ($_GET['q']) {
 }
 mysqli_close($con);
 ?>
+
+<style media="screen">
+
+*{
+  font-family: Century Gothic;
+  text-align: center;
+}
+
+table{
+  margin:auto;
+}
+body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg9.jpg);
+  height:100vh;
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+
+a{
+  color:red;
+}
+</style>

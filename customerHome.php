@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Home Page</title>
-    <?php include "navbar.php"; ?>
   </head>
   <body>
+    <div class="topnav">
+      <?php include "navbar.php"; ?>
+    </div>
       <div class="subtitle">
         <h2>BEST.NEWS.EVER.</h2>
       </div>
@@ -16,7 +18,7 @@
       </div>
 
       <div class="button">
-        <a href="#" class="btn">BROWSE NOW</a>
+        <a href="productSearch" class="btn">BROWSE NOW</a>
       </div>
 
       <div class="slideshow"></div>
@@ -31,12 +33,10 @@
 <style media="screen">
 
   *{
-    margin:0;
-    padding:0;
     font-family: Century Gothic;
   }
 
-  header{
+  body{
     background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(pics/background2.jpg);
     height:100vh;
     background-size: cover;
@@ -44,7 +44,13 @@
     background-repeat: no-repeat;
   }
 
+  body,h1,h2,h3{
+    margin:4px;
+  }
 
+.topnav{
+  background:black;
+}
   .title{
     position: absolute;
     top:25%;

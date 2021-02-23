@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <title>View Tickets</title>
     <script src="js/ticket.js"></script>
   </head>
   <body onload="viewPenaltys()">
-    <button type="button" onclick="viewPenaltys()">Refresh</button>
-    <table width="100%" border="1" style="border-collapse:collapse;">
+    <h1>Penalties</h1>
+    <table width="100%" border="1" style="border-collapse:collapse;" class="table table-hover">
       <thead>
         <tr>
           <th><strong>ID</strong></th>
@@ -20,5 +23,37 @@
       <tbody id="rTable">
       </tbody>
     </table>
+    <button type="button" onclick="viewPenaltys()">Refresh</button>
   </body>
 </html>
+
+<style media="screen">
+  body{
+    background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg5.jpg);
+    height:100vh;
+    background-size: cover;
+    background-position:center;
+    background-repeat: no-repeat;
+  }
+
+  h1{
+    text-align: center;
+  }
+  button{
+    margin-left: 720px;
+    border:0;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid black;
+    padding: 14px 40px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor:pointer;
+  }
+
+  button:hover{
+    background: #2ecc71;
+  }
+</style>

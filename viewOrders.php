@@ -68,4 +68,7 @@ h1{
 table{
   background-color: lightgrey;
 }
+td{
+  text-align: center;
+}
 </style>

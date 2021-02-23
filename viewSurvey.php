@@ -71,3 +71,20 @@
    ?>
   </body>
 </html>
+
+<style media="screen">
+*{
+  font-family: Century Gothic;
+}
+body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg8.jpg);
+  height:100vh;
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+}
+
+td{
+  text-align: center;
+}
+</style>
