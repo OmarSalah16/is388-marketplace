@@ -7,21 +7,20 @@ function viewP($con){
       $select = intval($select);
     }
   $bar = $_POST['searchBar'];
-  $range1 = $_POST['range1'];
-  $range2 = $_POST['range2'];
-  $sql = "SELECT * FROM products";
-  $sql2 = "SELECT * FROM products WHERE $select = '".$bar."'";
+  $range1 = $_POST['min'];
+  $range2 = $_POST['max'];
+  $sql = "SELECT * FROM products  WHERE price >= $range1 AND price <= $range2";
+  $sql2 = "SELECT * FROM products WHERE $select = '".$bar."' AND price >= $range1 AND price <= $range2";
   $r1 = 0;
   $r2 = 0;
   $r3 = 0;
   $r4 = 0;
   $r5 = 0;
-
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
-  
-  
+
+
   else {
     $result = mysqli_query($con,$sql2);
   }
@@ -30,6 +29,7 @@ function viewP($con){
   }
   else{
     while($row = mysqli_fetch_array($result)) {
+
       $sql3 = "SELECT * FROM reviews WHERE product_id = $row[ID] AND is_reviewed = 1";
       $result3 = mysqli_query($con,$sql3);
       if ($row['stock'] > 0) {
@@ -40,7 +40,7 @@ function viewP($con){
         $val = 0;
         $min = 0;
       }
-      
+
       while($row3 = mysqli_fetch_array($result3)) {
       if ($row3['rating'] == 5) {
         $r5++;

@@ -1,51 +1,19 @@
 <?php
 session_start();
 include "cartInit.php";
-include "customerMenu.php"; 
+include "customerMenu.php";
 ?>
 <html>
   <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=hAM_U4bJfTaA7W3MmpBNDSGZTpuLKG8iwjsci_zLE3QRf2X6FC1MMZNWFfeNYOLoZlGjtkDjtSI9ZDs2maS8oOdFLlSYqNeLu36uiqH__GT6-OWA5rBDmmdDmNSklhB6l29k0iRIcx58KCrc7QcyJ-I1Bu4OW5s1M2moJx5rxOY" charset="UTF-8"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/minmax.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <title>Products</title><script src="js/productSearch.js"></script>
-    <style type="text/css">
-      img {
-        width: 150px;
-        height: 150px;
-      }
-      .tooltips {
-        position: relative;
-        display: inline-block;
-        border-bottom: 1px dotted black;
-      }
-
-      .tooltips .tooltiptexts {
-        visibility: hidden;
-        width: 120px;
-        background-color: black;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
-
-        /* Position the tooltip */
-        position: absolute;
-        z-index: 1;
-        top: -5px;
-        left: 105%;
-      }
-      .tooltip .tooltiptext {
-
-}
-
-      .tooltips:hover .tooltiptexts {
-        visibility: visible;
-      }
-    </style>
   </head>
 <body onload="showProducts()">
+  <div class="viewPage">
     <h1>Products</h1>
     <div id="error"></div>
     <a href="checkout">My Cart</a>
@@ -54,9 +22,20 @@ include "customerMenu.php";
       <option value="Name" >Name</option>
       <option value="Price" >Price</option>
     </select>
-    <label for="" style="display:none;" name="label" id="label">Price Range</label>
-    <input type="text" name="range1" style="display:none;" id="range1" class="form" oninput="showOrders()">
-    <input type="text" name="range2" style="display:none;" id="range2" class="form" oninput="showOrders()">
+    <?php
+      include 'php/dbhandler.php';
+      $sql = "SELECT MIN(price) AS min, MAX(price) AS max from products";
+      $result = mysqli_query($con,$sql);
+      $row = mysqli_fetch_array($result);
+      $min = intval ($row['min']);
+      $max = intval ($row['max']);
+     ?>
+    from
+      <input class="form" type="number" name="min" value=<?php echo $min;?> min=<?php echo $min;?>  max=<?php echo $max;?> onchange="showProducts()">    to
+      <input class="form" type="number" name="max" value=<?php echo $max;?> min=<?php echo $min;?> max=<?php echo $max;?>  onchange="showProducts()">
+      <input id="min" class="data" style="width: 250px; margin-left:330px;"  value=<?php echo $min;?> min=<?php echo $min;?> <?php echo $max;?> step="1" type="range" onchange="showProducts()">
+      <input id="max" class="data" style="width: 250px; margin-left:330px;" value=<?php echo $max;?> min=<?php echo $min;?> max=<?php echo $max;?> step="1" type="range" onchange="showProducts()">
+
 
     <table width="100%" class="table table-hover">
       <thead>
@@ -71,9 +50,10 @@ include "customerMenu.php";
       <tbody id="rTable">
       </tbody>
     </table>
-  </body>
+  </div>
+</body>
 </html>
-
+<script  src="js/minmax.js"></script>
 <style media="screen">
 
 a{
@@ -93,5 +73,35 @@ a{
     background-size: cover;
     background-position:center;
     background-repeat: no-repeat;
+  }
+  img {
+    width: 150px;
+    height: 150px;
+  }
+  .tooltips {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+
+  .tooltips .tooltiptexts {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+  }
+  .tooltip .tooltiptext {
+}
+  .tooltips:hover .tooltiptexts {
+    visibility: visible;
   }
 </style>

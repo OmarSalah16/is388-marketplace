@@ -1,4 +1,5 @@
 <?php
+session_start();
 function viewO($con){
   $select = $_POST['searchBy'];
   $bar = $_POST['searchBar'];
@@ -6,7 +7,10 @@ function viewO($con){
   $range2 = $_POST['max'];
   $isResult = false;
   $isProduct = false;
-  if ($bar == "" ) {  
+  $_SESSION['min'];
+  $_SESSION['max'];
+  $check = true;
+  if ($bar == "" ) {
       $sql = "SELECT * FROM orders ";
   }
   else{
@@ -17,7 +21,7 @@ function viewO($con){
     else{
       $sql = "SELECT * FROM orders WHERE $select = '$bar'";
     }
-    
+
   }
   $result = mysqli_query($con,$sql);
   if (mysqli_num_rows($result) == 0) {
@@ -51,21 +55,35 @@ function viewO($con){
       $totalPrice += $row3['price'] * $arrayQ[$z];
       $z++;
       }
+      if ($check) {
+        $_SESSION['min'] = $totalPrice;
+        $_SESSION['max'] = $totalPrice;
+        $check = false;
+      }
+      if($totalPrice < $_SESSION['min'])
+      {
+        $_SESSION['min'] = $totalPrice;
+      }
+      if($totalPrice > $_SESSION['max'])
+      {
+        $_SESSION['max'] = $totalPrice;
+      }
       if ($totalPrice < $range1 || $totalPrice > $range2) {
+        echo $totalPrice.'<br>'.$range1.'<br>'.$range2;
         continue;
       }
-    
+
     $result2 = mysqli_query($con,$sql2);
     while($row2 = mysqli_fetch_array($result2)) {
       array_push($productString,$row2['name']);
-      }     
+      }
       if ($isProduct) {
         $nameFound = false;
         foreach ($productString as $value) {
         if (is_int(strpos($value, $bar))) {
           $nameFound = true;
         }
-        
+
       }
       if (!$nameFound) {
           continue;
@@ -75,7 +93,7 @@ function viewO($con){
       foreach ($productString as $value) {$nameOutput .= $value .  "," ;}
       $isResult = true;
       echo "<tr>";
-      echo "<td>" . $row['ID'] . "</td>";  
+      echo "<td>" . $row['ID'] . "</td>";
       echo "<td>" . $row['customer_id'] . "</td>";
       echo "<td>" . substr($nameOutput, 0, -1) . "</td>";
       echo "<td>" . $quantity . "</td>";
