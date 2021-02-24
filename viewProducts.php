@@ -3,6 +3,7 @@ session_start();
 //include "adminVerification.php";
 include "php/dbhandler.php";
 include "cartInit.php";
+include "adminBar";
 ?>
 <html>
   <head>
@@ -14,7 +15,7 @@ include "cartInit.php";
     <script src="js/viewProducts.js"></script>
   </head>
 <body onload="showProducts()">
-    <h1>Products</h1>
+    <h1><u>Products</u></h1>
 
     <div id="addProduct" style="display: none">
       <form class="addP" action="php/addProduct.php" method="post" enctype="multipart/form-data">
@@ -74,7 +75,8 @@ include "cartInit.php";
   }
 
   h1{
-    text-align: center;
+    color:white;
+    margin-left: 45%;
   }
 
 .addButton{

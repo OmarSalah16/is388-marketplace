@@ -8,12 +8,12 @@
     <header>
       <div class="main">
         <ul>
-          <li class = "home"><a href = "customerHome">Home</a></li>
-          <li class = "profile"><a href = "clientProfile">Profile</a></li>
-          <li class = "cont"><a href = "customerContact">Contact</a></li>
-          <li class = "support"><a href = 'support'>Messages</a></li>
-          <li class = "survey"><a href = 'clientSurvey'>Surveys</a></li>
-          <li> <a href="productSearch">Search</a> </li>
+          <li class = "home"><a href = "adminHome">Home</a></li>
+          <li class = "product"><a href = "viewProducts">Products</a></li>
+          <li class = "client"><a href = "viewClients">Clients</a></li>
+          <li class = "admin"><a href = 'viewAdmins'>Admins</a></li>
+          <li class = "order"><a href = 'viewOrders'>Orders</a></li>
+          <li class = "ticket"> <a href="viewTickets">Tickets</a> </li>
           <li> <a href="logout">Log Out</a> </li> </li>
         </ul>
       </div>
@@ -27,7 +27,7 @@
 ul{
   float: right;
   list-style-type: none;
-  margin: 0;
+  margin: 10;
   padding: 0;
 
 }

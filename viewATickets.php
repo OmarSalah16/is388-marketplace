@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <?php include "auditorBar.php"; ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -9,7 +10,7 @@
     <script src="js/ticket.js"></script>
   </head>
   <body onload="viewTickets(false)">
-
+    <h1><u>Tickets</u></h1>
     <table width="100%" border="4" class="table table-hover">
       <thead>
         <tr>
@@ -29,21 +30,18 @@
 
 <style media="screen">
 *{
-  margin:0;
-  padding:0;
   font-family: Century Gothic;
 }
 
 body{
-  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.3)), url(pics/ticket.jpg);
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3)), url(pics/ticket.jpg);
   background-size: cover;
-  background-position:center;
+  /*background-position:center;*/
   background-repeat: no-repeat;
 }
 
 table{
   background-color: lightgrey;
-  margin-top: 20%;
 }
 
 button{
@@ -65,4 +63,8 @@ button:hover{
   background: #2ecc71;
 }
 
+h1{
+  color:white;
+  margin-left: 45%;
+}
 </style>

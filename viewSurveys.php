@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <?php include "auditorBar.php"; ?>
     <meta charset="utf-8">
     <title>View Surveys</title>
     <script src="js/survey.js"></script>
   </head>
   <body onload="viewSurveys()">
-    <h1>Surveys</h1>
+    <h1><u>Surveys</u></h1>
     <a href="viewSurvey.php?q=a">View Archives</a>
     <a href="addSurvey.php">Add Survey</a><br><br>
     <table width="100%" border="1" style="border-collapse:collapse;">
@@ -31,7 +32,7 @@
   }
 
 a{
-  color:green;
+  color:blue;
 }
   body{
     background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg8.jpg);
@@ -62,9 +63,9 @@ a{
   }
 
 
-h1{
-  text-align: center;
-}
+  h1{
+    margin-left: 45%;
+  }
   td{
     text-align: center;
   }

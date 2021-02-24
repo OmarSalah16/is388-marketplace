@@ -4,7 +4,7 @@
     <title>Orders</title>
     <script src="js/orders.js"></script>
     <link rel="stylesheet" href="css/minmax.css">
-
+    <?php include "adminBar"; ?>
   </head>
 <body onload="showOrders()">
     <h1><u>Orders</u></h1><br>
@@ -54,7 +54,7 @@
 }
 
 body{
-  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/delivery.jpg);
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0)), url(pics/delivery.jpg);
   background-size: cover;
   background-position:center;
   background-repeat: no-repeat;

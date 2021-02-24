@@ -3,6 +3,7 @@
     <meta charset="utf-8">
     <title>View Clients</title>
     <script src="js/clients.js"></script>
+    <?php include "adminBar"; ?>
   </head>
 <body onload=showClients()>
   <div class="form">
@@ -40,13 +41,14 @@
 }
 
 body{
-  background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.3)), url(pics/viewclient.jpg);
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3)), url(pics/viewclient.jpg);
   background-size: cover;
   background-position:center;
   background-repeat: no-repeat;
 }
  h1{
-   text-align: center;
+   margin-left: 45%;
+   color: white;
  }
 table{
   background-color: lightgrey;

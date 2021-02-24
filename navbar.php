@@ -27,11 +27,11 @@
                   }
                   elseif($_SESSION['role']=="admin")
                   {
-                    echo "Admin";
+                    include("adminBar.php");
                   }
                   elseif($_SESSION['role']=="auditor")
                   {
-                    echo "Auditor";
+                    include("auditorBar.php");
                   }
                   elseif($_SESSION['role']=="HR")
                   {
