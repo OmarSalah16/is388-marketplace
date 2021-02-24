@@ -11,7 +11,7 @@
         <ul>
           <li class = "home"><a href = "customerHome">Home</a></li>
           <li class = "profile"><a href = "clientProfile">Profile</a></li>
-          <li class = "contact"><a href = "customerContact">Contact</a></li>
+          <li class = "cont"><a href = "customerContact">Contact</a></li>
           <li class = "support"><a href = 'support'>Messages</a></li>
           <li class = "survey"><a href = 'clientSurvey'>Surveys</a></li>
           <li> <a href="productSearch">Search</a> </li>
