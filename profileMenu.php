@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Profile Menu</title>
-  </head>
-  <body>
-    <header>
-      <div class="main">
+     <div class="main">
         <ul>
           <li class = "home"><a href = "customerHome">Home</a></li>
           <li class = "profile"><a href = "customerProfile">Profile</a></li>
@@ -16,9 +8,7 @@
           <li> <a href="logout">Log Out</a> </li> </li>
         </ul>
       </div>
-    </header>
-  </body>
-</html>
+
 
 <style media="screen">
 ul{

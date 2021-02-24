@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "cartInit.php";
+include "navbar.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,7 +96,6 @@
       echo "3 Stars : " . $r3 . "<br>";
       echo "2 Stars : " . $r2 . "<br>";
       echo "1 Stars : " . $r1 . "<br>" . "<br>";
-
       echo "</div>";
 
       echo "<tr>";

@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "cartInit.php";
+include "customerMenu.php";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

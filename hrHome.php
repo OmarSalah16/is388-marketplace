@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "HRverification.php";
+include "navbar.php";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>

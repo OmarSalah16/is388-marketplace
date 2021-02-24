@@ -13,6 +13,8 @@
   <body>
     <?php
     session_start();
+    include "cartInit.php";
+    include "navbar.php";
     $cart = $_SESSION['cart'];
     $Qcart = $_SESSION['Qcart'];
     $client_id = $_SESSION['ID'];

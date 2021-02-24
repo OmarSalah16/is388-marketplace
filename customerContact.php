@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Contact Us</title>
-    <?php include "customerMenu.php"; ?>
+    <?php
+    session_start();
+    include "cartInit.php"; 
+    include "customerMenu.php"; ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/message.js"></script>
   </head>

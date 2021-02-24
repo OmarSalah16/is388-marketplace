@@ -6,7 +6,8 @@
   </head>
   <body>
     <div class="topnav">
-      <?php include "navbar.php"; ?>
+      <?php session_start();
+      include "navbar.php"; ?>
     </div>
       <div class="subtitle">
         <h2>BEST.NEWS.EVER.</h2>

@@ -1,9 +1,12 @@
+<?php
+session_start();
+include "adminVerification.php";
+include "navbar.php";?>
 <html>
   <head>
     <meta charset="utf-8">
     <title>View Clients</title>
     <script src="js/clients.js"></script>
-    <?php include "adminBar"; ?>
   </head>
 <body onload=showClients()>
   <div class="form">

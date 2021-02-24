@@ -1,10 +1,14 @@
+<?php
+session_start();
+include "adminVerification.php";
+include "navbar.php";
+?>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Orders</title>
     <script src="js/orders.js"></script>
     <link rel="stylesheet" href="css/minmax.css">
-    <?php include "adminBar"; ?>
   </head>
 <body onload="showOrders()">
     <h1><u>Orders</u></h1><br>
@@ -54,7 +58,7 @@
 }
 
 body{
-  background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0)), url(pics/delivery.jpg);
+  background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg8.jpg);
   background-size: cover;
   background-position:center;
   background-repeat: no-repeat;

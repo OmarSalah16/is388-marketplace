@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <header>
-      <div class="main">
+     <div class="main">
         <ul>
           <li class = "home"><a href = "auditorHome">Home</a></li>
           <li class = "survey"><a href = "viewSurveys">Surveys</a></li>
           <li class = "ticket"><a href = "viewATickets">Tickets</a></li>
           <li> <a href="logout">Log Out</a> </li> </li>
         </ul>
-      </div>
-    </header>
-  </body>
-</html>
+    </div>
 
 <style media="screen">
 

@@ -1,5 +1,4 @@
 <?php
-// <img style="border-radius: 50%" src="hidethepainharold.jpg" alt="Profile Picture">
 session_start();
 function viewP($con){
 

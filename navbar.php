@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php  ?>
 <html>
 <head>
 <link rel="stylesheet" href="static/master.css">
@@ -35,11 +35,11 @@
                   }
                   elseif($_SESSION['role']=="HR")
                   {
-                    echo "HR";
+                    include("hrBar.php");
                   }
                 }
                 else {
-                  echo "<a class='login' href='login.php'> Login </a>";
+                  include("customerMenu.php");
                 }
                 ?>
 </div>

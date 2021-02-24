@@ -1,3 +1,9 @@
+<?php
+session_start();
+include "cartInit.php";
+include "customerMenu.php";
+echo "<br>";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -6,7 +12,6 @@
   </head>
   <body>
     <?php
-  //  include 'customerMenu.php';
     include 'php/dbhandler.php';
       if (isset($_POST['submit'])) {
         $answers = "";

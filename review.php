@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "cartInit.php";
+include "navbar.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>

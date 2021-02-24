@@ -1,8 +1,7 @@
 <?php
-
 if (isset($_SESSION['role'])) {
-	if ($_SESSION['role'] != "hr") {
-		header("Location: ../denied.php");
+	if ($_SESSION['role'] != "HR") {
+		header("Location: denied.php");
 }
-
+}
 ?>

@@ -18,11 +18,11 @@ function create_ticket($con){
 }
 
 function ticket_response($con){
-  $content = $_GET['content'];
-  $ticked_id = $_GET['id'];
+  $content = $_POST['content'];
+  $ticked_id = $_POST['id'];
   $role = $_SESSION['role'];
   $ID = $_SESSION['ID'];
-  if($role="admin"){
+  if($role == "admin"){
     $is_admin = 1;
   }
   else{
@@ -30,7 +30,7 @@ function ticket_response($con){
   }
   if(isset($content,$ticked_id))
   {
-    if(empty($content)||empty($ticked_id))
+    if(empty($content) || empty($ticked_id))
     {
       //error
       die('Empty Variables');
@@ -46,9 +46,9 @@ function ticket_response($con){
 
 function viewTickets($con){
   $sql = "SELECT * FROM tickets";
-  if ($_SESSION['role']=="customer")
-  {
-    $sql .= " WHERE customer_id = $_SESSION[ID]";
+  $url = "viewMessage.php";
+  if ($_SESSION['role'] == "auditor") {
+    $url = "viewAMessage.php";
   }
   $result = mysqli_query($con,$sql);
   if (mysqli_num_rows($result) == 0) {
@@ -62,7 +62,7 @@ function viewTickets($con){
       echo "<td>" . $row['title'] . "</td>";
       echo "<td>" . $row['status'] . "</td>";
       echo "<td>" . $row['created'] . "</td>";
-      echo "<td align='center'><a href='viewAMessage.php?id=$row[ID]'>View Ticket</a></td>";
+      echo "<td align='center'><a href='$url?id=$row[ID]'>View Ticket</a></td>";
       echo "</tr>";
     }
   }
@@ -195,8 +195,8 @@ function displayATicket($con){
 }
 
 function ticket_comment($con){
-  $comment = $_GET['comment'];
-  $response_id = $_GET['id'];
+  $comment = $_POST['comment'];
+  $response_id = $_POST['id'];
   $auditor_id = $_SESSION['ID'];
   if(isset($comment,$response_id))
   {
@@ -213,7 +213,7 @@ function ticket_comment($con){
 }
 
 function report($con){
-  $report_id = $_GET['id'];
+  $report_id = $_POST['id'];
   $sql = "UPDATE report SET is_report = 1 WHERE ID = $report_id";
   $result=mysqli_query($con,$sql);
 }
@@ -302,8 +302,8 @@ function displayRTicket($con){
 }
 
   function addPenalty($con){
-    $comment = $_GET['comment'];
-    $report_id = $_GET['id'];
+    $comment = $_POST['comment'];
+    $report_id = $_POST['id'];
     $hr_id = $_SESSION['ID'];
     if(isset($comment,$report_id))
     {
@@ -408,8 +408,17 @@ function displayRTicket($con){
   }
 
   session_start();
+  if (isset($_GET['q'])) {
+    $q = $_GET['q'];
+  }
+  elseif (isset($_POST['q'])) {
+    $q = $_POST['q'];
+  }
+  else{
+    die("Please refresh and try again.");
+  }
  include 'dbhandler.php';
-switch ($_GET['q']) {
+switch ($q) {
   case 'view':
     viewTickets($con);
     break;

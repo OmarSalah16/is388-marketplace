@@ -1,3 +1,9 @@
+<?php
+session_start();
+include "cartInit.php";
+include "customerMenu.php";
+echo "<br>";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -14,7 +20,6 @@
       </thead>
       <tbody>
         <?php
-        session_start();
         include 'php/dbhandler.php';
           $sql = "SELECT survey.name, survey.ID, survey_answers.ID AS sID FROM survey INNER JOIN survey_answers ON survey.ID = survey_answers.survey_id WHERE survey_answers.customer_id = $_SESSION[ID] AND is_open = 1";
           $result = mysqli_query($con,$sql);

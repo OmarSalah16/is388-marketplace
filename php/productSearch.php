@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 function viewP($con){
   $select = $_POST['searchBy'];
   if(is_numeric($select))

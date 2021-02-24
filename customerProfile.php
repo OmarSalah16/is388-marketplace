@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Your Profile</title>
-    <?php include "customerMenu.php"; ?>
+    <?php session_start();
+    include "customerMenu.php"; ?>
   </head>
   <body>
     <form class="box" action="login.php" method="post">

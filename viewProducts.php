@@ -1,9 +1,9 @@
 <?php
 session_start();
-//include "adminVerification.php";
+include "adminVerification.php";
 include "php/dbhandler.php";
 include "cartInit.php";
-include "adminBar";
+include "navbar.php";
 ?>
 <html>
   <head>

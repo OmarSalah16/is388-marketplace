@@ -1,3 +1,8 @@
+<?php
+session_start();
+include "adminVerification.php";
+include "navbar.php";
+?>
 <html>
   <head>
     <meta charset="utf-8">

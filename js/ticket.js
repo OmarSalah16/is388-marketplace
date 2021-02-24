@@ -45,8 +45,13 @@ function displayATicket(){
 }
 
 function sendResponse(){
-  var $_GET = getGet();
   var content = document.getElementById("content").value;
+  var data = new FormData();
+  data.append('content', content);
+  data.append('q', 'response');
+  var $_GET = getGet();
+  var ID = $_GET['id'];
+  data.append('id', ID);
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
@@ -55,11 +60,12 @@ function sendResponse(){
         displayTicket();
     }
   }
-  xmlhttp.open("GET","php/ticket.php?q=response&content="+content+"&id="+$_GET['id'],true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/ticket.php",true);
+  xmlhttp.send(data);
 }
 
 function addComment() {
+  var comment = document.getElementById("comment").value;
   var radios = document.getElementsByName('select');
   var id = false;
   for(i = 0; i < radios.length; i++) {
@@ -72,7 +78,10 @@ function addComment() {
     alert("Please Select a message!");
     return;
   }
-  var comment = document.getElementById("comment").value;
+  var data = new FormData();
+  data.append('comment', comment);
+  data.append('q', 'comment');
+  data.append('id', id);
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
@@ -81,11 +90,15 @@ function addComment() {
       displayATicket();
     }
   }
-  xmlhttp.open("GET","php/ticket.php?q=comment&comment="+comment+"&id="+id,true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/ticket.php",true);
+  xmlhttp.send(data);
 }
 
 function report(id){
+  var ID = id;
+  var data = new FormData();
+  data.append('q', 'report');
+  data.append('id', ID);
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
@@ -93,8 +106,8 @@ function report(id){
       displayATicket();
     }
   }
-  xmlhttp.open("GET","php/ticket.php?q=report&id="+id,true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/ticket.php",true);
+  xmlhttp.send(data);
 }
 
 function viewReports(){
@@ -122,6 +135,7 @@ function displayReport(){
 
 function addPenalty() {
   var radios = document.getElementsByName('select');
+  var comment = document.getElementById("comment").value;
   var id = false;
   for(i = 0; i < radios.length; i++) {
     if(radios[i].checked){
@@ -133,7 +147,10 @@ function addPenalty() {
     alert("Please Select a message!");
     return;
   }
-  var comment = document.getElementById("comment").value;
+  var data = new FormData();
+  data.append('q', 'penalty');
+  data.append('id', id);
+  data.append('comment', comment);
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (this.readyState==4 && this.status==200) {
@@ -142,8 +159,8 @@ function addPenalty() {
       displayReport();
     }
   }
-  xmlhttp.open("GET","php/ticket.php?q=penalty&comment="+comment+"&id="+id,true);
-  xmlhttp.send();
+  xmlhttp.open("POST","php/ticket.php",true);
+  xmlhttp.send(data);
 }
 
 function viewPenaltys(){
