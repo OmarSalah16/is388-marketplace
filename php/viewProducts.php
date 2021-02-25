@@ -30,7 +30,7 @@ function viewP($con){
     while($row = mysqli_fetch_array($result)) {
       if ($isProduct) {
         $nameFound = false;
-        if (is_int(strpos($row['name'], $bar))) {
+        if (is_int(strpos(strtolower($row['name']), strtolower($bar)))) {
           $nameFound = true;
         }
         if (!$nameFound) {

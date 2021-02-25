@@ -76,7 +76,7 @@ function viewO($con){
       if ($isProduct) {
         $nameFound = false;
         foreach ($productString as $value) {
-        if (is_int(strpos($value, $bar))) {
+        if (is_int(strpos(strtolower($value), strtolower($bar)))) {
           $nameFound = true;
         }
 
