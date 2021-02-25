@@ -29,7 +29,7 @@ function viewO($con){
   }
   else{
     while($row = mysqli_fetch_array($result)) {
-    $sql2 = "SELECT name FROM products WHERE ID = ";
+    $sql2 = "SELECT ID, name FROM products WHERE ID = ";
     $sql3 = "SELECT price FROM products WHERE ID = ";
     $productString = [];
     $arrayP = explode(",", $row['product_id']);
@@ -75,7 +75,7 @@ function viewO($con){
 
     $result2 = mysqli_query($con,$sql2);
     while($row2 = mysqli_fetch_array($result2)) {
-      array_push($productString,$row2['name']);
+      array_push($productString,"<a href=product?ID=$row2[ID]>" . $row2['name']);
       }
       if ($isProduct) {
         $nameFound = false;
@@ -90,12 +90,12 @@ function viewO($con){
         }
       }
       $nameOutput = "";
-      foreach ($productString as $value) {$nameOutput .= $value .  "," ;}
+      foreach ($productString as $value) {$nameOutput .= $value . "</a>, "  ;}
       $isResult = true;
       echo "<tr>";
       echo "<td>" . $row['ID'] . "</td>";
       echo "<td>" . $row['customer_id'] . "</td>";
-      echo "<td>" . substr($nameOutput, 0, -1) . "</td>";
+      echo "<td>" . substr($nameOutput, 0, -2) . "</td>";
       echo "<td>" . $quantity . "</td>";
       echo "<td>" . $totalPrice . "</td>";
       echo "<td>" . $row['status'] . "</td>";

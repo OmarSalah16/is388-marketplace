@@ -64,6 +64,22 @@ function sendResponse(){
   xmlhttp.send(data);
 }
 
+function closeTicket(ID){
+  var content = document.getElementById("content").value;
+  var data = new FormData();
+  data.append('q', 'close');
+  data.append('ID', ID);
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("error").innerHTML=this.responseText;
+      displayTicket();
+    }
+  }
+  xmlhttp.open("POST","php/ticket.php",true);
+  xmlhttp.send(data);
+}
+
 function addComment() {
   var comment = document.getElementById("comment").value;
   var radios = document.getElementsByName('select');

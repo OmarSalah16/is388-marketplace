@@ -2,11 +2,8 @@ var canSubmit = false;
 $(document).ready(function(){
   //function 1 submit override
   $('.box').submit(function(e) {
-    if(canSubmit)
+    if(!canSubmit)
     {
-      console.log("test");
-    }
-    else{
       e.preventDefault();
       alert("Invalid Info");
     }

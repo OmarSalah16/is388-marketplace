@@ -15,7 +15,33 @@
     .topnav{
         background: black;
     }
+    ul{
+      float: right;
+      list-style-type: none;
+      margin: 10;
+      padding: 0;
 
+    }
+
+    ul li{
+      display: inline-block;
+    }
+
+    ul li a{
+      border-radius: 8px;
+      text-decoration: none;
+      color:#fff;
+      padding: 5px 10px;
+      border: 1px solid #fff transparent;
+      background-color: black;
+      transition: 0.6s ease;
+      text-align: center;
+    }
+
+    ul li a:hover{
+      background-color: #fff;
+      color: #000;
+    }
     </style>
 <div class="topnav">
               <?php
@@ -45,14 +71,3 @@
 </div>
 </body>
 </html>
-
-<style media="screen">
-
-  .login{
-    font-size: 25px;
-    color:white;
-    font-family: Century Gothic;
-    margin-right: 20px;
-    margin-top: 10px;
-  }
-</style>
