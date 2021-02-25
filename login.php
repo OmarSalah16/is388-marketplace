@@ -94,60 +94,65 @@
         color: #000;
       }
 
+      .error{
+        color: red;
+        font-weight: bold;
+      }
+
     </style>
   </head>
   <body>
     <form class="box" method="post">
       <h1>Login</h1>
+      <div class="error">
+        <?php
+        session_start();
+        include 'php/dbhandler.php';
+          if(isset($_POST['submit']))
+          {
+            $sql = "SELECT * FROM users WHERE email = '$_POST[email]' AND password = '$_POST[password]'";
+            $result = mysqli_query($con, $sql);
+              if(mysqli_num_rows($result) == 1)
+            {
+              echo "correct credentials";
+              $row = mysqli_fetch_array($result);
+              $_SESSION['ID'] = $row['ID'];
+              $_SESSION['email'] = $row['email'];
+              $_SESSION['name'] = $row['name'];
+              $_SESSION['role'] = $row['role'];
+              if($_SESSION['role']=="customer")
+                {
+                  header("Location: customerHome.php");
+                  $_SESSION['cart'] = [];
+                  $_SESSION['Qcart'] = [];
+                }
+              elseif ($_SESSION['role']=="admin") {
+                $sql1 = "SELECT rank FROM hierarchy WHERE admin_id = $_SESSION[ID]";
+                $result1 = mysqli_query($con, $sql1);
+                $row = mysqli_fetch_array($result1);
+                $_SESSION['rank'] = $row['rank'];
+                header("Location: adminHome");
+              }
+              elseif($_SESSION['role']=="auditor")
+              {
+                header("Location: auditorHome");
+              }
+              elseif($_SESSION['role']=="HR")
+              {
+                header("Location: hrHome");
+              }
+            }
+            else {
+              echo "incorrect credentials";
+            }
+          }
+
+         ?>
+      </div>
       <input type="text" name="email" id="email" placeholder="E-mail">
       <input type="password" name="password" id="password" placeholder="Password">
       <input type="submit" name="submit" value="Login">
       <a href="signup.php">Sign Up</a>
     </form>
-
-    <?php
-    session_start();
-    include 'php/dbhandler.php';
-      if(isset($_POST['submit']))
-      {
-        $sql = "SELECT * FROM users WHERE email = '$_POST[email]' AND password = '$_POST[password]'";
-        $result = mysqli_query($con, $sql);
-          if(mysqli_num_rows($result) == 1)
-        {
-          echo "correct credentials";
-          $row = mysqli_fetch_array($result);
-          $_SESSION['ID'] = $row['ID'];
-          $_SESSION['email'] = $row['email'];
-          $_SESSION['name'] = $row['name'];
-          $_SESSION['role'] = $row['role'];
-          if($_SESSION['role']=="customer")
-            {
-              header("Location: customerHome.php");
-              $_SESSION['cart'] = [];
-              $_SESSION['Qcart'] = [];
-            }
-          elseif ($_SESSION['role']=="admin") {
-            $sql1 = "SELECT rank FROM hierarchy WHERE admin_id = $_SESSION[ID]";
-            $result1 = mysqli_query($con, $sql1);
-            $row = mysqli_fetch_array($result1);
-            $_SESSION['rank'] = $row['rank'];
-            header("Location: adminHome");
-          }
-          elseif($_SESSION['role']=="auditor")
-          {
-            header("Location: auditorHome");
-          }
-          elseif($_SESSION['role']=="HR")
-          {
-            header("Location: hrHome");
-          }
-        }
-        else {
-          echo "incorrect credentials";
-        }
-      }
-
-     ?>
-
   </body>
 </html>

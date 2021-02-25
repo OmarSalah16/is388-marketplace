@@ -69,7 +69,6 @@ function viewO($con){
       if ($totalPrice < $range1 || $totalPrice > $range2) {
         continue;
       }
-
     $result2 = mysqli_query($con,$sql2);
     while($row2 = mysqli_fetch_array($result2)) {
       array_push($productString,"<a href=product?ID=$row2[ID]>" . $row2['name']);
