@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2021 at 05:54 PM
+-- Generation Time: Feb 25, 2021 at 07:14 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -79,6 +79,13 @@ CREATE TABLE `penalty` (
   `comments` varchar(512) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `penalty`
+--
+
+INSERT INTO `penalty` (`report_id`, `hr_id`, `comments`) VALUES
+(1, 3, 'Penalty');
+
 -- --------------------------------------------------------
 
 --
@@ -98,9 +105,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ID`, `name`, `price`, `stock`, `rating`) VALUES
-(2, 'Soccar ball', 25.00, 4, 0),
-(3, 'Gameboy', 125152.00, 100, 0),
-(4, 'n64', 124124.00, 1, 0);
+(2, 'Soccer ball', 25.00, 4, 0),
+(3, 'Gameboy', 5000.00, 100, 0),
+(4, 'n64', 5000.00, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -121,12 +128,12 @@ INSERT INTO `product_image` (`product_id`, `image_name`) VALUES
 (2, '1.jpg'),
 (2, '2.jpg'),
 (2, '3.jpg'),
-(4, '1.jpg'),
-(4, '2.jpg'),
-(4, '3.jpg'),
 (3, '1.jpg'),
 (3, '2.jpg'),
-(3, '3.jpg');
+(3, '3.jpg'),
+(4, '1.jpg'),
+(4, '2.jpg'),
+(4, '3.jpg');
 
 -- --------------------------------------------------------
 
@@ -143,6 +150,13 @@ CREATE TABLE `report` (
   `is_report` tinyint(1) NOT NULL DEFAULT 0,
   `archived` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `report`
+--
+
+INSERT INTO `report` (`ID`, `auditor_id`, `response_id`, `comment`, `date`, `is_report`, `archived`) VALUES
+(1, 2, 1, 'Comment', '2021-02-25', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -189,7 +203,7 @@ CREATE TABLE `survey` (
 --
 
 INSERT INTO `survey` (`ID`, `name`, `auditor_id`, `questions`, `replies`) VALUES
-(1, 'survey', 2, 'question1,question2', 0);
+(2, 'Standard Survey 1', 2, 'Question 1,Question 2,Question 3', 0);
 
 -- --------------------------------------------------------
 
@@ -210,7 +224,7 @@ CREATE TABLE `survey_answers` (
 --
 
 INSERT INTO `survey_answers` (`ID`, `customer_id`, `survey_id`, `answers`, `is_open`) VALUES
-(1, 4, 1, '', 1);
+(2, 4, 2, '', 1);
 
 -- --------------------------------------------------------
 
@@ -232,8 +246,9 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`ID`, `customer_id`, `title`, `msg`, `created`, `status`) VALUES
-(1, 4, 'product', 'wrong product', '2021-02-25 16:40:12', 'pending'),
-(6, 4, 'product 5', 'product is sold out', '2021-02-25 16:43:32', 'pending');
+(1, 4, 'product', 'wrong product', '2021-02-25 16:40:12', 'open'),
+(6, 4, 'product 5', 'product is sold out', '2021-02-25 16:43:32', 'pending'),
+(7, 4, 'I have a problem', 'my problem is..', '2021-02-25 19:45:40', 'pending');
 
 -- --------------------------------------------------------
 
@@ -250,6 +265,14 @@ CREATE TABLE `tickets_response` (
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `is_read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tickets_response`
+--
+
+INSERT INTO `tickets_response` (`ID`, `author_id`, `is_admin`, `ticket_id`, `msg`, `created`, `is_read`) VALUES
+(1, 1, 1, 1, 'test', '2021-02-25 19:40:19', 1),
+(2, 4, 0, 1, 'thanks for your reply', '2021-02-25 19:46:36', 1);
 
 -- --------------------------------------------------------
 
@@ -274,7 +297,7 @@ INSERT INTO `users` (`ID`, `email`, `password`, `name`, `mobile`, `role`) VALUES
 (1, 'admin@email.com', 'admin', 'admin', '01234567890', 'admin'),
 (2, 'auditor@email.com', 'auditor', 'auditor', '01234567890', 'auditor'),
 (3, 'hr@email.com', 'hr', 'hr', '01234567890', 'HR'),
-(4, 'customer@email.com', 'customer', 'customer', '01234567890', 'customer'),
+(4, 'customer@email.com', 'Customer1!', 'customer', '01234567890', 'customer'),
 (5, 'admin1@email.com', 'admin1', 'admin1', '01234567890', 'admin'),
 (6, 'admin2@email.com', 'admin2', 'admin2', '01234567890', 'admin');
 
@@ -411,7 +434,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -423,25 +446,25 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `survey`
 --
 ALTER TABLE `survey`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `survey_answers`
 --
 ALTER TABLE `survey_answers`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tickets_response`
 --
 ALTER TABLE `tickets_response`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
