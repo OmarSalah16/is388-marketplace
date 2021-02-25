@@ -58,25 +58,6 @@ function editProduct(id,name,price,stock) {
   document.getElementById("submitE").style.display = "block";
 }
 
-// function submitEdit(){
-//   var elements = document.getElementsByClassName("form");
-//   var formData = new FormData();
-//   for (var i = 0; i < elements.length; i++) {
-//     formData.append(elements[i].name, elements[i].value);
-//   }
-//   formData.append('q', 'edit');
-//   var xmlhttp=new XMLHttpRequest();
-//   xmlhttp.onreadystatechange=function() {
-//
-//     if (this.readyState==4 && this.status==200) {
-//       // view_add();
-//       // showProducts();
-//     }
-//   }
-//   xmlhttp.open("POST","php/viewProducts.php",true);
-//   xmlhttp.send(formData);
-// }
-
 function view_add(){
   var add = document.getElementById("addProduct");
   var view = document.getElementById("viewProduct");

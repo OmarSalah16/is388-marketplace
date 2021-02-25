@@ -11,13 +11,13 @@ function editP($con){
  $result = mysqli_query($con,$sql);
 
  $sql2 = "DELETE FROM product_image WHERE product_id = $ID";
- if (isset($_FILES['my_file'])) {
 
-        $myFile = $_FILES['my_file'];
+ if (isset($_FILES['my_file'])){
+    $myFile = $_FILES['my_file'];
 
-         $folder = "..\\product_images\\$ID";
-         if (! is_dir($folder)) {
-        throw new InvalidArgumentException("$folder must be a directory");
+    $folder = "..\\product_images\\$ID";
+    if (! is_dir($folder)) {
+    throw new InvalidArgumentException("$folder must be a directory");
     }
     if (substr($folder, strlen($folder) - 1, 1) != '/') {
         $folder .= '/';
@@ -29,7 +29,7 @@ function editP($con){
         } else {
             unlink($file);
         }
-    }
+  }
 
     rmdir($folder);
           $result2 = mysqli_query($con,$sql2);
