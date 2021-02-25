@@ -70,7 +70,7 @@ function viewTickets($con){
 
 function viewMyTickets($con){
   $ID = $_SESSION['ID'];
-  $sql = "SELECT tickets.* FROM tickets INNER JOIN tickets_response ON tickets.id = tickets_response.ticket_id WHERE tickets_response.admin_id = $ID";
+  $sql = "SELECT tickets.* FROM tickets INNER JOIN tickets_response ON tickets.id = tickets_response.ticket_id WHERE tickets_response.author_id = $ID";
   $result = mysqli_query($con,$sql);
   if (mysqli_num_rows($result) == 0) {
      echo "No result found";

@@ -1,11 +1,13 @@
-<?php  ?>
 <html>
 <head>
 <link rel="stylesheet" href="static/master.css">
 </head>
 <body>
     <style>
-
+     li
+     {
+      
+     }
     .topnav a
     {
         float : right ;

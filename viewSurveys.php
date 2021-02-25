@@ -1,12 +1,11 @@
 <?php
 session_start();
-include "adminVerification.php";
+include "auditorVerification.php";
 include "navbar.php";
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <?php include "auditorBar.php"; ?>
     <meta charset="utf-8">
     <title>View Surveys</title>
     <script src="js/survey.js"></script>

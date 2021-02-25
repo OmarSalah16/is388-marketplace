@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "adminVerification.php";
+include "auditorVerification.php";
 include "navbar.php";
 ?>
 <!DOCTYPE html>
