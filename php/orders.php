@@ -69,7 +69,6 @@ function viewO($con){
         $_SESSION['max'] = $totalPrice;
       }
       if ($totalPrice < $range1 || $totalPrice > $range2) {
-        echo $totalPrice.'<br>'.$range1.'<br>'.$range2;
         continue;
       }
 

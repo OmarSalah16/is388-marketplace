@@ -2,6 +2,8 @@
 session_start();
 include "adminVerification.php";
 include "navbar.php";
+//$_SESSION['min'] = 0;
+//$_SESSION['max'] = 25000;
 ?>
 <html>
   <head>
@@ -23,10 +25,10 @@ include "navbar.php";
       <option value="status">Status</option>
     </select>
     from
-      <input class="data" type="number" name="min" value=<?php echo $_SESSION['min'];?> min=<?php echo $_SESSION['min'];?>  max=<?php echo $_SESSION['max'];?> onchange="showOrders()">    to
-      <input class="data" type="number" name="max" value=<?php echo $_SESSION['max'];?> min=<?php echo $_SESSION['min'];?> max=<?php echo $_SESSION['max'];?>  onchange="showOrders()">
-      <input id="min" class="data" value=<?php echo $_SESSION['min'];?> min=<?php echo $_SESSION['min'];?> max="25000" step="1" type="range" onchange="showOrders()">
-      <input id="max" class="data" value=<?php echo $_SESSION['max'];?> min=<?php echo $_SESSION['min'];?> max=<?php echo $_SESSION['max'];?> step="1" type="range" onchange="showOrders()">
+      <input class="data" type="number" name="min" value=<?php if(isset($_SESSION['min'])){echo $_SESSION['min'];} else {echo "0";}?> min=<?php if(isset($_SESSION['min'])){echo $_SESSION['min'];} else {echo "0";}?>  max=<?php if(isset($_SESSION['max'])){echo $_SESSION['max'];} else {echo "25000";}?> onchange="showOrders()">    to
+      <input class="data" type="number" name="max" value=<?php if(isset($_SESSION['max'])){echo $_SESSION['max'];} else {echo "25000";}?> min=<?php if(isset($_SESSION['min'])){echo $_SESSION['min'];} else {echo "0";}?> max=<?php if(isset($_SESSION['max'])){echo $_SESSION['max'];} else {echo "25000";}?>  onchange="showOrders()">
+      <input id="min" class="data" value=<?php if(isset($_SESSION['min'])){echo $_SESSION['min'];} else {echo "0";}?> min=<?php if(isset($_SESSION['min'])){echo $_SESSION['min'];} else {echo "0";}?> max="25000" step="1" type="range" onchange="showOrders()">
+      <input id="max" class="data" value=<?php if(isset($_SESSION['max'])){echo $_SESSION['max'];} else {echo "25000";}?> min=<?php if(isset($_SESSION['min'])){echo $_SESSION['min'];} else {echo "0";}?> max=<?php if(isset($_SESSION['max'])){echo $_SESSION['max'];} else {echo "25000";}?> step="1" type="range" onchange="showOrders()">
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>
