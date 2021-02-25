@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2021 at 12:03 AM
+-- Generation Time: Feb 25, 2021 at 05:54 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -25,17 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `address`
---
-
-CREATE TABLE `address` (
-  `customer_id` int(11) NOT NULL,
-  `address` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `hierarchy`
 --
 
@@ -50,7 +39,8 @@ CREATE TABLE `hierarchy` (
 
 INSERT INTO `hierarchy` (`admin_id`, `rank`) VALUES
 (1, 0),
-(4, 1);
+(5, 1),
+(6, 2);
 
 -- --------------------------------------------------------
 
@@ -72,7 +62,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`ID`, `customer_id`, `product_id`, `quantity`, `status`, `date`) VALUES
-(7, 2, '4,6', '1,1', 'incomplete', '2021-02-23');
+(1, 4, '2,3', '1,1', 'incomplete', '2021-02-25'),
+(2, 4, '4', '4', 'incomplete', '2021-02-25'),
+(3, 4, '3', '2', 'incomplete', '2021-02-25'),
+(4, 4, '4', '1', 'incomplete', '2021-02-25');
 
 -- --------------------------------------------------------
 
@@ -85,14 +78,6 @@ CREATE TABLE `penalty` (
   `hr_id` int(11) NOT NULL,
   `comments` varchar(512) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `penalty`
---
-
-INSERT INTO `penalty` (`report_id`, `hr_id`, `comments`) VALUES
-(1, 8, 'yrdy'),
-(2, 8, 'tewsts');
 
 -- --------------------------------------------------------
 
@@ -113,9 +98,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ID`, `name`, `price`, `stock`, `rating`) VALUES
-(1, 'test', 1234.46, 0, 5),
-(4, 'test2', 5000.00, 4, 5),
-(6, 'test452', 452.00, 9, 2);
+(2, 'Soccar ball', 25.00, 4, 0),
+(3, 'Gameboy', 125152.00, 100, 0),
+(4, 'n64', 124124.00, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -127,6 +112,21 @@ CREATE TABLE `product_image` (
   `product_id` int(11) NOT NULL,
   `image_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_image`
+--
+
+INSERT INTO `product_image` (`product_id`, `image_name`) VALUES
+(2, '1.jpg'),
+(2, '2.jpg'),
+(2, '3.jpg'),
+(4, '1.jpg'),
+(4, '2.jpg'),
+(4, '3.jpg'),
+(3, '1.jpg'),
+(3, '2.jpg'),
+(3, '3.jpg');
 
 -- --------------------------------------------------------
 
@@ -143,16 +143,6 @@ CREATE TABLE `report` (
   `is_report` tinyint(1) NOT NULL DEFAULT 0,
   `archived` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `report`
---
-
-INSERT INTO `report` (`ID`, `auditor_id`, `response_id`, `comment`, `date`, `is_report`, `archived`) VALUES
-(1, 7, 2, 'first audit test', '2021-02-15', 1, 1),
-(2, 7, 2, 'second audit test', '2021-02-15', 1, 1),
-(3, 7, 2, 'test', '2021-02-18', 1, 0),
-(4, 7, 2, 'test', '2021-02-18', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -174,8 +164,11 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`ID`, `order_id`, `product_id`, `rating`, `review`, `is_reviewed`) VALUES
-(1, 7, 4, 5, 'Great', 1),
-(2, 7, 6, NULL, NULL, 0);
+(1, 1, 2, NULL, NULL, 0),
+(2, 1, 3, NULL, NULL, 0),
+(3, 2, 4, NULL, NULL, 0),
+(4, 3, 3, NULL, NULL, 0),
+(5, 4, 4, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -196,8 +189,7 @@ CREATE TABLE `survey` (
 --
 
 INSERT INTO `survey` (`ID`, `name`, `auditor_id`, `questions`, `replies`) VALUES
-(7, 'Standard Survey 1', 7, 'Rate our delivery,Rate our service,Rate our website', 2),
-(8, 'Standard Survey 2', 7, 'Rate our delivery,Rate our service,Rate our website', 0);
+(1, 'survey', 2, 'question1,question2', 0);
 
 -- --------------------------------------------------------
 
@@ -218,10 +210,7 @@ CREATE TABLE `survey_answers` (
 --
 
 INSERT INTO `survey_answers` (`ID`, `customer_id`, `survey_id`, `answers`, `is_open`) VALUES
-(1, 2, 7, 'answer1,answer2,answer3', 0),
-(2, 2, 7, 'answer1,answer2,answer3', 0),
-(3, 2, 7, '', 1),
-(4, 6, 7, '', 1);
+(1, 4, 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -243,9 +232,8 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`ID`, `customer_id`, `title`, `msg`, `created`, `status`) VALUES
-(1, 2, 'problem 1', 'i have a problem', '0000-00-00 00:00:00', 'open'),
-(2, 2, 'TEST23', 'TEST132', '2021-02-02 20:18:17', 'open'),
-(3, 6, 'customer2 ticket', 'test', '2021-02-13 21:14:30', 'pending');
+(1, 4, 'product', 'wrong product', '2021-02-25 16:40:12', 'pending'),
+(6, 4, 'product 5', 'product is sold out', '2021-02-25 16:43:32', 'pending');
 
 -- --------------------------------------------------------
 
@@ -262,15 +250,6 @@ CREATE TABLE `tickets_response` (
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `is_read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tickets_response`
---
-
-INSERT INTO `tickets_response` (`ID`, `author_id`, `is_admin`, `ticket_id`, `msg`, `created`, `is_read`) VALUES
-(1, 1, 1, 1, 'im working on your problem', '2021-02-02 17:09:41', 1),
-(2, 1, 1, 2, 'pending change test', '2021-02-13 16:49:46', 1),
-(3, 2, 0, 2, 'test', '2021-02-13 17:09:02', 1);
 
 -- --------------------------------------------------------
 
@@ -293,11 +272,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`ID`, `email`, `password`, `name`, `mobile`, `role`) VALUES
 (1, 'admin@email.com', 'admin', 'admin', '01234567890', 'admin'),
-(2, 'customer1@email.com', 'customer1', 'customer1', '01234567890', 'customer'),
-(4, 'admin1@email.com', 'admin1', 'admin1', '01234567890', 'admin'),
-(6, 'customer2@email.com', 'customer2', 'customer2', '01234567890', 'customer'),
-(7, 'auditor@email.com', 'auditor', 'auditor', '01234567890', 'auditor'),
-(8, 'hr@email.com', 'hr', 'hr', '01234567890', 'HR');
+(2, 'auditor@email.com', 'auditor', 'auditor', '01234567890', 'auditor'),
+(3, 'hr@email.com', 'hr', 'hr', '01234567890', 'HR'),
+(4, 'customer@email.com', 'customer', 'customer', '01234567890', 'customer'),
+(5, 'admin1@email.com', 'admin1', 'admin1', '01234567890', 'admin'),
+(6, 'admin2@email.com', 'admin2', 'admin2', '01234567890', 'admin');
 
 -- --------------------------------------------------------
 
@@ -315,18 +294,11 @@ CREATE TABLE `user_image` (
 --
 
 INSERT INTO `user_image` (`user_id`, `image_name`) VALUES
-(2, '2.jpg'),
-(6, '6.jpg');
+(4, '4.jpg');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `address`
---
-ALTER TABLE `address`
-  ADD KEY `customer_id` (`customer_id`);
 
 --
 -- Indexes for table `hierarchy`
@@ -427,65 +399,59 @@ ALTER TABLE `user_image`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `survey`
 --
 ALTER TABLE `survey`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `survey_answers`
 --
 ALTER TABLE `survey_answers`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tickets_response`
 --
 ALTER TABLE `tickets_response`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `address`
---
-ALTER TABLE `address`
-  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `hierarchy`
