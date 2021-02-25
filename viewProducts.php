@@ -28,8 +28,8 @@ include "navbar.php";
         <input type="file" name="my_file[]" class="form" accept="image/x-png,image/jpeg" multiple >
          <br>
         <input type="text" name="q" id="q" style="display: none">
-        <input type="submit" class="submitProduct" value="Submit Product" id="submitA" name="submit">
-        <input type="submit" value="Edit" id="submitE" name="submit">
+        <input type="submit" class="submitProduct" value="Submit Product" id="submitA" name="Add">
+        <input type="submit" value="Edit" id="submitE" name="Edit">
 
       </form>
     </div>

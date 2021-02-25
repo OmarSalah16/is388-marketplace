@@ -23,12 +23,12 @@
 
     <div class="addProfile" id="addProfile" style="display: none">
       <form class="addP" action="" method="post">
+        <a href="changePassword">Change Password</a>
         <br>
         <label for="name">Name</label> <input type="text" name="name" id="name"  class="form" required style="margin-left:5px;"> <br>
         <label for="price">Mobile</label> <input type="number" name="mobile" id="mobile" class="form" required> <br>
         <label for="stock">Email</label> <input type="text" name="email" id="email" class="form" required style="margin-left:12px;"> <br>
         <button type="button" name="submitABtn" id="submitABtn" onclick="submitEdit()">Submit</button>
-        <button type="button" name="submitEBtn" id="submitEBtn" style="display: none;" onclick="submitEdit()">SubmitE</button>
       </form>
     </div>
 
@@ -37,12 +37,12 @@
       <tbody id="rTable">
       </tbody>
     </table>
+    <form class="addP" action="php/upload.php" method="post" enctype="multipart/form-data">
+      <label for="stock">Change Picture</label>
+      <input type="file" name="file" id="file" accept="image/x-png,image/jpeg">
+      <input type="submit" name="submit" value="Start Upload">
+    </form>
 </div>
-      <form class="addP" action="php/upload.php" method="post" enctype="multipart/form-data">
-        <label for="stock">Change Picture</label>
-        <input type="file" name="file" id="file" accept="image/x-png,image/jpeg">
-        <input type="submit" name="submit" value="Start Upload">
-      </form>
     <button type="button" id="addBtn" onclick="view_add()">Edit Profile</button>
   </body>
 </html>

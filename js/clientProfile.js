@@ -11,28 +11,6 @@ function showProfile() {
   xmlhttp.send(formData);
 }
 
-// function delProfile(){
-//   var xmlhttp=new XMLHttpRequest();
-//   xmlhttp.onreadystatechange=function() {
-//     if (this.readyState==4 && this.status==200) {
-//       showProfile();
-//     }
-//   }
-//   xmlhttp.open("GET","php/clientProfile.php?&q=del",true);
-//   xmlhttp.send();
-// }
-
-// function submitReview(id,rating,review){
-//   var xmlhttp=new XMLHttpRequest();
-//   xmlhttp.onreadystatechange=function() {
-//     if (this.readyState==4 && this.status==200) {
-//        window.location.href = "clientProfile.php";
-//     }
-//   }
-//   xmlhttp.open("GET","php/clientProfile.php?&q=review&id="+id,true);
-//   xmlhttp.send();
-// }
-
 function viewOrder(id){
   window.location.href = "viewOrderC.php?&q=view&id="+id;
 }
@@ -78,7 +56,6 @@ function view_add(){
   var view = document.getElementById("viewProfile");
   var btn = document.getElementById("addBtn");
   document.getElementById("submitABtn").style.display = "block";
-  document.getElementById("submitEBtn").style.display = "none";
   if (add.style.display === "none") {
     add.style.display = "block";
     view.style.display = "none";
