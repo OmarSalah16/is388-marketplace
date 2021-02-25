@@ -14,7 +14,7 @@ $(document).ready(function(){
       q: "contact"
     },
     function(status){
-      alert("Status: " + status);
+      window.location.href = "support";
     });
   });
 });

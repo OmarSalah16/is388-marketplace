@@ -12,7 +12,6 @@ include "navbar.php";
   </head>
   <body onload="viewSurveys()">
     <h1><u>Surveys</u></h1>
-    <a href="viewSurvey.php?q=a">View Archives</a>
     <a href="addSurvey.php">Add Survey</a><br><br>
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>

@@ -413,8 +413,9 @@ function displayRTicket($con){
 
   function closeTicket($con)
   {
-
     $sql = "UPDATE tickets SET status = 'closed' WHERE ID = $_POST[ID]";
+    echo "$sql ";
+    $result = mysqli_query($con,$sql);
   }
 
   session_start();

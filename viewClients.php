@@ -14,7 +14,6 @@ include "navbar.php";?>
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="form" oninput="showClients()" placeholder="Search for Client.." style="width:200px;margin-left:5px;">
     <select name="searchBy" id="searchBy" class="form" onchange="showClients()">
       <option value="ID">ID</option>
-      <option value="username">Username</option>
       <option value="name">name</option>
       <option value="email">E-mail</option>
       <option value="mobile">Mobile Number</option>

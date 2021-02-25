@@ -11,6 +11,8 @@ function viewP($con){
   $range2 = $_POST['max'];
   $sql = "SELECT * FROM products  WHERE price >= $range1 AND price <= $range2";
   $sql2 = "SELECT * FROM products WHERE $select = '".$bar."' AND price >= $range1 AND price <= $range2";
+  $isProduct = false;
+  $nameFound = true;
   $r1 = 0;
   $r2 = 0;
   $r3 = 0;
@@ -19,17 +21,29 @@ function viewP($con){
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
-
-
   else {
-    $result = mysqli_query($con,$sql2);
+    if($select == "Name")
+    {
+      $isProduct = true;
+      $result = mysqli_query($con,$sql);
+    }
+    else
+      $result = mysqli_query($con,$sql2);
   }
   if (mysqli_num_rows($result) == 0) {
      echo "No result found";
   }
   else{
     while($row = mysqli_fetch_array($result)) {
-
+      if ($isProduct) {
+        $nameFound = false;
+        if (is_int(strpos($row['name'], $bar))) {
+          $nameFound = true;
+        }
+        if (!$nameFound) {
+          continue;
+        }
+      }
       $sql3 = "SELECT * FROM reviews WHERE product_id = $row[ID] AND is_reviewed = 1";
       $result3 = mysqli_query($con,$sql3);
       if ($row['stock'] > 0) {

@@ -9,17 +9,34 @@ function viewP($con){
   $bar = $_POST['searchBar'];
   $sql = "SELECT * FROM products";
   $sql2 = "SELECT * FROM products WHERE $select = '".$bar."'";
+  $isProduct = false;
+  $nameFound = true;
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
   else {
-    $result = mysqli_query($con,$sql2);
+    if($select == "name")
+    {
+      $isProduct = true;
+      $result = mysqli_query($con,$sql);
+    }
+    else
+      $result = mysqli_query($con,$sql2);
   }
   if (mysqli_num_rows($result) == 0) {
      echo "No result found";
   }
   else{
     while($row = mysqli_fetch_array($result)) {
+      if ($isProduct) {
+        $nameFound = false;
+        if (is_int(strpos($row['name'], $bar))) {
+          $nameFound = true;
+        }
+        if (!$nameFound) {
+          continue;
+        }
+      }
     echo "<tr>";
     echo "<td width='160px'><img width='160px' alt='pic' src='product_images/$row[ID]/1.jpg'></td>";
     echo "<td>" . $row['ID'] . "</td>";

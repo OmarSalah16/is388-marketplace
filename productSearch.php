@@ -20,7 +20,7 @@ include "customerMenu.php";
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="form" oninput="showProducts()">
     <select name="searchBy" id="searchBy" class="form" onchange="selectChange()">
       <option value="Name" >Name</option>
-      <option value="Price" >Price</option>
+      <option value="rating" >Rating</option>
     </select>
     <?php
       include 'php/dbhandler.php';
