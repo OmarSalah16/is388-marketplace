@@ -1,6 +1,6 @@
 (function() {
 
-  var parent = document.querySelector(".viewOrder");
+  var parent = document.querySelector(".viewPage");
   if(!parent) return;
 
   var

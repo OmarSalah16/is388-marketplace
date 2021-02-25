@@ -13,7 +13,7 @@ include "navbar.php";
 <body onload="showOrders()">
     <h1><u>Orders</u></h1><br>
 <h4 id="error"></h4>
-<div class="viewOrder">
+<div class="viewPage">
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="data" placeholder="Search for Order.." oninput="showOrders()"
     <?php if(isset($_GET['id'])){echo "value='$_GET[id]'";} ?>>
     <select name="searchBy" id="searchBy" name="searchBy" class="data" onchange="showOrders()" style="width:120px;">
@@ -23,11 +23,10 @@ include "navbar.php";
       <option value="status">Status</option>
     </select>
     from
-      <input  type="number" value="0" min="0" max="25000" onchange="showOrders()">    to
-      <input  type="number" value="25000" min="0" max="25000" onchange="showOrders()">
-      <input id="min" class="data" name="min" value="0" min="0" max="25000" step="1" type="range" onchange="showOrders()">
-      <input id="max" class="data" name="max" value="25000" min="0" max="25000" step="1" type="range" onchange="showOrders()">
-
+      <input class="data" type="number" name="min" value=<?php echo $_SESSION['min'];?> min=<?php echo $_SESSION['min'];?>  max=<?php echo $_SESSION['max'];?> onchange="showOrders()">    to
+      <input class="data" type="number" name="max" value=<?php echo $_SESSION['max'];?> min=<?php echo $_SESSION['min'];?> max=<?php echo $_SESSION['max'];?>  onchange="showOrders()">
+      <input id="min" class="data" value=<?php echo $_SESSION['min'];?> min=<?php echo $_SESSION['min'];?> max="25000" step="1" type="range" onchange="showOrders()">
+      <input id="max" class="data" value=<?php echo $_SESSION['max'];?> min=<?php echo $_SESSION['min'];?> max=<?php echo $_SESSION['max'];?> step="1" type="range" onchange="showOrders()">
     <table width="100%" border="1" style="border-collapse:collapse;">
       <thead>
         <tr>

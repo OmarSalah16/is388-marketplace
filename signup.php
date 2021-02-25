@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Registration Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src=js/signupfilter.js></script>
     <style media="screen">
       body{
         margin:0;
@@ -65,51 +67,87 @@
       .box input[type="submit"]:hover{
         background: #2ecc71;
       }
+      .error{
+        color: red;
+        font-weight: bold;
+        font-size: 14px;
+      }
     </style>
   </head>
   <body>
-    <form class="box" action="signup.php" method="post">
+    <form class="box" action="signup.php" method="post" oninput="checkForm()">
       <h1>Sign Up Now</h1>
-      <input type="text" name="email" placeholder="Email">
-      <input type="password" name="password" placeholder="Password">
-      <input type="password" name="Cpassword" placeholder="Confirm Password">
-      <input type="text" name="name" placeholder="Name">
-      <input type="text" name="mobile" placeholder="Mobile Number">
-      <input type="text" name="address" placeholder="Address">
-      <input type="submit" name="submit" value="Register">
+      <div id="error" class='error'>
+      <?php
+        include 'php/dbhandler.php';
+        if (isset($_POST['submit'])){
+          $err = [];
+          foreach ($_POST as $value) {
+            if ($value == "") {
+              array_push($err,"Please fill all fields.");
+              break;
+            }
+          }
+          $mobile = $_POST['mobile'];
+          $reg = "0125";
+          $mvalid = true;
+          if(strlen($mobile) != 11)
+            $mvalid = false;
+          if($mvalid){
+            if ($mobile[0] != '0' && $mobile[1] != '1')
+              $mvalid = false;
+            if(strpos($reg,$mobile[2]) === false)
+              $mvalid = false;
+          }
+          if(!$mvalid){
+            array_push($err,"Invalid Mobile Number.");
+          }
+          $password = $_POST['password'];
+          $uppercase = preg_match('@[A-Z]@', $password);
+          $lowercase = preg_match('@[a-z]@', $password);
+          $number    = preg_match('@[0-9]@', $password);
+          $specialChars = preg_match('@[^\w]@', $password);
+
+          if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+              array_push($err,'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.');
+          }
+
+          if($_POST['password']!=$_POST['Cpassword']){
+            array_push($err,"Passwords do no match.");
+          }
+          if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            array_push($err,"Invalid email.");
+          }
+          $checksql = "SELECT email FROM users WHERE email = '$_POST[email]'";
+          $checkres = mysqli_query($con,$checksql);
+          if (mysqli_num_rows($checkres)!=0){
+            array_push($err,"email already in use");
+          }
+          $i=0;
+          for($i;$i<count($err);$i++){
+            echo $err[$i]."<br>";
+          }
+          if($i==0){
+            $sql = "INSERT INTO users (email,password,name,mobile,role) VALUES ('$_POST[email]','$_POST[password]','$_POST[name]','$_POST[mobile]','customer')";
+            $result = mysqli_query($con,$sql);
+            if($result){
+              header("Location: login.php");
+            }
+            else {
+              echo '<script language="javascript">';
+              echo 'alert("Please contact customer support.")';
+              echo '</script>';
+            }
+          }
+        }
+      ?>
+      </div>
+      <input class="data" type="text" name="email" value="" placeholder="Email" >
+      <input id="password" class="data" type="password" name="password" value="" placeholder="Password" required>
+      <input class="data" type="password" name="Cpassword" value="" placeholder="Confirm Password" required>
+      <input class="data" type="text" name="name" value="" placeholder="Name" required>
+      <input class="data" type="text" name="mobile" value="" placeholder="Mobile Number" required>
+      <input id="submit" type="submit" value="Submit" name="submit" value="Register" required>
     </form>
-    <?php
-      include 'php/dbhandler.php';
-      if (isset($_POST['submit'])){
-        $err = [];
-        if($_POST['password']!=$_POST['Cpassword']){
-          array_push($err,"confirm password");
-        }
-        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-          array_push($err,"incorrect email");
-        }
-        $checksql = "SELECT email FROM users WHERE email = '$_POST[email]'";
-        $checkres = mysqli_query($con,$checksql);
-        if (mysqli_num_rows($checkres)!=0){
-          array_push($err,"email already in use");
-        }
-        $i=0;
-        for($i;$i<count($err);$i++){
-          echo $err[$i]."<br>";
-        }
-        if($i!=0){
-          exit(0);
-        }
-        $sql = "INSERT INTO users (email,password,name,mobile,role) VALUES ('$_POST[email]','$_POST[password]','$_POST[name]','$_POST[mobile]','customer')";
-        $result = mysqli_query($con,$sql);
-        if($result){
-          echo "success";
-          // header("Location: login.php");
-        }
-        else {
-          echo "failure";
-        }
-      }
-    ?>
      </body>
 </html>

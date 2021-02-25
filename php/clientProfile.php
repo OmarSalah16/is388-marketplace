@@ -11,9 +11,12 @@ function viewP($con){
   $result2 = mysqli_query($con,$sql2);
   $result3 = mysqli_query($con,$sql3);
 
-  while($row = mysqli_fetch_array($result3)) {
-
-      echo "<img style='border-radius: 50%' src='./user_images/" . $row['image_name'] . "'alt='Profile Picture'>";
+  if (mysqli_num_rows($result3) > 0) {
+    $row = mysqli_fetch_array($result3);
+    echo "<img style='border-radius: 50%' src='./user_images/" . $row['image_name'] . "'alt='Profile Picture'>";
+  }
+  else {
+      echo "<img style='border-radius: 50%' src='./user_images/default.jpg'alt='Profile Picture'>";
     }
 
    echo "<thead>

@@ -63,6 +63,10 @@ function viewTickets($con){
       echo "<td>" . $row['status'] . "</td>";
       echo "<td>" . $row['created'] . "</td>";
       echo "<td align='center'><a href='$url?id=$row[ID]'>View Ticket</a></td>";
+      if($_SESSION['role']=="admin" && $row['status'] == "open")
+        echo "<td align='center'><button type='button' onclick='closeTicket($row[ID])'>Close Ticket</button></td>";
+      elseif($_SESSION['role'] != "admin") echo "";
+      else echo "<td></td>";
       echo "</tr>";
     }
   }
@@ -407,6 +411,12 @@ function displayRTicket($con){
     }
   }
 
+  function closeTicket($con)
+  {
+
+    $sql = "UPDATE tickets SET status = 'closed' WHERE ID = $_POST[ID]";
+  }
+
   session_start();
   if (isset($_GET['q'])) {
     $q = $_GET['q'];
@@ -457,6 +467,9 @@ switch ($q) {
     break;
   case 'displayP':
     displayPTicket($con);
+    break;
+  case 'close':
+    closeTicket($con);
     break;
 }
 mysqli_close($con);

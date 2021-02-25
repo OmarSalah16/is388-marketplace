@@ -23,6 +23,9 @@ echo "<br>";
         include 'php/dbhandler.php';
           $sql = "SELECT survey.name, survey.ID, survey_answers.ID AS sID FROM survey INNER JOIN survey_answers ON survey.ID = survey_answers.survey_id WHERE survey_answers.customer_id = $_SESSION[ID] AND is_open = 1";
           $result = mysqli_query($con,$sql);
+          if (mysqli_num_rows($result) == 0) {
+            echo "<tr><td>No result found.</td></tr>";
+          }
           while($row = mysqli_fetch_array($result)) {
             echo "<tr><td><a href='submitAnswer?ID=$row[sID]&sID=$row[ID]'>$row[name]</a></td></tr>";
           }
