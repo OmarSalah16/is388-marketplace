@@ -7,8 +7,6 @@ function viewO($con){
   $range2 = $_POST['max'];
   $isResult = false;
   $isProduct = false;
-  $_SESSION['min'];
-  $_SESSION['max'];
   $check = true;
   if ($bar == "" ) {
       $sql = "SELECT * FROM orders ";
