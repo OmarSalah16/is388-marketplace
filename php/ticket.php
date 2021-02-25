@@ -67,7 +67,6 @@ function viewTickets($con){
         echo "<td align='center'><button type='button' onclick='closeTicket($row[ID])'>Close Ticket</button></td>";
       elseif($_SESSION['role'] != "admin") echo "";
       else echo "<td></td>";
-      echo "<";
       echo "</tr>";
     }
   }
