@@ -40,7 +40,6 @@ function viewA($con){
 }
 
 function addA($con){
-  echo "testst";
   $sql = "INSERT INTO users (name , password, mobile, email, role) VALUES ('$_POST[name]','$_POST[password]','$_POST[mobile]','$_POST[email]','admin')";
   $result=mysqli_query($con,$sql);
   $sql2 = "SELECT ID FROM users WHERE email = '$_POST[email]'";

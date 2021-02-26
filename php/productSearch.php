@@ -14,11 +14,6 @@ function viewP($con){
   $sql2 = "SELECT * FROM products WHERE $select = '".$bar."' AND price >= $range1 AND price <= $range2";
   $isProduct = false;
   $nameFound = true;
-  $r1 = 0;
-  $r2 = 0;
-  $r3 = 0;
-  $r4 = 0;
-  $r5 = 0;
   if($bar == ""){
     $result = mysqli_query($con,$sql);
   }
@@ -36,9 +31,14 @@ function viewP($con){
   }
   else{
     while($row = mysqli_fetch_array($result)) {
+      $r1 = 0;
+      $r2 = 0;
+      $r3 = 0;
+      $r4 = 0;
+      $r5 = 0;
       if ($isProduct) {
         $nameFound = false;
-        if (is_int(strpos($row['name'], $bar))) {
+        if (is_int(strpos(strtolower($row['name']), strtolower($bar)))) {
           $nameFound = true;
         }
         if (!$nameFound) {
