@@ -144,7 +144,7 @@
               }
             }
             else {
-              echo "incorrect credentials";
+              echo "Incorrect Credentials";
             }
           }
 

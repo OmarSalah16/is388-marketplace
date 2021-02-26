@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
 ?>
 </div>
 <form method="post">
-	<h2>Password Update</h2>
+	<h1>Password Update</h1>
 	<br>
 	<label for="name">Old password</label> <input type="password" name="oldP" required style="margin-left:71px;"> <br><br>
     <label for="price">New password</label> <input type="password" name="newP"  required style="margin-left:63px;"> <br><br>
@@ -69,7 +69,7 @@ input[type="submit"]{
   margin: 35px;
 	margin-left: 100px;
   text-align: center;
-  border: 1px solid #2ecc71;
+  border: 1px solid orange;
   padding: 7px 17px;
   outline: none;
   color: white;
@@ -79,7 +79,7 @@ input[type="submit"]{
 }
 
 input[type="submit"]:hover{
-  background: #2ecc71;
+  background: orange;
 }
 input{
   color: black;

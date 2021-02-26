@@ -45,6 +45,10 @@ h1{
 
 }
 
+table,th{
+  text-align: center;
+}
+
 body{
   background-image:linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0)), url(pics/bg8.jpg);
   height:100vh;

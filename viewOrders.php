@@ -65,7 +65,6 @@ body{
 }
 
 h1{
-  color:white;
   margin-left: 45%;
 }
 

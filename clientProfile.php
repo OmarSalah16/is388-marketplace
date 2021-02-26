@@ -25,22 +25,21 @@
     <div class="addProfile" id="addProfile" style="display: none">
       <form class="addP" action="" method="post">
         <br>
-        <a href="changePassword" style="color:red;">Change Password</a>
+        <a href="changePassword" style="color:orange;">Change Password</a>
         <br><br>
-        <label for="name">Name</label> <input type="text" name="name" id="name"  class="form" required style="margin-left:5px;"> <br>
-        <label for="price">Mobile</label> <input type="number" name="mobile" id="mobile" class="form" required> <br>
-        <label for="stock">Email</label> <input type="text" name="email" id="email" class="form" required style="margin-left:12px;"> <br>
-        <button type="button" name="submitABtn" id="submitABtn" onclick="submitEdit()">Submit</button>
+        <label for="name">Name</label> <input type="text" name="name" id="name"  class="form" required style="margin-left:5px;"> <br><br>
+        <label for="price">Mobile</label> <input type="number" name="mobile" id="mobile" class="form" required> <br><br>
+        <label for="stock">Email</label> <input type="text" name="email" id="email" class="form" required style="margin-left:12px;"> <br><br>
+        <button type="button" class="submitBtn" name="submitABtn" id="submitABtn" onclick="submitEdit()">Submit</button>
       </form>
     </div>
 
 <div id="viewProfile">
     <table width="100%" border="1" style="border-style:groove;">
-      <tbody id="rTable">
-      </tbody>
-    </table>
+      <tbody id="rTable"></tbody>
+    </table><br>
     <form class="addP" action="php/upload.php" method="post" enctype="multipart/form-data">
-      <label for="stock">Change Picture</label>
+      <label class="change" for="stock">Change Picture</label>
       <input type="file" name="file" id="file" accept="image/x-png,image/jpeg">
       <input type="submit" name="submit" value="Start Upload">
     </form>
@@ -58,6 +57,10 @@
   color:white;
 }
 
+table{
+  text-align: center;
+}
+
 body{
   background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(pics/background3.jpg);
   height:100vh;
@@ -65,6 +68,21 @@ body{
   background-position:center;
   background-repeat: no-repeat;
 }
+
+.change{
+  margin-left: 5px;
+}
+
+.submitBtn{
+  margin:0;
+  margin-left:70px;
+  border: 1px solid orange;
+}
+
+.submitBtn:hover{
+  background: orange;
+}
+
 
 button{
   border:0;

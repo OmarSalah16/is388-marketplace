@@ -10,6 +10,7 @@ include 'php/customError.php';
   <title></title>
 </head>
 <body>
+  <br>
 <h1>Product Review</h1>
 <form class="box" action="" method="post">
       <input type="textarea" name="review" placeholder="Write your review.."><br><br>

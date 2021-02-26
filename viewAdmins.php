@@ -23,7 +23,6 @@ include 'php/customError.php';
         <label for="rank">Rank</label>
         <select id="rank" name="rank" class="form" style="margin-left:39.5px;">
           <?php
-          session_start();
             for($i=$_SESSION['rank'];$i<=9;$i++)
             {
               echo "<option value='$i'>".$i."</option>";
@@ -90,26 +89,6 @@ table{
   display: block;
   margin-left: 10px;
   text-align: center;
-  border: 2px solid #2ecc71;
-  padding: 14px 40px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25s;
-  cursor:pointer;
-}
-
-.addA:hover{
-  background: #2ecc71;
-}
-
-.submitAdmin{
-  border:0;
-  background: none;
-  display: block;
-  text-align: center;
-  margin-left: 7px;
-  margin-bottom: 5px;
   border: 2px solid blue;
   padding: 14px 40px;
   outline: none;
@@ -119,8 +98,28 @@ table{
   cursor:pointer;
 }
 
+.addA:hover{
+  background:blue;
+}
+
+.submitAdmin{
+  border:0;
+  background: none;
+  display: block;
+  text-align: center;
+  margin-left: 7px;
+  margin-bottom: 5px;
+  border: 2px solid orange;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor:pointer;
+}
+
 .submitAdmin:hover{
-  background: blue;
+  background: orange;
 }
 
 </style>

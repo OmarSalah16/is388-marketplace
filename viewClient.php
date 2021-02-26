@@ -40,6 +40,9 @@ include 'php/customError.php';
   color:white;
 }
 
+table{
+  text-align: center;
+}
 body{
   background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(pics/background3.jpg);
   height:100vh;

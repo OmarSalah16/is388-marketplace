@@ -14,7 +14,8 @@ function viewO($con){
   $productString = "";
   $priceTracker = 0;
 
-  echo "<h2>Order " . $ID . "</h2>";
+  echo "<br><br>";
+  echo "<h1>Order " . $ID . "</h1>";
   echo "<table border = '1' style='border-collapse:collapse;'>";
   echo "<thead>
          <tr>

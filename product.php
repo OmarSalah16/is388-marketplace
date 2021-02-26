@@ -7,7 +7,10 @@ include 'php/customError.php';
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Product Details</title>
   <style media="screen">
   *{
     margin:0;
@@ -28,6 +31,63 @@ include 'php/customError.php';
   </style>
 </head>
 <body>
+<br><br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Product Details</div>
+          <div class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="panel panel-danger">
+          <div class="panel-heading">Product Image(s)</div>
+          <div class="panel-body">
+            <div class="slideshow">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="panel panel-warning">
+          <div class="panel-heading">Product Review(s)</div>
+          <div class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="panel panel-success">
+          <div class="panel-heading">Product Rating</div>
+          <div class="panel-body"></div>
+        </div>
+      </div>
+    </div>
+  </div><br>
+
+  <style media="screen">
+
+    .container{
+      margin-left: 0;
+    }
+
+    .slideshow{
+        width: 100%;
+        height: 250px;
+        background-image: url('pics/img1.jpg');
+        background-size: 100% 100%;
+        animation: slider 9s infinite linear;
+    }
+
+    @keyframes slider {
+      0%{background-image: url('pics/img1.jpg');}
+      20%{background-image: url('pics/img2.jpg');}
+      40%{background-image: url('pics/img6.jpg');}
+      60%{background-image: url('pics/img4.jpg');}
+      80%{background-image: url('pics/img5.jpg');}
+    }
+
+  </style>
+
   <?php
   function viewP($con){
     $ID = $_GET['ID'];

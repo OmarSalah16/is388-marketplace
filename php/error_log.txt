@@ -1,0 +1,2 @@
+Error number: 8. | Error message: . | File name: C:\xampp\htdocs\Final Web Project\is388-marketplace\php\ticket.php, Error line: 51. 
+Error number: 8. | Error message: . | File name: C:\xampp\htdocs\Final Web Project\is388-marketplace\php\ticket.php, Error line: 51. 

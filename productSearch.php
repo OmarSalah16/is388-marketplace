@@ -15,7 +15,7 @@ include 'php/customError.php';
   </head>
 <body onload="showProducts()">
   <div class="viewPage">
-    <h1>Products</h1>
+    <h1><u>Products</u></h1>
     <div id="error"></div>
     <a href="checkout">My Cart</a>
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="form" oninput="showProducts()">

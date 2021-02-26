@@ -30,7 +30,7 @@ include 'php/customError.php';
          <br>
         <input type="text" name="q" id="q" style="display: none">
         <input type="submit" class="submitProduct" value="Add" id="submitA" name="submit">
-        <input type="submit" value="Edit" id="submitE" name="submit" value='Edit'>
+        <input type="submit" value="Edit" id="submitE" name="submit" value='Submit Product'>
 
       </form>
     </div>
@@ -39,13 +39,13 @@ include 'php/customError.php';
     <label for=""></label> <input type="text" name="searchBar" class="form" id="searchBar" oninput="showProducts()" placeholder="Search for product..">
     <select name="searchBy" id="searchBy" class="form" onchange="showProducts()">
       <option value="ID">ID</option>
-      <option value="name">name</option>
-      <option value="price">price</option>
-      <option value="stock">stock</option>
-      <option value="rating">rating</option>
+      <option value="name">Name</option>
+      <option value="price">Price</option>
+      <option value="stock">Stock</option>
+      <option value="rating">Rating</option>
     </select>
 
-    <table width="100%" border="1" style="border-collapse:collapse;" class="table table-striped">
+    <table width="100%" border="1" style="border-collapse:collapse;" class="table table-hover">
       <thead>
         <tr>
           <!-- <th><strong>Image</strong></th> -->
@@ -119,7 +119,7 @@ button:hover{
 
 }
 
-td{
+td,th{
   text-align: center;
 }
 

@@ -119,7 +119,7 @@
         $j++;
     }
     echo "<br>";
-    echo "</table>";
+    echo "</table><br>";
     echo "
     <input type='submit' name='submit' value='Checkout'>
     </form>";
@@ -149,5 +149,31 @@ body{
 }
 input{
   color: black;
+}
+
+input[type="submit"]{
+  border:0;
+  background: none;
+  margin-left: 75px;
+  text-align: center;
+  border: 2px solid #2ecc71;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor:pointer;
+}
+
+input[type="submit"]:hover{
+  background: #2ecc71;
+}
+
+h1{
+  margin-left: 5px;
+}
+
+table{
+  margin-left: 5px;
 }
 </style>

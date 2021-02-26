@@ -40,7 +40,7 @@ include "navbar.php";
     width:300px;
     padding: 40px;
     position: absolute;
-    left:50%;
+    left:30%;
     transform: translate(-50%, 45%);
     background: #191919;
     text-align: center;

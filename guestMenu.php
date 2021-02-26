@@ -6,6 +6,10 @@
        </ul>
 </div>
 <style media="screen">
+
+.main{
+  margin-right: 5px;
+}
 ul{
  float: right;
  list-style-type: none;
