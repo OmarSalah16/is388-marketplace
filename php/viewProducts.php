@@ -1,5 +1,6 @@
 <?php
 include "dbhandler.php";
+include 'customError.php';
 function viewP($con){
   $select = $_POST['searchBy'];
   if(is_numeric($select))

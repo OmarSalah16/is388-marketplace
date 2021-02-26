@@ -1,5 +1,6 @@
 <?php
 include "dbhandler.php";
+include 'customError.php';
 function editP($con){
 
  $name = $_POST['name'];

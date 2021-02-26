@@ -108,6 +108,7 @@
         <?php
         session_start();
         include 'php/dbhandler.php';
+        include 'php/customError.php';
           if(isset($_POST['submit']))
           {
             $sql = "SELECT * FROM users WHERE email = '$_POST[email]' AND password = '$_POST[password]'";

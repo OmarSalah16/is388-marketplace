@@ -2,6 +2,7 @@
 session_start();
 include "cartInit.php";
 include "navbar.php";
+include 'php/customError.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,14 +48,14 @@ include "navbar.php";
     $result = mysqli_query($con,$sql);
     $result2 = mysqli_query($con,$sql2);
     $result3 = mysqli_query($con,$sql3);
-        
-      
-  
+
+
+
     while($row3 = mysqli_fetch_array($result3)) {
       echo "<tr>";
       echo "<td width='120px'><img width='120px' alt='pic' src='product_images/$ID/" . "$row3[image_name]'></td>";
       echo "</tr>";
-      } 
+      }
 
     while($row = mysqli_fetch_array($result)) {
       echo "<br>";
@@ -68,7 +69,7 @@ include "navbar.php";
       }
 
    echo "Reviews: " . "<br>";
-    
+
     if (mysqli_num_rows($result2) == 0) {
       echo "No reviews.";
     }
@@ -104,9 +105,9 @@ include "navbar.php";
       echo "</tr>";
       }
     }
-     
-    
-} 
+
+
+}
   $con = mysqli_connect('localhost','root','','marketplace');
   if (!$con) {
     die('Could not connect: ' . mysqli_error($con));

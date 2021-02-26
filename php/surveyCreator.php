@@ -1,4 +1,5 @@
 <?php
+include 'customError.php';
 session_start();
 include 'dbhandler.php';
 if(isset($_POST['q'])){

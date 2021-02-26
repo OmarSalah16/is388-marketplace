@@ -1,4 +1,5 @@
 <?php
+include 'customError.php';
 session_start();
 function viewO($con){
   $select = $_POST['searchBy'];

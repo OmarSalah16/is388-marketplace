@@ -4,7 +4,8 @@
     session_start();
     include "isLoggedIn.php";
     include "cartInit.php";
-    include "customerMenu.php"; ?>
+    include "customerMenu.php";
+    include 'php/customError.php'; ?>
     <meta charset="utf-8">
     <title>My Profile</title>
     <script src="js/clientProfile.js"></script>

@@ -2,6 +2,7 @@
 session_start();
 include "cartInit.php";
 include "customerMenu.php";
+include 'php/customError.php';
 ?>
 <html>
   <head>

@@ -13,6 +13,7 @@
   <body>
     <?php
     session_start();
+    include 'php/customError.php';
     include "cartInit.php";
     include "navbar.php";
     $cart = $_SESSION['cart'];

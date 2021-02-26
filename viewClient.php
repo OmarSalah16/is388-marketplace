@@ -2,6 +2,7 @@
 session_start();
 include "adminVerification.php";
 include "navbar.php";
+include 'php/customError.php';
 ?>
 <html>
   <head>

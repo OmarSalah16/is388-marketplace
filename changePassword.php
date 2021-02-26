@@ -1,5 +1,6 @@
 <div style="color:red; font-size: 14px">
 <?php
+include 'php/customError.php';
 session_start();
 include "php/dbhandler.php";
 if (isset($_POST['submit'])) {

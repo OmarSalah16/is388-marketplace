@@ -2,6 +2,7 @@
 session_start();
 include "cartInit.php";
 include "navbar.php";
+include 'php/customError.php';
 error_reporting(E_ALL & ~E_NOTICE);
 function viewO($con){
   $ID = $_GET['id'];

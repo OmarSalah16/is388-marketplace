@@ -4,6 +4,7 @@ include "adminVerification.php";
 include "php/dbhandler.php";
 include "cartInit.php";
 include "navbar.php";
+include 'php/customError.php';
 ?>
 <html>
   <head>

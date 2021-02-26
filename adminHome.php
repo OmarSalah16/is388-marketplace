@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'php/customError.php';
 include "adminVerification.php";
 include "navbar.php";
 ?>
