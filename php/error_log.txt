@@ -1,0 +1,5 @@
+Error number: 8. | Error message: . | File name: F:\XAMPP\htdocs\marketplace\php\admins.php, Error line: 6. 
+Error number: 8. | Error message: . | File name: F:\XAMPP\htdocs\marketplace\php\admins.php, Error line: 6. 
+Error number: 8. | Error message: . | File name: F:\XAMPP\htdocs\marketplace\php\admins.php, Error line: 6. 
+Error number: 8. | Error message: . | File name: F:\XAMPP\htdocs\marketplace\php\admins.php, Error line: 6. 
+Error number: 8. | Error message: . | File name: F:\XAMPP\htdocs\marketplace\php\admins.php, Error line: 6. 

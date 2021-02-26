@@ -23,7 +23,6 @@ include 'php/customError.php';
         <label for="rank">Rank</label>
         <select id="rank" name="rank" class="form" style="margin-left:39.5px;">
           <?php
-          session_start();
             for($i=$_SESSION['rank'];$i<=9;$i++)
             {
               echo "<option value='$i'>".$i."</option>";

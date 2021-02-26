@@ -43,6 +43,7 @@ function editP($con){
                     $result3 = mysqli_query($con,$sql3);
                     move_uploaded_file($myFile["tmp_name"][$i], "..\\product_images\\$ID\\$img_num");
                 }
+                sleep(3);
           }
 	}
 
