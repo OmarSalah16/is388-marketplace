@@ -10,13 +10,9 @@ $(document).ready(function(){
   });
 });
 
-function ValidateEmail(mail)
-{
- if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
-  {
-    return true;
-  }
-    return false;
+function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
 }
 
 function validatePassword(password){
@@ -77,7 +73,7 @@ function checkForm(){
     formName[i]
     switch (formName[i]) {
       case "email":
-        if(!ValidateEmail(formData[i])){
+        if(!validateEmail(formData[i])){
           err = err.concat("Invalid email.<br>")
         }
         break;
