@@ -17,22 +17,22 @@ function validateEmail(email) {
 
 function validatePassword(password){
   var errors= "";
-  var lowerCaseLetters = /[a-z]/g;
+  const lowerCaseLetters = /[a-z]/g;
   if(!password.match(lowerCaseLetters)) {
     errors = errors.concat("Password must include lower case letters.<br>");
   }
 
-  var upperCaseLetters = /[A-Z]/g;
+  const upperCaseLetters = /[A-Z]/g;
   if(!password.match(upperCaseLetters)) {
     errors = errors.concat("Password must include upper case letters.<br>");
   }
 
-  var numbers = /[0-9]/g;
+  const numbers = /[0-9]/g;
   if(!password.match(numbers)) {
     errors = errors.concat("Password must include numbers.<br>");
   }
 
-  var special = /[$-/:-?{-~!"^_`\[\]]/g;
+  const special = /[$-/:-?{-~!"^_`\[\]]/g;
   if(!password.match(special)) {
     errors = errors.concat("Password must include special characters.<br>");
   }
@@ -48,7 +48,7 @@ function checkMobile(mobile){
   return true;
   if(isNaN(mobile))
     return true;
-  var reg = "0125";
+  const reg = "0125";
   if(!reg.includes(mobile[2]))
     return true;
   if(mobile[0] != '0' && mobile[1] != '1')
