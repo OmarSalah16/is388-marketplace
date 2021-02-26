@@ -30,7 +30,39 @@ function editProfile(id,name,price,stock) {
   document.getElementById("submitEBtn").style.display = "block";
 }
 
+function validateEdit(){
+  var errors = "";
+  var flag = false;
+  var lowerCaseLetters = /[a-z]/g;
+  var email = document.getElementById("email").value;
+  var mobile = document.getElementById("mobile").value;
+  var name = document.getElementById("name").value;
+  if (name == "") {
+    errors = errors.concat("Please Enter a Name\n");
+    flag = true;
+  }
+  if (mobile.length != 11) {
+    errors = errors.concat("Invalid Mobile Number\n");
+    flag = true;
+  }
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!re.test(String(email).toLowerCase()))
+  {
+    errors = errors.concat("Invalid Email\n");
+    flag = true;
+  }
+  if (flag) {
+    alert(errors);
+    return false;
+  }
+   return true;
+
+}
+
 function submitEdit(){
+  if (!validateEdit()) {
+    return;
+  }
   var elements = document.getElementsByClassName("form");
   var formData = new FormData();
   for (var i = 0; i < elements.length; i++) {

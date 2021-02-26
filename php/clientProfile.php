@@ -107,6 +107,7 @@ switch ($_POST['q']) {
   case 'review':
     reviewP($con);
     break;
+ 
 }
 mysqli_close($con);
 ?>

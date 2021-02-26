@@ -13,6 +13,7 @@ function viewO($con){
   $result3 = mysqli_query($con,$sql3);
   $productString = "";
   $priceTracker = 0;
+  $cancellable = false;
 
   echo "<br><br>";
   echo "<h1>Order " . $ID . "</h1>";
@@ -28,6 +29,11 @@ function viewO($con){
   while($row = mysqli_fetch_array($result)) {
     $arrayP = explode(",", $row['product_id']);
     $arrayQ = explode(",", $row['quantity']);
+    echo "<h3>Status: " . $row['status'] . "</h3>";
+    $status = $row['status'];
+    if ($status == "incomplete") {
+      $cancellable = true;
+    }
     }
     $i = 0;
     $j = 0;
@@ -42,6 +48,7 @@ function viewO($con){
     }
   }
 
+
   $result2 = mysqli_query($con,$sql2);
   while($row2 = mysqli_fetch_array($result2)) {
     echo "<tr>";
@@ -50,18 +57,22 @@ function viewO($con){
     echo "<td>" . $arrayQ[$j] . "</td>";
     echo "<td>" . $row2['price']*$arrayQ[$j] . "</td>";
     $row3 = mysqli_fetch_array($result3);
-    // echo $row3['ID'];
+    if ($status == "complete") {
       if( $row3['is_reviewed'] == 0)
   {
     echo "<td align='center'><a href = 'review.php?ID=$row3[ID]'>Review</a></td>";
   }
-  else
-  {
-     echo "<td align = 'center'>Reviewed</td>";
+  elseif ($row3['is_reviewed' == 1]) {
+    echo "<td align = 'center'>Reviewed</td>";
   }
+    }
+    
 
 }
-    echo "</table>";
+    echo "</table> <br>";
+    if ($cancellable) {
+      echo "<td align='center'><a href = 'php/changeOrders.php?q=cancel&ID=$ID'>Cancel order</a></td>";
+    }
 }
 
 $con = mysqli_connect('localhost','root','','marketplace');

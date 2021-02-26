@@ -29,7 +29,38 @@ function deleteProduct(id){
   xmlhttp.send(data);
 }
 
+function validateAddEdit(){
+  var errors = "";
+  var flag = false;
+  var lowerCaseLetters = /[a-z]/g;
+  var price = document.getElementById("price").value;
+  var stock = document.getElementById("stock").value;
+  var name = document.getElementById("name").value;
+  if (name == "") {
+    errors = errors.concat("Please Enter a Name\n");
+    flag = true;
+  }
+  if (!isNaN(price)) {
+    errors = errors.concat("Invalid Price\n");
+    flag = true;
+  }
+  if (!isNaN(stock)) {
+    errors = errors.concat("Invalid Stock\n");
+    flag = true;
+  }
+  if (flag) {
+    alert(errors);
+    return false;
+  }
+   return true;
+
+}
+
+
 function addProduct(){
+  if (!validateAddEdit()) {
+    return;
+  }
   var elements = document.getElementsByClassName("form");
   var formData = new FormData();
   for (var i = 0; i < elements.length; i++) {

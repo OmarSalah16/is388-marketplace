@@ -18,6 +18,20 @@ function showOrders() {
   xmlhttp.send(data);
 }
 
+function confirm(id){
+  var data = new FormData();
+  data.append('q', 'confirm');
+  data.append('ID', id);
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      showOrders() 
+    }
+  }
+  xmlhttp.open("POST","php/changeOrders.php",true);
+  xmlhttp.send(data);
+}
+
 function deleteOrder(id){
   var data = new FormData();
   data.append('ID', id);

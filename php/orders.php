@@ -97,6 +97,10 @@ function viewO($con){
       echo "<td>" . $totalPrice . "</td>";
       echo "<td>" . $row['status'] . "</td>";
       echo "<td>" . $row['date'] . "</td>";
+      if ($row['status'] == "incomplete") {
+        echo "<td align='center'><button type='button' onclick='confirm(".$row['ID'].")'>Confirm</button></td>";
+      }
+      
     }
     if (!$isResult) {
       echo "No results found.";
@@ -117,7 +121,6 @@ switch ($_POST['q']) {
   case 'view':
     viewO($con);
     break;
-
 
 }
 mysqli_close($con);
