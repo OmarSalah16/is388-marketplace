@@ -79,6 +79,7 @@
       <h1>Sign Up Now</h1>
       <div id="error" class='error'>
       <?php
+      include 'php/customError.php';
         include 'php/dbhandler.php';
         if (isset($_POST['submit'])){
           $err = [];

@@ -1,4 +1,5 @@
 <?php
+include 'customError.php';
 function viewSurveys($con){
   $sql = "SELECT * FROM survey";
   $result = mysqli_query($con,$sql);

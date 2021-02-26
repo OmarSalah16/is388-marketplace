@@ -1,4 +1,5 @@
 <?php
+include 'php/customError.php';
 session_start();
 include "auditorVerification.php";
 include "navbar.php";
@@ -85,5 +86,5 @@ include "navbar.php";
     margin-left: 5px;
   }
 
-  
+
 </style>

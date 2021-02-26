@@ -1,4 +1,5 @@
 <?php
+include 'customError.php';
 function create_ticket($con){
   $subject = $_POST['subject'];
   $content = $_POST['content'];

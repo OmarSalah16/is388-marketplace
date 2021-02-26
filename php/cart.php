@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'customError.php';
 
 function viewC($con){
   $cart = $_SESSION['cart'];

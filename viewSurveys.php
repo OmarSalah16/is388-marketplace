@@ -2,6 +2,7 @@
 session_start();
 include "auditorVerification.php";
 include "navbar.php";
+include 'php/customError.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

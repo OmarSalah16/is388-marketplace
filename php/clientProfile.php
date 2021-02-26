@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'customError.php';
 function viewP($con){
 
   $ID = $_SESSION['ID'];

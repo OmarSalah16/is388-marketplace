@@ -5,7 +5,8 @@
     <title>Illegal Access</title>
   </head>
   <body>
-<?php include "navbar.php"; ?>
+<?php include "navbar.php";
+include 'php/customError.php'; ?>
   </body>
 </html>
 

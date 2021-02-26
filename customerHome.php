@@ -7,7 +7,8 @@
   <body>
     <div class="topnav">
       <?php session_start();
-      include "navbar.php"; ?>
+      include "navbar.php";
+      include 'php/customError.php'; ?>
     </div>
       <div class="subtitle">
         <h2>BEST.NEWS.EVER.</h2>

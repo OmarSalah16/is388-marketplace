@@ -1,6 +1,6 @@
 <?php
   session_start();
-
+include 'customError.php';
   $file_result = "";
 
   $file_size =$_FILES['file']['size'];
