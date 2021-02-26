@@ -5,7 +5,7 @@ function viewP($con){
   $ID = $_SESSION['ID'];
   $sql = "SELECT * FROM users WHERE ID = $ID";
   $sql2 = "SELECT * FROM orders WHERE customer_id = $ID";
-  $sql3 = "SELECT * FROM user_image WHERE user_id = $ID";
+  $sql3 = "SELECT * FROM user_image WHERE user_id = $ID"; 
   $sql4 = "SELECT name FROM products WHERE ID = ";
   $result = mysqli_query($con,$sql);
   $result2 = mysqli_query($con,$sql2);

@@ -23,8 +23,9 @@
 
     <div class="addProfile" id="addProfile" style="display: none">
       <form class="addP" action="" method="post">
-        <a href="changePassword">Change Password</a>
         <br>
+        <a href="changePassword" style="color:red;">Change Password</a>
+        <br><br>
         <label for="name">Name</label> <input type="text" name="name" id="name"  class="form" required style="margin-left:5px;"> <br>
         <label for="price">Mobile</label> <input type="number" name="mobile" id="mobile" class="form" required> <br>
         <label for="stock">Email</label> <input type="text" name="email" id="email" class="form" required style="margin-left:12px;"> <br>

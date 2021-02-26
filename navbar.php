@@ -6,7 +6,7 @@
     <style>
      li
      {
-      
+
      }
     .topnav a
     {
@@ -67,7 +67,7 @@
                   }
                 }
                 else {
-                  include("customerMenu.php");
+                  include("guestMenu.php");
                 }
                 ?>
 </div>
