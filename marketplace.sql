@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2021 at 07:14 PM
+-- Generation Time: Feb 27, 2021 at 10:41 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -33,15 +33,6 @@ CREATE TABLE `hierarchy` (
   `rank` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `hierarchy`
---
-
-INSERT INTO `hierarchy` (`admin_id`, `rank`) VALUES
-(1, 0),
-(5, 1),
-(6, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -53,19 +44,9 @@ CREATE TABLE `orders` (
   `customer_id` int(11) NOT NULL,
   `product_id` text NOT NULL,
   `quantity` text NOT NULL,
-  `status` enum('complete','incomplete') NOT NULL DEFAULT 'incomplete',
+  `status` enum('complete','incomplete','cancelled') NOT NULL DEFAULT 'incomplete',
   `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`ID`, `customer_id`, `product_id`, `quantity`, `status`, `date`) VALUES
-(1, 4, '2,3', '1,1', 'incomplete', '2021-02-25'),
-(2, 4, '4', '4', 'incomplete', '2021-02-25'),
-(3, 4, '3', '2', 'incomplete', '2021-02-25'),
-(4, 4, '4', '1', 'incomplete', '2021-02-25');
 
 -- --------------------------------------------------------
 
@@ -78,13 +59,6 @@ CREATE TABLE `penalty` (
   `hr_id` int(11) NOT NULL,
   `comments` varchar(512) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `penalty`
---
-
-INSERT INTO `penalty` (`report_id`, `hr_id`, `comments`) VALUES
-(1, 3, 'Penalty');
 
 -- --------------------------------------------------------
 
@@ -100,15 +74,6 @@ CREATE TABLE `products` (
   `rating` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`ID`, `name`, `price`, `stock`, `rating`) VALUES
-(2, 'Soccer ball', 25.00, 4, 0),
-(3, 'Gameboy', 5000.00, 100, 0),
-(4, 'n64', 5000.00, 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -119,21 +84,6 @@ CREATE TABLE `product_image` (
   `product_id` int(11) NOT NULL,
   `image_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `product_image`
---
-
-INSERT INTO `product_image` (`product_id`, `image_name`) VALUES
-(2, '1.jpg'),
-(2, '2.jpg'),
-(2, '3.jpg'),
-(3, '1.jpg'),
-(3, '2.jpg'),
-(3, '3.jpg'),
-(4, '1.jpg'),
-(4, '2.jpg'),
-(4, '3.jpg');
 
 -- --------------------------------------------------------
 
@@ -151,13 +101,6 @@ CREATE TABLE `report` (
   `archived` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `report`
---
-
-INSERT INTO `report` (`ID`, `auditor_id`, `response_id`, `comment`, `date`, `is_report`, `archived`) VALUES
-(1, 2, 1, 'Comment', '2021-02-25', 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -173,17 +116,6 @@ CREATE TABLE `reviews` (
   `is_reviewed` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `reviews`
---
-
-INSERT INTO `reviews` (`ID`, `order_id`, `product_id`, `rating`, `review`, `is_reviewed`) VALUES
-(1, 1, 2, NULL, NULL, 0),
-(2, 1, 3, NULL, NULL, 0),
-(3, 2, 4, NULL, NULL, 0),
-(4, 3, 3, NULL, NULL, 0),
-(5, 4, 4, NULL, NULL, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -197,13 +129,6 @@ CREATE TABLE `survey` (
   `questions` text NOT NULL,
   `replies` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `survey`
---
-
-INSERT INTO `survey` (`ID`, `name`, `auditor_id`, `questions`, `replies`) VALUES
-(2, 'Standard Survey 1', 2, 'Question 1,Question 2,Question 3', 0);
 
 -- --------------------------------------------------------
 
@@ -219,13 +144,6 @@ CREATE TABLE `survey_answers` (
   `is_open` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `survey_answers`
---
-
-INSERT INTO `survey_answers` (`ID`, `customer_id`, `survey_id`, `answers`, `is_open`) VALUES
-(2, 4, 2, '', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -240,15 +158,6 @@ CREATE TABLE `tickets` (
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `status` enum('pending','open','closed','resolved') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tickets`
---
-
-INSERT INTO `tickets` (`ID`, `customer_id`, `title`, `msg`, `created`, `status`) VALUES
-(1, 4, 'product', 'wrong product', '2021-02-25 16:40:12', 'open'),
-(6, 4, 'product 5', 'product is sold out', '2021-02-25 16:43:32', 'pending'),
-(7, 4, 'I have a problem', 'my problem is..', '2021-02-25 19:45:40', 'pending');
 
 -- --------------------------------------------------------
 
@@ -266,14 +175,6 @@ CREATE TABLE `tickets_response` (
   `is_read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tickets_response`
---
-
-INSERT INTO `tickets_response` (`ID`, `author_id`, `is_admin`, `ticket_id`, `msg`, `created`, `is_read`) VALUES
-(1, 1, 1, 1, 'test', '2021-02-25 19:40:19', 1),
-(2, 4, 0, 1, 'thanks for your reply', '2021-02-25 19:46:36', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -289,18 +190,6 @@ CREATE TABLE `users` (
   `role` enum('customer','admin','auditor','HR') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`ID`, `email`, `password`, `name`, `mobile`, `role`) VALUES
-(1, 'admin@email.com', 'admin', 'admin', '01234567890', 'admin'),
-(2, 'auditor@email.com', 'auditor', 'auditor', '01234567890', 'auditor'),
-(3, 'hr@email.com', 'hr', 'hr', '01234567890', 'HR'),
-(4, 'customer@email.com', 'Customer1!', 'customer', '01234567890', 'customer'),
-(5, 'admin1@email.com', 'admin1', 'admin1', '01234567890', 'admin'),
-(6, 'admin2@email.com', 'admin2', 'admin2', '01234567890', 'admin');
-
 -- --------------------------------------------------------
 
 --
@@ -311,13 +200,6 @@ CREATE TABLE `user_image` (
   `user_id` int(11) NOT NULL,
   `image_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user_image`
---
-
-INSERT INTO `user_image` (`user_id`, `image_name`) VALUES
-(4, '4.jpg');
 
 --
 -- Indexes for dumped tables
@@ -422,55 +304,55 @@ ALTER TABLE `user_image`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `report`
 --
 ALTER TABLE `report`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `survey`
 --
 ALTER TABLE `survey`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `survey_answers`
 --
 ALTER TABLE `survey_answers`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tickets_response`
 --
 ALTER TABLE `tickets_response`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
