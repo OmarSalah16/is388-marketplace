@@ -39,7 +39,7 @@ include "adminVerification.php";
     width:300px;
     padding: 40px;
     position: absolute;
-    left:30%;
+    left:50%;
     transform: translate(-50%, 45%);
     background: #191919;
     text-align: center;
