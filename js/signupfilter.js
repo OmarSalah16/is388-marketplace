@@ -43,6 +43,12 @@ function validatePassword(password){
   return errors;
 }
 
+function checkAnswer(answer){
+  if (answer == "") {
+    return false;
+  }
+}
+
 function checkMobile(mobile){
   if(mobile.length != 11)
   return true;
@@ -93,6 +99,12 @@ function checkForm(){
       case "mobile":
         if (checkMobile(formData[i])) {
           err = err.concat("Invalid Number.<br>");
+        }
+        break;
+      case "answer":
+        var answer = checkAnswer(formData[i]);
+        if(!answer){
+          err = err.concat("Please enter an answer.");
         }
         break;
       default:

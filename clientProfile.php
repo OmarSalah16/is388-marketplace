@@ -30,6 +30,7 @@
         <label for="name">Name</label> <input type="text" name="name" id="name"  class="form" required style="margin-left:5px;"> <br><br>
         <label for="price">Mobile</label> <input type="number" name="mobile" id="mobile" class="form" required> <br><br>
         <label for="stock">Email</label> <input type="text" name="email" id="email" class="form" required style="margin-left:12px;"> <br><br>
+        <label for="answer">Security answer</label> <input type="text" name="answer" id="answer" class="form" required> <br><br>
         <button type="button" class="submitBtn" name="submitABtn" id="submitABtn" onclick="submitEdit()">Submit</button>
       </form>
     </div>

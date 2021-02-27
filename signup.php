@@ -107,7 +107,7 @@
           $password = $_POST['password'];
           $uppercase = preg_match('@[A-Z]@', $password);
           $lowercase = preg_match('@[a-z]@', $password);
-          $number    = preg_match('@[0-9]@', $password);
+          $number = preg_match('@[0-9]@', $password);
           $specialChars = preg_match('@[^\w]@', $password);
 
           if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
@@ -130,7 +130,7 @@
             echo $err[$i]."<br>";
           }
           if($i==0){
-            $sql = "INSERT INTO users (email,password,name,mobile,role) VALUES ('$_POST[email]','$_POST[password]','$_POST[name]','$_POST[mobile]','customer')";
+            $sql = "INSERT INTO users (email,password,name,mobile,role,security_question,security_answer) VALUES ('$_POST[email]','$_POST[password]','$_POST[name]','$_POST[mobile]','customer','$_POST[question]','$_POST[answer]')";
             $result = mysqli_query($con,$sql);
             if($result){
               header("Location: login.php");
@@ -149,6 +149,13 @@
       <input class="data" type="password" name="Cpassword" value="" placeholder="Confirm Password" required>
       <input class="data" type="text" name="name" value="" placeholder="Name" required>
       <input class="data" type="text" name="mobile" value="" placeholder="Mobile Number" required>
+      <select class="form" name="question">
+      <option value="What is your fathers name?">What is your fathers name?</option>
+      <option value="What is the name of your pet?">What is the name of your pet?</option>
+      <option value="What is your mothers name?">What is your mothers name?</option>
+      <option value="What was your childhood nickname?">What was your childhood nickname?</option>
+      </select>
+      <input type="text" name="answer" value="" class="form" placeholder="Security Answer" required>
       <input id="submit" type="submit" value="Submit" name="submit" value="Register" required>
     </form>
      </body>

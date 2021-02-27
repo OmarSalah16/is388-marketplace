@@ -16,17 +16,8 @@ include 'customError.php';
    die("Error Code: " . $_FILES["file"]["error"]);
   }
     else {
-
- // $file_result .=
- //    "Upload: " . $_FILES["file"]["name"] . "<br>" .
- //    "Type: "  . $_FILES["file"]["type"]. "<br>".
- //    "Size: "  . ($_FILES["file"]["size"] / 1024) . " Kb<br>" .
- //    "Temp file:  " . $_FILES["file"]["tmp_name"] . "<br>";
-
     $newfilename = $_SESSION['ID'] .'.' . 'jpg';
     move_uploaded_file($_FILES["file"]["tmp_name"], "..\user_images\\" . $newfilename);
-
-    // $file_result .= "Congrats :)! You file uploaded succeful!";
     }
     include 'dbhandler.php';
     $sql = "INSERT INTO user_image (user_id,image_name) VALUES ($_SESSION[ID],'$newfilename')";

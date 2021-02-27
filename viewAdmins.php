@@ -34,6 +34,7 @@ include 'php/customError.php';
     </div>
 
 <div id="viewAdmin">
+  <a href="changePassword" style="color:orange;">Change Password</a>
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="form" oninput="showAdmins()" placeholder="Search for Admin.." style="margin-left:10px;width:170px;">
     <select name="searchBy" id="searchBy" class="form" onchange="showAdmins()" style="width:70px;">
       <option value="ID">ID</option>
@@ -41,6 +42,7 @@ include 'php/customError.php';
       <option value="email">Email</option>
       <option value="rank">Rank</option>
     </select>
+
 
     <table width="100%" border="1" style="border-collapse:collapse;" c>
       <thead>

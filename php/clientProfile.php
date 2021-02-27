@@ -1,9 +1,12 @@
 <?php
 session_start();
 include 'customError.php';
+include 'dbhandler.php';
+
 function viewP($con){
 
   $ID = $_SESSION['ID'];
+  
   $sql = "SELECT * FROM users WHERE ID = $ID";
   $sql2 = "SELECT * FROM orders WHERE customer_id = $ID";
   $sql3 = "SELECT * FROM user_image WHERE user_id = $ID"; 
@@ -83,13 +86,32 @@ function deleteP($con){
 
 
 function editP($con){
-  $sql = "UPDATE users SET name='$_POST[name]',mobile='$_POST[mobile]',email='$_POST[email]' WHERE ID= $_SESSION[ID]";
-  $result = mysqli_query($con,$sql);
+  $sql = "UPDATE users SET ";
+  $rflag = false;
+    if ($_POST['name'] != "") {
+      $sql .= "name = '$_POST[name]'";
+      $rflag = true;
+    }
+    if ($_POST['mobile'] != "") {
+      $sql .= "mobile = '$_POST[mobile]'";
+      $rflag = true;
+    }
+    if ($_POST['email'] != "") {
+      $sql .= "email = '$_POST[email]'";
+      $rflag = true;
+    }
+    if ($_POST['answer'] != "") {
+      $sql .= "security_answer = '$_POST[answer]'";
+      $rflag = true;
+    }
+    $sql = "UPDATE users SET name='$_POST[name]',mobile='$_POST[mobile]',email='$_POST[email]',security_answer='$_POST[answer]'";
+
+  $sql .= " WHERE ID = '$_SESSION[ID]'";
+  if ($rflag) {
+    $result = mysqli_query($con,$sql);
+  }
 }
-$con = mysqli_connect('localhost','root','','marketplace');
-if (!$con) {
-  die('Could not connect: ' . mysqli_error($con));
-}
+
 switch ($_POST['q']) {
 
   case 'del':
