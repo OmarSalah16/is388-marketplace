@@ -17,7 +17,7 @@ else{
   header("Location: login.php");
 }
 if (isset($_POST['submit'])) {
-	$sql2 = "UPDATE users SET password = '$_POST[newP]' WHERE ID = $ID";
+  $sql2 = "UPDATE users SET password = '$_POST[newP]' WHERE ID = $ID";
   if (!$fIDflag) {
     $sql = "SELECT ID FROM users WHERE ID = $ID AND password = '$_POST[oldP]'";
     $result = mysqli_query($con,$sql);
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     $pFlag = true;
   }
   }
-	 if ($pFlag) 
+   if ($pFlag) 
     {
         $err = [];
         $password = $_POST['newP'];
@@ -49,13 +49,13 @@ if (isset($_POST['submit'])) {
             $result2 = mysqli_query($con,$sql2);
             header("Location: clientProfile");
           }
-	}
+  }
 }
 ?>
 </div>
 <form method="post">
-	<h1>Password Update</h1>
-	<br>
+  <h1>Password Update</h1>
+  <br>
   <?php
    if (isset($_SESSION['ID'])) {
      echo " <label for='name'>Old password</label> <input type='password' name='oldP' required style='margin-left:71px;'> <br><br>";
@@ -87,7 +87,7 @@ input[type="submit"]{
   background: none;
   display: block;
   margin: 35px;
-	margin-left: 100px;
+  margin-left: 100px;
   text-align: center;
   border: 1px solid orange;
   padding: 7px 17px;

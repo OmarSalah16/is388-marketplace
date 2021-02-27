@@ -1,0 +1,6 @@
+Error number: 8. | Error message: Trying to access array offset on value of type null. | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\FINAL MARKET\is388-marketplace\recoverPass.php, Error line: 20. 
+Error number: 8. | Error message: Trying to access array offset on value of type null. | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\FINAL MARKET\is388-marketplace\recoverPass.php, Error line: 20. 
+Error number: 8. | Error message: Undefined variable: sql2. | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\FINAL MARKET\is388-marketplace\changePassword.php, Error line: 50. 
+Error number: 8. | Error message: Trying to access array offset on value of type null. | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\FINAL MARKET\is388-marketplace\recoverPass.php, Error line: 20. 
+Error number: 8. | Error message: Trying to access array offset on value of type null. | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\FINAL MARKET\is388-marketplace\recoverPass.php, Error line: 27. 
+Error number: 8. | Error message: Trying to access array offset on value of type null. | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\FINAL MARKET\is388-marketplace\recoverPass.php, Error line: 27. 

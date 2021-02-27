@@ -13,16 +13,40 @@ include 'php/dbhandler.php';
 <?php
 if (isset($_POST['submit'])) {
   $email = $_POST['email'];
+  $eFlag = true;
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  echo "<h4 style ='color:red;font-weight:bold;'>Invalid Email</h4>";
+  $eFlag = false;
+  }
   $sql = "SELECT * FROM users WHERE email = '$email'";
+  if ($eFlag) {
   $result = mysqli_query($con,$sql);
   $row = mysqli_fetch_array($result);
-  echo "<h5>Please answer this security question:</h5> <br>";
-  echo $row['security_question'] . "<br> <br>";
+  if (mysqli_num_rows($result) != 0) {
+    echo "<h5>Please answer this security question:</h5> <br>";
+    echo $row['security_question'] . "<br> <br>";
+    echo "<form action='recoverPass.php' method='post'>
+    <input type='text' name='answer'>
+    <input type='text' style='display:none;' name='email' value='$email'>
+    <input type='submit' name='submit2'>
+    </form>";
+  }
+  else{
+    echo "<h4 style ='color:red;font-weight:bold;'>Invalid Email</h4>";
+    echo "<form action='recoverPass.php' method='post'>
+    <input type='text' name='email'>
+    <input type='submit' name='submit'>
+    </form>";
+  }
+
+}
+else{
+  echo "<h4 style ='color:red;font-weight:bold;'>Invalid Email</h4>";
   echo "<form action='recoverPass.php' method='post'>
-  <input type='text' name='answer'>
-  <input type='text' style='display:none;' name='email' value='$email'>
-  <input type='submit' name='submit2'>
- </form>";
+  <input type='text' name='email'>
+  <input type='submit' name='submit'>
+  </form>";
+}
 }
 elseif (isset($_POST['submit2'])) {
   $sql2 = "SELECT ID ,security_answer FROM users WHERE email = '$_POST[email]'";
@@ -35,13 +59,13 @@ elseif (isset($_POST['submit2'])) {
   else{
     echo "<h4 style='color:red; font-weight:bold;'>Incorrect answer</h4>";
     echo "<form action='recoverPass.php' method='post'>
-  <input type='text' name='email'>
-  <input type='submit' name='submit'>
-</form>";
+    <input type='text' name='email'>
+    <input type='submit' name='submit'>
+    </form>";
   }
 }
 else{
- echo "<form action='recoverPass.php' method='post'>
+echo "<form action='recoverPass.php' method='post'>
   <input type='text' name='email'>
   <input type='submit' name='submit'>
 </form>";
