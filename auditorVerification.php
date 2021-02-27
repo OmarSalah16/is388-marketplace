@@ -1,8 +1,8 @@
 <?php
-include 'php/customError.php';
+include "isLoggedIn.php";
 if (isset($_SESSION['role'])) {
 	if ($_SESSION['role'] != "auditor") {
-		header("Location: ../denied.php");
+		header("Location: denied.php");
 }
 }
 ?>

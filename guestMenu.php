@@ -1,8 +1,8 @@
 <div class="main">
        <ul>
-         <li> <a href = "customerHome">Home</a></li>
-         <li> <a href = "productSearch">Search</a> </li>
-         <li> <a href = "login">Log In</a> </li> </li>
+         <li> <a href = 'customerHome'>Home</a></li>
+         <li> <a href = 'productSearch'>Search</a> </li>
+         <li> <a href = 'login'>Log In</a> </li> </li>
        </ul>
 </div>
 <style media="screen">

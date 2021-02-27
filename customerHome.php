@@ -129,7 +129,7 @@
   background-image: url('pics/img1.jpg');
   background-size: 100% 100%;
   box-shadow: 1px 2px 10px 10px white;
-  animation: slider 9s infinite linear;
+  animation: slider 25s infinite linear;
 }
 
 @keyframes slider {

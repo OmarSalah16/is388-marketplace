@@ -1,7 +1,1 @@
-Error number: 8. | Error message: . | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\TEST MARKET\is388-marketplace\viewOrderC.php, Error line: 53. 
-Error number: 8. | Error message: . | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\TEST MARKET\is388-marketplace\viewOrderC.php, Error line: 53. 
-Error number: 8. | Error message: . | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\TEST MARKET\is388-marketplace\viewOrderC.php, Error line: 45. 
-Error number: 8. | Error message: . | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\TEST MARKET\is388-marketplace\viewOrderC.php, Error line: 57. 
-Error number: 8. | Error message: . | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\TEST MARKET\is388-marketplace\viewOrderC.php, Error line: 57. 
-Error number: 8. | Error message: . | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\TEST MARKET\is388-marketplace\viewOrderC.php, Error line: 58. 
-Error number: 2. | Error message: . | File name: I:\_Marwan Documents\Data Management\xampp\htdocs\TEST MARKET\is388-marketplace\viewOrderC.php, Error line: 65. 
+Error number: 8. | Error message: Undefined variable: con. | File name: F:\XAMPP\htdocs\marketplace\product.php, Error line: 21. 
