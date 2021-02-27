@@ -16,7 +16,7 @@ if(is_numeric($ID))
     $ID = intval($ID);
   }
 $sql = "SELECT * FROM products WHERE ID = '".$ID."'";
-$sql2 = "SELECT * FROM reviews WHERE product_id = $ID AND is_reviewed = 1";
+$sql2 = "SELECT * FROM reviews INNER JOIN orders ON orders.ID=reviews.order_id INNER JOIN users ON users.ID=orders.customer_id WHERE reviews.product_id = $ID AND is_reviewed = 1";
 $sql3 = "SELECT * FROM product_image WHERE product_id = $ID";
 
 $result = mysqli_query($con,$sql);
@@ -29,6 +29,7 @@ $name;
 $price;
 $stock;
 $rating;
+$reviewers = [];
 $reviews = [];
 $ratings = [];
 while($row3 = mysqli_fetch_array($result3)) {
@@ -62,16 +63,16 @@ else{
   if ($row4['rating'] == 5) {
     $r5++;
   }
-  if ($row4['rating'] == 4) {
+  elseif ($row4['rating'] == 4) {
     $r4++;
   }
-  if ($row4['rating'] == 3) {
+  elseif ($row4['rating'] == 3) {
     $r3++;
   }
-  if ($row4['rating'] == 2) {
+  elseif ($row4['rating'] == 2) {
     $r2++;
   }
-  if ($row4['rating'] == 1) {
+  elseif ($row4['rating'] == 1) {
     $r1++;
   }
   // echo "<div style = 'font-size : 12px;'>";
@@ -86,6 +87,7 @@ else{
   // echo "<td>" . $row4['review'] . "</td>" . "<br>";
   // echo "<td>" . $row4['rating'] . "</td>" . "<br>" . "<br>";
   // echo "</tr>";
+  array_push($reviewers,$row4['name']);
   array_push($reviews,$row4['review']);
   array_push($ratings,$row4['rating']);
   }
@@ -101,52 +103,48 @@ mysqli_close($con);
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <title>Product Details</title>
   <style media="screen">
-  *{
-    margin:0;
-    padding:0;
-    font-family: Century Gothic;
-  }
-
-    body{
-      background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.3)), url(pics/gift.jpg);
-      height:100vh;
-      background-size: cover;
-      background-position:center;
-      background-repeat: no-repeat;
-      padding-left: 20px;
-      padding-top: 20px;
-    }
-    .container{
-      margin-left: 0;
+    *{
+      margin:0;
+      padding:0;
+      font-family: Century Gothic;
     }
 
-    .slideshow{
-        width: 100%;
-        height: 125px;
-        background-image: url('pics/img1.jpg');
-        background-size: 100% 100%;
-        animation: slider 9s infinite linear;
-    }
+      body{
+        background-image:linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.3)) , url(pics/gift.jpg);
+        height:100%;
+        background-size: cover;
+        background-position:center;
+        background-repeat: no-repeat;
+        padding-left: 20px;
+        padding-top: 20px;
+      }
+      .container{
+        margin-left: 0;
+      }
 
-    @keyframes slider {
-      <?php if(isset($images[0])) {echo "0%{background-image: url('$baseurl$images[0]');}";} ?>
-      <?php if(isset($images[1])) {echo "20%{background-image: url('$baseurl$images[1]');}";} ?>
-      <?php if(isset($images[2])) {echo "40%{background-image: url('$baseurl$images[2]');}";} ?>
-      <?php if(isset($images[3])) {echo "60%{background-image: url('$baseurl$images[3]');}";} ?>
-      <?php if(isset($images[4])) {echo "80%{background-image: url('$baseurl$images[4]');}";} ?>
-    }
-    .details{
-      content-align:center;
-      font-weight: bold;
-      margin-top: 20px;
-      margin-bottom: 0px;
-    }
-    .details .table{
-      margin-bottom: 0px;
-    }
-    .panel-heading{
+      .slideshow{
+          width: 100%;
+          height: 35%;
+          background-size: 100% 100%;
+          animation: slider 30s infinite linear;
+      }
 
-    }
+      @keyframes slider {
+        <?php if(isset($images[0])) {echo "0%{background-image: url('$baseurl$images[0]');}";} ?>
+        <?php if(isset($images[1])) {echo "20%{background-image: url('$baseurl$images[1]');}";} ?>
+        <?php if(isset($images[2])) {echo "40%{background-image: url('$baseurl$images[2]');}";} ?>
+        <?php if(isset($images[3])) {echo "60%{background-image: url('$baseurl$images[3]');}";} ?>
+        <?php if(isset($images[4])) {echo "80%{background-image: url('$baseurl$images[4]');}";} ?>
+      }
+      .details{
+        content-align:center;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 0px;
+      }
+      .details .table{
+        margin-bottom: 0px;
+      }
   </style>
 </head>
 <body>
@@ -182,13 +180,32 @@ mysqli_close($con);
       <div class="col-sm-6">
         <div class="panel panel-warning">
           <div class="panel-heading">Product Review(s)</div>
-          <div class="panel-body"></div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="panel panel-success">
-          <div class="panel-heading">Product Rating</div>
-          <div class="panel-body"></div>
+          <div class="panel-body">
+            <?php
+              echo "<table class='table'>";
+              echo "<thead>
+              <tr>
+              <th>Name</th>
+              <th>Rating</th>
+              <th>Review</th>
+              <tr>
+              </thead>";
+              if($reviews == "No reveiws.")
+              {
+                echo "<tr><td>$reviews</td></tr>";
+              }
+              else {
+                for ($i=0; $i < count($reviews); $i++) {
+                  echo "<tr>
+                  <td>$reviewers[$i]</td>
+                  <td>$ratings[$i]</td>
+                  <td>$reviews[$i]</td>
+                  </tr>";
+                }
+              }
+              echo "</table>";
+            ?>
+          </div>
         </div>
       </div>
     </div>
