@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
   $email = $_POST['email'];
   $eFlag = true;
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  echo "<h4 style ='color:red;font-weight:bold;'>Invalid Email</h4>";
+  echo "<h4 style ='color:red;font-weight:bold;text-align:center;'>Invalid Email</h4>";
   $eFlag = false;
   }
   $sql = "SELECT * FROM users WHERE email = '$email'";
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
     </form>";
   }
   else{
-    echo "<h4 style ='color:red;font-weight:bold;'>Invalid Email</h4>";
+    echo "<h4 style ='color:red;font-weight:bold;text-align:center;'>Invalid Email</h4>";
     echo "<form action='recoverPass.php' method='post'>
     <input type='text' name='email' placeholder='Email Address'>
     <input type='submit' name='submit'>
@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
 
 }
 else{
-  echo "<h4 style ='color:red;font-weight:bold;'>Invalid Email</h4>";
+  echo "<h4 style ='color:red;font-weight:bold;text-align:center;'>Invalid Email</h4>";
   echo "<form action='recoverPass.php' method='post'>
   <input type='text' name='email' placeholder='Email Address'>
   <input type='submit' name='submit'>
@@ -57,7 +57,7 @@ elseif (isset($_POST['submit2'])) {
     header("Location: changePassword.php");
   }
   else{
-    echo "<h4 style='color:red; font-weight:bold;'>Incorrect answer</h4>";
+    echo "<h4 style='color:red; font-weight:bold;text-align:center;'>Incorrect answer</h4>";
     echo "<form action='recoverPass.php' method='post'>
     <input type='text' name='email' placeholder='Email Address'>
     <input type='submit' name='submit'>
@@ -94,7 +94,7 @@ body{
 }
 
 form{
-transform: translate(450%, 150%);
+transform: translate(490%, 150%);
 position: absolute;
 }
 
