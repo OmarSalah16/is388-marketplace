@@ -7,7 +7,6 @@ include 'php/customError.php';
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <?php include "hrBar.php"; ?>
     <meta charset="utf-8">
     <title>View Tickets</title>
     <script src="js/ticket.js"></script>
