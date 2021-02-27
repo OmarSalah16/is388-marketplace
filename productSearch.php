@@ -19,7 +19,7 @@ include 'php/customError.php';
     <div id="error"></div>
     <a href="checkout">My Cart</a>
     <label for=""></label> <input type="text" name="searchBar" id="searchBar" class="form" oninput="showProducts()">
-    <select name="searchBy" id="searchBy" class="form" onchange="selectChange()">
+    <select name="searchBy" id="searchBy" class="form">
       <option value="Name" >Name</option>
       <option value="rating" >Rating</option>
     </select>

@@ -37,6 +37,7 @@ function validateEdit(){
   var email = document.getElementById("email").value;
   var mobile = document.getElementById("mobile").value;
   var name = document.getElementById("name").value;
+
   if (name == "") {
     errors = errors.concat("Please Enter a Name\n");
     flag = true;
@@ -69,13 +70,17 @@ function submitEdit(){
     formData.append(elements[i].name, elements[i].value);
     console.log(elements[i].name + " " + elements[i].value);
   }
+  // if (answer != "") {
+  //   formData.append('answer', answer);
+  //   formData.append('answerISSET', 'yes');
+  // }
   formData.append('q', 'edit');
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
 
     if (this.readyState==4 && this.status==200) {
       view_add();
-      showProfile();
+      // showProfile();
       document.getElementById("error").innerHTML = this.responseText;
     }
   }

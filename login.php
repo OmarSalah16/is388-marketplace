@@ -154,6 +154,7 @@
       <input type="password" name="password" id="password" placeholder="Password">
       <input type="submit" name="submit" value="Login">
       <a href="signup.php">Sign Up</a>
+      <a href="recoverPass.php">Forgot Password</a>
     </form>
   </body>
 </html>

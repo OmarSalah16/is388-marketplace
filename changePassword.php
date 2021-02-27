@@ -3,14 +3,31 @@
 include 'php/customError.php';
 session_start();
 include "php/dbhandler.php";
+if (isset($_SESSION['fID'])) {
+  $ID = $_SESSION['fID'];
+  $fIDflag = true;
+  $pFlag = true;
+}
+elseif (isset($_SESSION['ID'])) {
+  $ID = $_SESSION['ID'];
+  $fIDflag = false;
+  $pFlag = false;
+}
+else{
+  header("Location: login.php");
+}
 if (isset($_POST['submit'])) {
-	$sql = "SELECT ID FROM users WHERE ID = $_SESSION[ID] AND password = '$_POST[oldP]'";
-	$sql2 = "UPDATE users SET password = '$_POST[newP]' WHERE ID = $_SESSION[ID]";
-	$result = mysqli_query($con,$sql);
-	if (mysqli_num_rows($result) == 0) {
-		echo "Incorrect password";
-	}
-	else{
+	$sql2 = "UPDATE users SET password = '$_POST[newP]' WHERE ID = $ID";
+  if (!$fIDflag) {
+    $sql = "SELECT ID FROM users WHERE ID = $ID AND password = '$_POST[oldP]'";
+    $result = mysqli_query($con,$sql);
+  if (mysqli_num_rows($result) == 0) {
+    echo "Incorrect password";
+    $pFlag = true;
+  }
+  }
+	 if ($pFlag) 
+    {
         $err = [];
         $password = $_POST['newP'];
         $uppercase = preg_match('@[A-Z]@', $password);
@@ -21,7 +38,6 @@ if (isset($_POST['submit'])) {
           if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
               array_push($err,'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.');
           }
-
           if($_POST['newP']!=$_POST['newPC']){
             array_push($err,"Passwords do no match.");
           }
@@ -40,10 +56,14 @@ if (isset($_POST['submit'])) {
 <form method="post">
 	<h1>Password Update</h1>
 	<br>
-	<label for="name">Old password</label> <input type="password" name="oldP" required style="margin-left:71px;"> <br><br>
-    <label for="price">New password</label> <input type="password" name="newP"  required style="margin-left:63px;"> <br><br>
-    <label for="stock">Confirm new password</label> <input type="password" name="newPC"  required>
-    <input type="submit" name="submit" value="Submit">
+  <?php
+   if (isset($_SESSION['ID'])) {
+     echo " <label for='name'>Old password</label> <input type='password' name='oldP' required style='margin-left:71px;'> <br><br>";
+   }
+  ?>
+  <label for="price">New password</label> <input type="password" name="newP"  required style="margin-left:63px;"> <br><br>
+  <label for="stock">Confirm new password</label> <input type="password" name="newPC"  required>
+  <input type="submit" name="submit" value="Submit">
 </form>
 <style media="screen">
 
