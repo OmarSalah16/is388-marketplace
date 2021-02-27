@@ -127,7 +127,6 @@ function displayTicket($con){
     else $class .= "unread";
     echo "<div class='$class'>";
     echo "Date: ".$row['created']."<br>";
-    echo "Response ID: ".$row['ID']."<br>";
     echo $role." ID: ".$row['author_id']."<br>";
     //echo "Ticket ID".$row['ticket_id']."<br>";
     echo "Message: ".$row['msg']."<br>";

@@ -81,7 +81,8 @@
                   //include("guestMenu.php");
                   echo "<li> <a class='nav' href = 'customerHome'>Home</a></li>
                   <li> <a class='nav' href = 'productSearch'>Search</a> </li>
-                  <li> <a class='nav' href = 'login'>Log In</a> </li>";
+                  <li> <a class='nav' href = 'login'>Log In</a> </li>
+                  <li> <a class='nav' href = 'signup'>Sign Up</a> </li>";
                 }
                 ?>
                 </ul>

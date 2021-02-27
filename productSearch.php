@@ -38,7 +38,7 @@ include 'php/customError.php';
       <input id="max" class="data" style="width: 250px; margin-left:330px;" value=<?php echo $max;?> min=<?php echo $min;?> max=<?php echo $max;?> step="1" type="range" onchange="showProducts()">
 
 
-    <table width="100%" class="table table-hover">
+    <table width="100%" class="table table-hover" style="font-weight:bold; color: white">
       <thead>
         <tr>
           <th><strong></strong></th>
@@ -56,7 +56,13 @@ include 'php/customError.php';
 </html>
 <script  src="js/minmax.js"></script>
 <style media="screen">
-
+input, button{
+  color: black;
+}
+table{
+  text-shadow: 2px 2px #000;
+  font-weight: bold;
+}
 a{
     font-size: 25px;
     color:blue;
@@ -69,10 +75,10 @@ a{
 }
 
   body{
-    background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.5)), url(pics/bg.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.2) ,rgba(0, 0, 0, 0.5))  , url(pics/bg.jpg);
     height:100vh;
     background-size: cover;
-    background-position:center;
+    background-position:center center;
     background-repeat: no-repeat;
   }
   img {

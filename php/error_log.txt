@@ -1,0 +1,2 @@
+Error number: 2. | Error message: mysqli_connect(): (HY000/1049): Unknown database 'marketplace'. | File name: D:\xampp\htdocs\marketplace\php\dbhandler.php, Error line: 2. 
+Error number: 2. | Error message: mkdir(): File exists. | File name: D:\xampp\htdocs\marketplace\php\addProduct.php, Error line: 64. 
