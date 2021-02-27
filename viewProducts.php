@@ -1,11 +1,3 @@
-<?php
-session_start();
-include "adminVerification.php";
-include "php/dbhandler.php";
-include "cartInit.php";
-include "navbar.php";
-include 'php/customError.php';
-?>
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,6 +7,14 @@ include 'php/customError.php';
     <title>Products</title>
     <script src="js/viewProducts.js"></script>
   </head>
+  <?php
+  session_start();
+  include "adminVerification.php";
+  include "cartInit.php";
+  include "navbar.php";
+  include "php/dbhandler.php";
+  include 'php/customError.php';
+  ?>
 <body onload="showProducts()">
     <h1><u>Products</u></h1>
 

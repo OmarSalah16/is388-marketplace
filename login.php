@@ -1,3 +1,4 @@
+<?php include 'navbar.php'; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr" id="rTable">
   <head>
@@ -80,7 +81,7 @@
         background: orange;
       }
 
-      a{
+      .log{
         border-radius: 24px;
         text-decoration: none;
         color:#fff;
@@ -89,7 +90,7 @@
         transition: 0.6s ease;
       }
 
-      a:hover{
+      .log:hover{
         background-color: #fff;
         color: #000;
       }
@@ -153,7 +154,7 @@
       <input type="text" name="email" id="email" placeholder="E-mail">
       <input type="password" name="password" id="password" placeholder="Password">
       <input type="submit" name="submit" value="Login">
-      <a href="signup.php">Sign Up</a>
+      <a class="log" href="signup.php">Sign Up</a>
       <a href="recoverPass.php">Forgot Password</a>
     </form>
   </body>

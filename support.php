@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "cartInit.php";
-include "customerMenu.php";
+include "navbar.php";
 include 'php/customError.php';
 ?>
 <!DOCTYPE html>
